@@ -11,5 +11,10 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.js('resources/js/main.js', 'public/assets/js/main.js')
+    .styles(['node_modules/bootstrap/dist/css/bootstrap.css',
+        'node_modules/simple-line-icons/css/simple-line-icons.css',
+        'resources/css/main.css'],
+            'public/assets/css/main.css')
+    .copy(['resources/assets'],'public/assets')
+    .copy(['node_modules/simple-line-icons/fonts'],'public/assets/fonts');
