@@ -26,9 +26,10 @@ class CreateUsersTable extends Migration
             $table->string('mobile',100)->nullable();
             $table->boolean('is_active')->default(true);
             $table->text('comment')->nullable();
-            $table->integer('role_id')->nullable();
+            $table->integer('role_id',false,true)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
+            $table->integer('last_author',false,true)->nullable();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }

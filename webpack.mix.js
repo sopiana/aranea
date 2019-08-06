@@ -14,7 +14,8 @@ const mix = require('laravel-mix');
 mix.js('resources/js/main.js', 'public/assets/js/main.js')
     .styles(['node_modules/bootstrap/dist/css/bootstrap.css',
         'node_modules/simple-line-icons/css/simple-line-icons.css',
+        'node_modules/font-awesome/css/font-awesome.css',
         'resources/css/main.css'],
             'public/assets/css/main.css')
     .copy(['resources/assets'],'public/assets')
-    .copy(['node_modules/simple-line-icons/fonts'],'public/assets/fonts');
+    .copy(['node_modules/simple-line-icons/fonts', 'node_modules/font-awesome/fonts'],'public/assets/fonts');

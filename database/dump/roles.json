@@ -1,0 +1,12 @@
+[
+    {"description": "admin"},
+    {"description": "Scrum Master/Project Leader"},
+    {"description": "Product Owner"},
+    {"description": "Development Leader"},
+    {"description": "Software Architect"},
+    {"description": "Developer"},
+    {"description": "Test Leader"},
+    {"description": "Test Architect"},
+    {"description": "Tester"},
+    {"description": "user"}
+]

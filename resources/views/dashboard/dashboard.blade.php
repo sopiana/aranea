@@ -22,6 +22,15 @@
           <li class="nav-item px-3">
             <a class="nav-link" href="#">Settings</a>
           </li>
+          <li class="nav-item px-3">
+          <div class="input-group">
+                <span class="input-group-prepend">
+                <button class="btn btn-primary" type="button">
+                <i class="fa fa-search"></i></button>
+                </span>
+                <input class="form-control" id="input1-group2" type="text" name="input1-group2" placeholder="Username" autocomplete="username">
+                </div>
+          </li>
         </ul>
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item d-md-down-none">
