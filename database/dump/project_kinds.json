@@ -1,0 +1,11 @@
+[
+    {"name":"Web Application"},
+    {"name":"Desktop Application"},
+    {"name":"Android"},
+    {"name":"Web services"},
+    {"name":"Support"},
+    {"name":"Embedded System"},
+    {"name":"Operating System"},
+    {"name":"Library"},
+    {"name":"Generic Software"}
+]

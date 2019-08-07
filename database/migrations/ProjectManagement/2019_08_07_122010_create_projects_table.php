@@ -30,9 +30,9 @@ class CreateProjectsTable extends Migration
             $table->boolean('opt_testcase')->nullable();
             $table->boolean('opt_testexecution')->nullable();
             $table->boolean('opt_bugs')->nullable();
-            $table->integer('notif_setting',false,true);
+            $table->integer('notif_setting',false,true)->nullable();
             $table->string('api_key',255);
-            $table->integer('last_author',false,true);
+            $table->integer('last_author',false,true)->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
