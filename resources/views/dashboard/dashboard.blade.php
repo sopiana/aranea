@@ -50,12 +50,12 @@
                               <i class="nav-icon icon-social-steam"></i> Test Executions</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="base/forms.html">
-                                <i class="nav-icon icon-rocket"></i> Releases</a>
-                            </li>
-                          <li class="nav-item">
                             <a class="nav-link" href="base/jumbotron.html">
                               <i class="nav-icon icon-ghost"></i> Bugs</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="base/forms.html">
+                                <i class="nav-icon icon-rocket"></i> Releases</a>
                           </li>
                         </ul>
                       </li>

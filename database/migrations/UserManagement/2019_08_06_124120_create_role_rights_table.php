@@ -18,7 +18,7 @@ class CreateRoleRightsTable extends Migration
             $table->integer('role_id',false,true);
             $table->integer('right_id',false,true);
             $table->integer('last_author',false,true)->nullable();
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

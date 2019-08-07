@@ -55,12 +55,39 @@ class TriggerAssignment extends Migration
         $triggerCmd = $triggerCmd.'END';
         return $triggerCmd;
     }
+
     private function UserManagementTablesUpdateActions()
     {
         DB::unprepared($this->buildOnUpdateTriggerCommand('users'));
         DB::unprepared($this->buildOnUpdateTriggerCommand('rights'));
         DB::unprepared($this->buildOnUpdateTriggerCommand('roles'));
         DB::unprepared($this->buildOnUpdateTriggerCommand('role_rights'));
+    }
+
+    private function ProjectManagementTablesInsertActions()
+    {
+        DB::unprepared('CREATE TRIGGER `projects_insert_action` AFTER INSERT ON `projects`
+            FOR EACH ROW
+                INSERT INTO `project_mngm_audits` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
+                VALUES (NEW.updated_at, \'projects\', NEW.id, \'CREATE\', NEW.last_author, NULL, NULL, CONCAT(NEW.prefix,\'_\',NEW.id))'
+            );
+        DB::unprepared('CREATE TRIGGER `project_assignments_insert_action` AFTER INSERT ON `project_assignments`
+            FOR EACH ROW
+                INSERT INTO `project_mngm_audits` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
+                VALUES (NEW.updated_at, \'project_assignments\', NEW.id, \'CREATE\', NEW.last_author, NULL, NULL, CONCAT(NEW.project_id,\':\',NEW.user_id,\':\', NEW.role_id))'
+            );
+        DB::unprepared('CREATE TRIGGER `project_kinds_insert_action` AFTER INSERT ON `project_kinds`
+            FOR EACH ROW
+                INSERT INTO `project_mngm_audits` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
+                VALUES (NEW.updated_at, \'project_kinds\', NEW.id, \'CREATE\', NEW.last_author, NULL, NULL, CONCAT(NEW.id,\':\',NEW.name))'
+            );
+    }
+
+    private function ProjectManagementTablesUpdateActions()
+    {
+        DB::unprepared($this->buildOnUpdateTriggerCommand('projects'));
+        DB::unprepared($this->buildOnUpdateTriggerCommand('project_assignments'));
+        DB::unprepared($this->buildOnUpdateTriggerCommand('project_kinds'));
     }
     /**
      * Run the migrations.
@@ -71,6 +98,8 @@ class TriggerAssignment extends Migration
     {
         $this->UserManagementTablesInsertActions();
         $this->UserManagementTablesUpdateActions();
+        $this->ProjectManagementTablesInsertActions();
+        $this->ProjectManagementTablesUpdateActions();
     }
 
     /**
