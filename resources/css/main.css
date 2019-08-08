@@ -1532,6 +1532,12 @@ pre code {
   border-top: 1px solid #c8ced3;
 }
 
+.table.profile-info th,
+.table.profile-info td {
+  padding: 0.75rem 0.75rem 0.2rem;
+  border-top: 0px;
+}
+
 .table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #c8ced3;
@@ -5068,7 +5074,6 @@ a.badge-dark:focus, a.badge-dark.focus {
 
 .jumbotron {
   padding: 2rem 1rem;
-  margin-bottom: 2rem;
   background-color: #e4e7ea;
   border-radius: 0.3rem;
 }
@@ -10378,7 +10383,6 @@ a.text-dark:hover, a.text-dark:focus {
   -ms-flex-direction: row;
   flex-direction: row;
   padding: 0.75rem 0;
-  text-align: center;
 }
 
 .brand-card-body > * {

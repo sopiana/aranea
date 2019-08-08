@@ -16,6 +16,7 @@ function getWindowParam(paramName){
 function drawWindow(){
     let pageMenu=window.location.href.substr(window.location.origin.length+1);
     pageMenu = pageMenu.substr(0,pageMenu.indexOf('/'));
+
     switch(pageMenu){
         case "dashboard":
             dashboardPage.drawPage();
@@ -26,6 +27,8 @@ function drawWindow(){
 $(document).ready(function()
 {
     $('.right-nav').off('click').on('click',function(event){
+        $('.dropdown-menu').removeClass("show");
+
         var btnObj = event.target;
         if(btnObj.nodeName=='I')
             btnObj = $(btnObj).parent()[0];

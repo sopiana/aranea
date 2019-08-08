@@ -92,22 +92,128 @@
 
 @section('hidden-subpage')
 <div id="profile-detail" class="card">
-    <div class="brand-card">
-        <div class="brand-card-header bg-facebook">
-        <i class="fa fa-facebook"></i>
-        <div class="chart-wrapper">
-            <canvas id="social-box-chart-1" height="90"></canvas>
-        </div>
-        </div>
-        <div class="brand-card-body">
-        <div>
-            <div class="text-value">89k</div>
-            <div class="text-uppercase text-muted small">friends</div>
-        </div>
-        <div>
-            <div class="text-value">459</div>
-            <div class="text-uppercase text-muted small">feeds</div>
-        </div>
+    <div class="card-body">
+        <div class="row brand-card-body">
+            <div class="pl-3 pr-3">
+                <div class="text-left">
+                    <h4 class="card-title mb-0">Profile Data</h4>
+                </div>
+                <div class="btn-group float-right" role="group" aria-label="Button group">
+                    <a class="btn" href="#" title="Change password">
+                        <i class="icon-lock"></i>
+                    </a>
+                    <a class="btn" href="#" title="Edit profile">
+                        <i class="icon-note"></i></a>
+                </div>
+                <table class="table table-responsive-sm text-left profile-info">
+                    <tbody>
+                        <tr>
+                            <td rowspan="7" width="50px" class="text-center">
+                                <img  src="{{URL::asset($userData->avatar)}}">
+                                <br/>
+                                @if($userData->is_active)
+                                <span class="badge badge-success mr-0">Active</span>
+                                @else
+                                <span class="badge badge-secondary">Inactive</span>
+                                @endif
+                            </td>
+                            <th><i class="fa fa-user-o pr-2"></i>Username</th>
+                            <td>{{$userData->username}}</td>
+                        </tr>
+                        <tr>
+                            <th><i class="fa fa-envelope-o pr-2"></i>Email</th>
+                            <td>{{$userData->email}}</td>
+                        </tr>
+                        <tr>
+                            <th><i class="fa fa-vcard-o pr-2"></i>Full Name</th>
+                            <td>{{$userData->fullname}}</td>
+                        </tr>
+                        <tr>
+                            <th><i class="fa fa-building-o pr-2"></i>Company</th>
+                            <td>{{$userData->company}}</td>
+                        </tr>
+                        <tr>
+                            <th><i class="fa fa-phone pr-2"></i>Phone</th>
+                            <td>{{$userData->phone}}</td>
+                        </tr>
+                        <tr>
+                            <th><i class="fa fa-mobile pr-2"></i>Mobile</th>
+                            <td>{{$userData->mobile}}</td>
+                        </tr>
+                        <tr>
+                            <th><i class="fa fa-sitemap pr-2"></i>Role</th>
+                            <td>{{$userData->role}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><i class="fa fa-commenting-o pr-2"></i>{{$userData->comment}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-left pt-3">
+                    <h4 class="card-title mb-0">Group</h4>
+                    <div class="text-value">bla-bla</div>
+                </div>
+            </div>
+            <div>
+                <div class="pl-3 pb-3 text-left">
+                    <h4 class="card-title mb-0">Activity Log</h4>
+                </div>
+                <div class="pr-3 pl-3">
+                        <div class="list-group list-group-accent">
+                                <div class="list-group-item list-group-item-accent-secondary bg-light text-center font-weight-bold text-muted text-uppercase small">Today</div>
+                                <div class="list-group-item list-group-item-accent-warning list-group-item-divider">
+                                  <div>Meeting with
+                                    <strong>Lucas</strong>
+                                  </div>
+                                  <small class="text-muted mr-3">
+                                    <i class="icon-calendar"></i>&nbsp; 1 - 3pm</small>
+                                  <small class="text-muted">
+                                    <i class="icon-location-pin"></i>&nbsp; Palo Alto, CA</small>
+                                </div>
+                                <div class="list-group-item list-group-item-accent-info">
+
+                                  <div>Skype with
+                                    <strong>Megan</strong>
+                                  </div>
+                                  <small class="text-muted mr-3">
+                                    <i class="icon-calendar"></i>&nbsp; 4 - 5pm</small>
+                                  <small class="text-muted">
+                                    <i class="icon-social-skype"></i>&nbsp; On-line</small>
+                                </div>
+                                <div class="list-group-item list-group-item-accent-secondary bg-light text-center font-weight-bold text-muted text-uppercase small">Tomorrow</div>
+                                <div class="list-group-item list-group-item-accent-danger list-group-item-divider">
+                                  <div>New UI Project -
+                                    <strong>deadline</strong>
+                                  </div>
+                                  <small class="text-muted mr-3">
+                                    <i class="icon-calendar"></i>&nbsp; 10 - 11pm</small>
+                                  <small class="text-muted">
+                                    <i class="icon-home"></i>&nbsp; creativeLabs HQ</small>
+
+                                </div>
+                                <div class="list-group-item list-group-item-accent-success list-group-item-divider">
+                                  <div>
+                                    <strong>#10 Startups.Garden</strong> Meetup</div>
+                                  <small class="text-muted mr-3">
+                                    <i class="icon-calendar"></i>&nbsp; 1 - 3pm</small>
+                                  <small class="text-muted">
+                                    <i class="icon-location-pin"></i>&nbsp; Palo Alto, CA</small>
+                                </div>
+                                <div class="list-group-item list-group-item-accent-primary list-group-item-divider">
+                                  <div>
+                                    <strong>Team meeting</strong>
+                                  </div>
+                                  <small class="text-muted mr-3">
+                                    <i class="icon-calendar"></i>&nbsp; 4 - 6pm</small>
+                                  <small class="text-muted">
+                                    <i class="icon-home"></i>&nbsp; creativeLabs HQ</small>
+                                  </div>
+                              </div>
+                </div>
+                <div class="col-4 pt-3">
+                    <button class="btn btn-block btn-primary" type="button">Load more logs</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
