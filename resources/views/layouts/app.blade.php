@@ -25,5 +25,8 @@
     @yield('content')
     <!-- Scripts -->
     <script src="{{ URL::asset('/assets/js/main.js') }}" defer></script>
+    <div id="hidden-div">
+        @yield('hidden-subpage')
+    </div>
 </body>
 </html>

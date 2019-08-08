@@ -31,6 +31,7 @@ class CreateViewTable extends Migration
         DB::statement("CREATE VIEW view_projects AS(
             SELECT projects.id as id,
                 projects.prefix as prefix,
+                CONCAT(projects.prefix,'_',projects.id) as project_code,
                 projects.name as name,
                 projects.summary as summary,
                 projects.description as description,
@@ -58,6 +59,7 @@ class CreateViewTable extends Migration
         DB::statement("CREATE VIEW view_project_assignments AS(
             SELECT project_assignments.id as assignment_id,
                 project_assignments.project_id as project_id,
+                projects.prefix as prefix,
                 CONCAT(projects.prefix,'_',projects.id) as project_code,
                 project_assignments.user_id as user_id,
                 users.username as username,

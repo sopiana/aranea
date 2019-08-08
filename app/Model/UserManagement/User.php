@@ -5,6 +5,9 @@ namespace App\Model\UserManagement;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
+
+define('VIEW_USER','view_users');
 
 class User extends Authenticatable
 {
@@ -38,4 +41,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getProfileData($userId){
+        return DB::table(VIEW_USER)->where(VIEW_USER.'.user_id',$userId)->first();
+    }
 }

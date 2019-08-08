@@ -14,7 +14,29 @@
         <a class="nav-link" href="#">Dashboard</a>
     </li>
     <li class="nav-item px-3">
-        <a class="nav-link" href="#">Projects</a>
+        <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+        <div class="dropdown-menu dropdown-menu-left">
+            @if(isset($currentProject))
+            <div class="dropdown-header text-center">
+                <strong>Current Project</strong>
+            </div>
+            <a class="dropdown-item" href="#">
+            <i class="fa fa-user"></i> {{$currentProject->name}}</a>
+            @endif
+            @if(isset($recentProjects))
+            <div class="dropdown-header text-center">
+                <strong>Recent Projects</strong>
+            </div>
+            @foreach ($recentProjects as $recentProject)
+                <a class="dropdown-item" href="#">
+                    <i class="fa fa-calendar-o"></i> {{$recentProject->name}}
+                </a>
+            @endforeach
+            @endif
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+                View All Projects</a>
+        </div>
     </li>
     <li class="nav-item px-3">
         <a class="nav-link" href="#">Issues</a>
@@ -41,30 +63,33 @@
     </li>
     <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-        <img class="img-avatar" src="{{URL::asset('assets/images/avatars/6.jpg')}}" alt="admin@bootstrapmaster.com">
+        <img class="img-avatar" src="{{URL::asset($userData->avatar)}}" alt="{{$userData->email}}">
         </a>
         <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="{{ route('dashboard') }}/?page=profile">
                 <i class="fa fa-user"></i> Profile</a>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="{{ route('dashboard') }}/?page=projects">
                 <i class="fa fa-file"></i> Projects
                 <span class="badge badge-info">42</span>
             </a>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="{{ route('dashboard') }}/?page=tasks">
                 <i class="fa fa-calendar-o"></i> Tasks
                 <span class="badge badge-success">42</span>
             </a>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="{{ route('dashboard') }}/?page=issues-all">
                 <i class="fa fa-tasks"></i> Issues
                 <span class="badge badge-warning">42</span>
             </a>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="{{ route('dashboard') }}/?page=filters">
                 <i class="fa fa-filter"></i> Filters
             </a>
-            <a class="dropdown-item" href="#">
-                <i class="fa fa-wrench"></i> Settings</a>
+            <a class="dropdown-item" href="{{ route('dashboard') }}/?page=setting">
+                <i class="fa fa-wrench"></i> Setting</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
+            <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                 <i class="fa fa-lock"></i> Logout</a>
         </div>
     </li>

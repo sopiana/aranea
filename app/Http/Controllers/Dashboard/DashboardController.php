@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Model\ProjectManagement\Project;
+use App\Model\UserManagement\User;
+
 class DashboardController extends Controller
 {
     /**
@@ -28,6 +31,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.dashboard');
+        $userId = Auth::user()->id;
+        return view('dashboard.dashboard')->with('currentProject',Project::getLastViewedProject($userId))->
+            with('recentProjects',Project::getRecentProjects($userId,0,5))->
+            with('userData',User::getProfileData($userId));
     }
 }

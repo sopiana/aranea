@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
                     'username'=>$firstName.substr($lastName,0,4),
                     'email'=>strtolower($firstName.'.'.$lastName).'@foo.com',
                     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-                    'avatar'=>'assets/avatar/user/'.strval(rand(1,20)).'.png',
+                    'avatar'=>'assets/images/avatars/users/'.strval(rand(0,70)).'.png',
                     'first_name'=>$firstName,
                     'last_name'=>$lastName,
                     'company'=>'foo.com',

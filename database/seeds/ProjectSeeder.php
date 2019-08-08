@@ -32,7 +32,7 @@ class ProjectSeeder extends Seeder
                 'summary'=>$faker->sentence(6),
                 //lets say only 80% of project have description
                 'description'=>$faker->paragraph(6),
-                'avatar'=>'assets/avatar/project/'.strval(rand(1,20)).'.png',
+                'avatar'=>'assets/avatars/projects/'.strval(rand(1,80)).'.png',
                 'owner_id'=>$faker->randomElement($product_owners)->id,
                 'kind_id'=>rand(1,$kind_num),
                 //lets say around 85% has due date
