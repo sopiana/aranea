@@ -14,6 +14,8 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 php artisan migrate%param% --path=database/migrations/TriggerAssignment
 if %errorlevel% neq 0 exit /b %errorlevel%
 
+php artisan migrate%param% --path=database/migrations/ViewManagement
+if %errorlevel% neq 0 exit /b %errorlevel%
 
 
 
