@@ -33,7 +33,7 @@ class DashboardController extends Controller
     {
         $userId = Auth::user()->id;
         return view('dashboard.dashboard')->with('currentProject',Project::getLastViewedProject($userId))->
-            with('recentProjects',Project::getRecentProjects($userId,0,5))->
+            with('recentProjects',Project::getProjectList($userId,0,5))->
             with('userData',User::getProfileData($userId));
     }
 }

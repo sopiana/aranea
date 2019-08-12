@@ -21,7 +21,7 @@
                 <strong>Current Project</strong>
             </div>
             <a class="dropdown-item" href="#">
-            <i class="fa fa-user"></i> {{$currentProject->name}}</a>
+            <img src="{{URL::asset($currentProject->avatar)}}" class="img-avatar pr-2" width="30px"/> {{$currentProject->name}}</a>
             @endif
             @if(isset($recentProjects))
             <div class="dropdown-header text-center">
@@ -29,7 +29,7 @@
             </div>
             @foreach ($recentProjects as $recentProject)
                 <a class="dropdown-item" href="#">
-                    <i class="fa fa-calendar-o"></i> {{$recentProject->name}}
+                <img src="{{URL::asset($recentProject->avatar)}}" class="img-avatar pr-2" width="30px"/>{{$recentProject->name}}
                 </a>
             @endforeach
             @endif

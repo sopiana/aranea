@@ -23,4 +23,5 @@ Route::get('/dashboard', 'dashboard\DashboardController@index')->name('dashboard
  */
 Route::get('/api/secure/profileDetail','api\SecureApi@getProfileDetail')->name('api.profileDetail');
 Route::get('/api/secure/lastViewedProject','api\SecureApi@getLastViewedProject')->name('api.lastViewedProject');
-Route::get('/api/secure/recentProjects/{start?}/{limit?}','api\SecureApi@getRecentProjects')->name('api.recentProjects');
+Route::get('/api/secure/projectList/{start?}/{limit?}','api\SecureApi@getProjectList')->name('api.projectList');
+Route::get('/api/secure/projectListCount','api\SecureApi@getProjectListCount')->name('api.projectListCount');

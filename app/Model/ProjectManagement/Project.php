@@ -19,13 +19,21 @@ class Project extends Model
             orderByDesc('project_views.last_visited')->first();
     }
 
-    public static function getRecentProjects($userId, $start, $limit){
+    public static function getProjectList($userId, $start=-1, $limit=-1){
+        $query= DB::table(VIEW_PROJECT_ASSIGNMENT)->
+                join(VIEW_PROJECT,VIEW_PROJECT_ASSIGNMENT.'.project_id','=',VIEW_PROJECT.'.id')->
+                select(VIEW_PROJECT.'.*')->
+                where(VIEW_PROJECT_ASSIGNMENT.'.user_id', $userId)->
+                orderByDesc(VIEW_PROJECT.'.created_at');
+        if($start>=0)
+            $query->skip($start)->limit($limit);
+        return $query->get();
+    }
+
+    public static function getProjectListCount($userId){
         return DB::table(VIEW_PROJECT_ASSIGNMENT)->
-            join(VIEW_PROJECT,VIEW_PROJECT_ASSIGNMENT.'.project_id','=',VIEW_PROJECT.'.id')->
-            select(VIEW_PROJECT.'.*')->
+            select(VIEW_PROJECT_ASSIGNMENT.'.assignment_id')->
             where(VIEW_PROJECT_ASSIGNMENT.'.user_id', $userId)->
-            skip($start)->limit($limit)->
-            orderByDesc(VIEW_PROJECT.'.created_at')->
-            get();
+            count();
     }
 }

@@ -38,6 +38,7 @@ class CreateViewTable extends Migration
                 projects.avatar as avatar,
                 projects.owner_id as owner_id,
                 users.username as owner,
+                users.avatar as owner_avatar,
                 projects.kind_id as kind_id,
                 project_kinds.name as kind,
                 projects.end_date as end_date,

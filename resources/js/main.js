@@ -2,7 +2,10 @@ require('./bootstrap');
 window.$ = window.jQuery = require('jquery');
 require('popper.js');
 require('@coreui/coreui/dist/js/coreui');
-
+require('jquery-sortable');
+require('datatables.net/js/jquery.dataTables');
+require('datatables.net-bs4/js/dataTables.bootstrap4');
+// require('quill');
 function getWindowParam(paramName){
     let url = window.location.href;
     paramName = paramName.replace(/[\[\]]/g, "\\$&");
@@ -58,6 +61,9 @@ var dashboardPage = {
             case 'profile':
                 this.subMenuProfile.draw();
                 break;
+            case 'projects':
+                this.subMenuProjects.draw();
+                break;
         }
     },
     subMenuProfile:{
@@ -65,6 +71,54 @@ var dashboardPage = {
         {
             $('#profile-detail').appendTo('#pageContainer');
         }
+    },
+    subMenuProjects:{
+        overlay : new LoadOverlay('#project-list-table'),
+        draw: function()
+        {
+            $('#projectList-detail').appendTo('#pageContainer');
+            $('#project-list-table').DataTable( {
+                retrieve: true,
+                "ajax": {
+                    "url": window.location.origin+'/api/secure/projectList',
+                    "dataSrc": ""
+                },
+                "columns": [
+                    { "data": "name",
+                        render: function ( data, type, row ) {
+                            return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.avatar +'" width="30px">'+ row.name;}
+                    },
+                    { "data": "project_code" },
+                    { "data": "owner",
+                        render: function ( data, type, row ) {
+                            return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.owner_avatar +'" width="30px">'+ row.owner;}},
+                    { "data": "kind" },
+                    { "data": "created_at" },
+                    { "data": "is_active" }
+                ]
+            } );
+        }
+    }
+}
+
+function LoadOverlay(id){
+    this.id = id;
+    this.show = function(id){
+        if(id){
+            this.id=id;
+        }
+        console.log($(this.id));
+        $(this.id).children('#load-overlay').remove();
+        $(this.id).append('<div id="load-overlay" class="overlay text-center pt-4" style="display:block">'+
+                '<div id="load-spinner" class="load-spinner" style="display:block"></div>'+
+            '</div>');
+    }
+
+    this.hide = function(id){
+        if(id)
+            this.id=id;
+        console.log('close :' +$(this.id));
+        $(this.id).children('#load-overlay').remove();
     }
 }
 

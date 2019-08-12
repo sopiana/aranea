@@ -109,7 +109,7 @@
                     <tbody>
                         <tr>
                             <td rowspan="7" width="50px" class="text-center">
-                                <img  src="{{URL::asset($userData->avatar)}}">
+                                <img class="img-avatar"  src="{{URL::asset($userData->avatar)}}">
                                 <br/>
                                 @if($userData->is_active)
                                 <span class="badge badge-success mr-0">Active</span>
@@ -218,23 +218,26 @@
     </div>
 </div>
 <!-- /.col-->
-<div class="col-sm-6 col-lg-3">
-    <div class="brand-card">
-        <div class="brand-card-header bg-twitter">
-        <i class="fa fa-twitter"></i>
-        <div class="chart-wrapper">
-            <canvas id="social-box-chart-2" height="90"></canvas>
+<div id="projectList-detail" class="card">
+    <div class="card-body">
+        <div class="text-left pb-3">
+            <h4 class="card-title mb-0">My Projects</h4>
         </div>
-        </div>
-        <div class="brand-card-body">
-        <div>
-            <div class="text-value">973k</div>
-            <div class="text-uppercase text-muted small">followers</div>
-        </div>
-        <div>
-            <div class="text-value">1.792</div>
-            <div class="text-uppercase text-muted small">tweets</div>
-        </div>
+
+        <div id="project-list-container" class="div">
+        Nama
+        <table id="project-list-table" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Project Code</th>
+                        <th>Owner</th>
+                        <th>Project Type</th>
+                        <th>Creation Date</th>
+                        <th>Active</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
 </div>

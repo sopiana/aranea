@@ -26,9 +26,12 @@ class SecureApi extends Controller
     {
         return response()->json(Project::getLastViewedProject(Auth::user()->id));
     }
-    public function getRecentProjects($start=0,$limit=50)
+    public function getProjectList($start=-1,$limit=50)
     {
-        return response()->json(Project::getRecentProjects(Auth::user()->id, $start, $limit));
+        return response()->json(Project::getProjectList(Auth::user()->id, $start, $limit));
     }
-
+    public function getProjectListCount()
+    {
+        return response()->json(array('count'=>Project::getProjectListCount(Auth::user()->id)));
+    }
 }
