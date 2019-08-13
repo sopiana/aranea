@@ -89,6 +89,25 @@ class TriggerAssignment extends Migration
         DB::unprepared($this->buildOnUpdateTriggerCommand('project_assignments'));
         DB::unprepared($this->buildOnUpdateTriggerCommand('project_kinds'));
     }
+
+    private function StatusActionTablesInsertActions(){
+        DB::unprepared('CREATE TRIGGER `action_insert_action` AFTER INSERT ON `action`
+            FOR EACH ROW
+                INSERT INTO `action_status_audits` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
+                VALUES (NEW.updated_at, \'action\', NEW.id, \'CREATE\', NEW.last_author, NULL, NULL, CONCAT(NEW.id,\':\',NEW.name,\':\',NEW.status_origin,\':\',NEW.status_destination))'
+            );
+        DB::unprepared('CREATE TRIGGER `status_insert_action` AFTER INSERT ON `status`
+            FOR EACH ROW
+                INSERT INTO `action_status_audits` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
+                VALUES (NEW.updated_at, \'status\', NEW.id, \'CREATE\', NEW.last_author, NULL, NULL, CONCAT(NEW.id,\':\',NEW.type,\':\',NEW.name))'
+            );
+    }
+
+    private function StatusActionTablesUpdateActions()
+    {
+        DB::unprepared($this->buildOnUpdateTriggerCommand('action'));
+        DB::unprepared($this->buildOnUpdateTriggerCommand('status'));
+    }
     /**
      * Run the migrations.
      *
@@ -98,8 +117,12 @@ class TriggerAssignment extends Migration
     {
         $this->UserManagementTablesInsertActions();
         $this->UserManagementTablesUpdateActions();
+
         $this->ProjectManagementTablesInsertActions();
         $this->ProjectManagementTablesUpdateActions();
+
+        $this->StatusActionTablesInsertActions();
+        $this->StatusActionTablesUpdateActions();
     }
 
     /**

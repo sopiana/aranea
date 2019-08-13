@@ -72,6 +72,21 @@ class CreateViewTable extends Migration
             JOIN users ON (project_assignments.user_id = users.id)
             JOIN roles ON  (project_assignments.role_id = roles.id))");
     }
+
+    private function createViewActionStatus(){
+        DB::statement('DROP VIEW IF EXISTS `view_action_status`');
+        DB::statement("CREATE VIEW view_action_status AS(
+            SELECT action.id, action.name,
+                action.status_origin as origin_id,
+                status_origin.name as origin,
+                status_origin.type as origin_type,
+                action.status_destination as destination_id,
+                status_destination.name as destination,
+                status_destination.type as destination_type
+            FROM `action` JOIN status as status_origin ON (status_origin.id = action.status_origin)
+            JOIN status as status_destination ON (action.status_destination = status_destination.id)
+        )");
+    }
     /**
      * Run the migrations.
      *
@@ -82,6 +97,7 @@ class CreateViewTable extends Migration
         $this->createViewUsers();
         $this->createViewProjects();
         $this->createViewProjectAssignments();
+        $this->createViewActionStatus();
     }
 
     /**

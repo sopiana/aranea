@@ -58,6 +58,21 @@ class AssignForeignkey extends Migration
         Schema::table('project_mngm_audits', function (Blueprint $table) {
             $table->foreign('author',false,true)->references('id')->on('users');
         });
+
+        /**
+         * Assign foreign key for Status Action Management
+         */
+        Schema::table('status', function (Blueprint $table){
+            $table->foreign('last_author')->references('id')->on('users');
+        });
+        Schema::table('action',function(Blueprint $table){
+            $table->foreign('status_origin')->references('id')->on('status');
+            $table->foreign('status_destination')->references('id')->on('status');
+            $table->foreign('last_author')->references('id')->on('users');
+        });
+        Schema::table('action_status_audits', function (Blueprint $table) {
+            $table->foreign('author',false,true)->references('id')->on('users');
+        });
     }
 
     /**
