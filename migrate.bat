@@ -11,6 +11,9 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 php artisan migrate%param% --path=database/migrations/StatusActionManagement
 if %errorlevel% neq 0 exit /b %errorlevel%
 
+php artisan migrate%param% --path=database/migrations/RequestManagement
+if %errorlevel% neq 0 exit /b %errorlevel%
+
 php artisan migrate%param% --path=database/migrations/ForeignKeyAssignment
 if %errorlevel% neq 0 exit /b %errorlevel%
 

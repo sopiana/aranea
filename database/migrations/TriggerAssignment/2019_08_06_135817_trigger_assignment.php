@@ -81,6 +81,11 @@ class TriggerAssignment extends Migration
                 INSERT INTO `project_mngm_audits` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
                 VALUES (NEW.updated_at, \'project_kinds\', NEW.id, \'CREATE\', NEW.last_author, NULL, NULL, CONCAT(NEW.id,\':\',NEW.name))'
             );
+        DB::unprepared('CREATE TRIGGER `project_favorites_insert_action` AFTER INSERT ON `project_favorites`
+            FOR EACH ROW
+                INSERT INTO `project_mngm_audits` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
+                VALUES (NEW.updated_at, \'project_favorites\', NEW.project_id, \'CREATE\', NEW.user_id, NULL, NULL, CONCAT(NEW.project_id,\':\',NEW.user_id))'
+            );
     }
 
     private function ProjectManagementTablesUpdateActions()

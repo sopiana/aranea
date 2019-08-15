@@ -52,7 +52,9 @@ class CreateViewTable extends Migration
                 projects.notif_setting as notif_setting,
                 projects.api_key as api_key,
                 projects.created_at as created_at
-            FROM `projects` JOIN project_kinds on (projects.kind_id = project_kinds.id) JOIN users ON (users.id = projects.owner_id))");
+            FROM `projects`
+            JOIN project_kinds on (projects.kind_id = project_kinds.id)
+            JOIN users ON (users.id = projects.owner_id))");
     }
     private function createViewProjectAssignments()
     {
@@ -65,8 +67,7 @@ class CreateViewTable extends Migration
                 project_assignments.user_id as user_id,
                 users.username as username,
                 project_assignments.role_id as role_id,
-                roles.description as role,
-                project_assignments.is_favorite as is_favorite
+                roles.description as role
             FROM `project_assignments`
             JOIN projects ON (project_assignments.project_id=projects.id)
             JOIN users ON (project_assignments.user_id = users.id)

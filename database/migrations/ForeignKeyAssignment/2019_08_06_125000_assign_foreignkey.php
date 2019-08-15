@@ -55,6 +55,10 @@ class AssignForeignkey extends Migration
         Schema::table('project_kinds', function (Blueprint $table) {
             $table->foreign('last_author')->references('id')->on('users');
         });
+        Schema::table('project_favorites',function(Blueprint $table){
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
         Schema::table('project_mngm_audits', function (Blueprint $table) {
             $table->foreign('author',false,true)->references('id')->on('users');
         });
@@ -71,7 +75,23 @@ class AssignForeignkey extends Migration
             $table->foreign('last_author')->references('id')->on('users');
         });
         Schema::table('action_status_audits', function (Blueprint $table) {
-            $table->foreign('author',false,true)->references('id')->on('users');
+            $table->foreign('author')->references('id')->on('users');
+        });
+
+        /**
+         * Assign Foreign Key for Request Management
+         */
+        Schema::table('requests', function (Blueprint $table) {
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('submitter_id')->references('id')->on('users');
+            $table->foreign('folder_id')->references('id')->on('folder_requests');
+            $table->foreign('status')->references('id')->on('status');
+            $table->foreign('assignee')->references('id')->on('users');
+            $table->foreign('last_author')->references('id')->on('users');
+        });
+        Schema::table('folder_requests', function (Blueprint $table) {
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('last_author')->references('id')->on('users');
         });
     }
 
