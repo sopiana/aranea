@@ -15,7 +15,20 @@ class CreateRequestsTable extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->integer('project_id',false,true);
+            $table->integer('submitter_id',false,true);
+            $table->integer('folder_id')->nullable();
+            $table->integer('status',false,true);
+            $table->string('summary');
+            $table->text('description')->nullable();
+            $table->enum('visibility',array('VISIBILITY_NONE','VISIBILITY_PRIVATE','VISIBILITY_PROJECT'))->default('VISIBILITY_NONE');
+            $table->integer('assignee',false,true)->nullable();
+            $table->enum('priority',array('PRIORITY_LOW','PRIORITY_MEDIUM','PRIORITY_HIGH','PRIORITY_URGENT'))->default('PRIORITY_LOW');
+            $table->timestamp('due_date')->nullable();
+            $table->integer('attachment')->nullable();
+            $table->integer('last_author', false, true);
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
@@ -26,6 +39,8 @@ class CreateRequestsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('requests');
+        Schema::enableForeignKeyConstraints();
     }
 }

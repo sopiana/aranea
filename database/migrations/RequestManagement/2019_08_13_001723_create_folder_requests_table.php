@@ -15,7 +15,12 @@ class CreateFolderRequestsTable extends Migration
     {
         Schema::create('folder_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->integer('project_id',false,true);
+            $table->string('name',300);
+            $table->text('description')->nullable();
+            $table->integer('last_author',false,true);
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
@@ -26,6 +31,8 @@ class CreateFolderRequestsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('folder_requests');
+        Schema::enableForeignKeyConstraints();
     }
 }
