@@ -91,6 +91,7 @@ class AssignForeignkey extends Migration
         });
         Schema::table('folder_requests', function (Blueprint $table) {
             $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('creator_id')->references('id')->on('users');
             $table->foreign('last_author')->references('id')->on('users');
         });
     }

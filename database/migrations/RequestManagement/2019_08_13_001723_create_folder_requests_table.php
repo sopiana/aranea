@@ -18,7 +18,8 @@ class CreateFolderRequestsTable extends Migration
             $table->integer('project_id',false,true);
             $table->string('name',300);
             $table->text('description')->nullable();
-            $table->integer('last_author',false,true);
+            $table->integer('creator_id', false, true);
+            $table->integer('last_author',false,true)->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
