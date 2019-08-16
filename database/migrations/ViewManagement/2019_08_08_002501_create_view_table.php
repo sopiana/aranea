@@ -103,7 +103,8 @@ class CreateViewTable extends Migration
                 requests.assignee as assignee_id, assignee.username as assignee_name, assignee.avatar as assignee_avatar,
                 requests.priority,
                 requests.due_date,
-                requests.attachment
+                requests.attachment,
+                requests.created_at
             FROM `requests`
             JOIN projects on (projects.id = project_id)
             JOIN users As submitter on (submitter.id = submitter_id)

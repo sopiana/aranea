@@ -251,12 +251,14 @@
             <table id="request-list-table" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Project Name</th>
+                        <th>Request ID</th>
                         <th>Project Code</th>
-                        <th>Owner</th>
-                        <th>Project Type</th>
-                        <th>Creation Date</th>
-                        <th>Active</th>
+                        <th>Summary</th>
+                        <th>Status</th>
+                        <th>Submitter</th>
+                        <th>Submitted At</th>
+                        <th>Priority</th>
+                        <th>Assignee</th>
                     </tr>
                 </thead>
             </table>

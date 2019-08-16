@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Model\ProjectManagement\Project;
 use Illuminate\Support\Facades\Auth;
 use App\Model\UserManagement\User;
+use App\Model\RequestManagement\Request;
 
 class SecureApi extends Controller
 {
