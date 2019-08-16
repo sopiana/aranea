@@ -225,8 +225,7 @@
         </div>
 
         <div id="project-list-container" class="div">
-        Nama
-        <table id="project-list-table" class="display" style="width:100%">
+            <table id="project-list-table" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th>Project Name</th>
@@ -242,23 +241,25 @@
     </div>
 </div>
 <!-- /.col-->
-<div class="col-sm-6 col-lg-3">
-    <div class="brand-card">
-        <div class="brand-card-header bg-linkedin">
-        <i class="fa fa-linkedin"></i>
-        <div class="chart-wrapper">
-            <canvas id="social-box-chart-3" height="90"></canvas>
+<div id="requestList-detail" class="card">
+    <div class="card-body">
+        <div class="text-left pb-3">
+            <h4 class="card-title mb-0">My Requests</h4>
         </div>
-        </div>
-        <div class="brand-card-body">
-        <div>
-            <div class="text-value">500+</div>
-            <div class="text-uppercase text-muted small">contacts</div>
-        </div>
-        <div>
-            <div class="text-value">292</div>
-            <div class="text-uppercase text-muted small">feeds</div>
-        </div>
+
+        <div id="request-list-container" class="div">
+            <table id="request-list-table" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Project Code</th>
+                        <th>Owner</th>
+                        <th>Project Type</th>
+                        <th>Creation Date</th>
+                        <th>Active</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
 </div>

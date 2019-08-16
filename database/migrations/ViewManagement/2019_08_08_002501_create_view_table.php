@@ -88,6 +88,29 @@ class CreateViewTable extends Migration
             JOIN status as status_destination ON (action.status_destination = status_destination.id)
         )");
     }
+
+    private function createViewRequest(){
+        DB::statement('DROP VIEW IF EXISTS `view_request`');
+        DB::statement("CREATE VIEW view_request AS(
+            SELECT  requests.id, projects.id as project_id, projects.prefix as project_prefix,
+                requests.submitter_id, submitter.username as submitter_name, submitter.avatar as submitter_avatar,
+                requests.folder_id,
+                requests.status as status_id, status.name as status_name,
+                requests.summary,
+                requests.description,
+                requests.visibility,
+                requests.is_active,
+                requests.assignee as assignee_id, assignee.username as assignee_name, assignee.avatar as assignee_avatar,
+                requests.priority,
+                requests.due_date,
+                requests.attachment
+            FROM `requests`
+            JOIN projects on (projects.id = project_id)
+            JOIN users As submitter on (submitter.id = submitter_id)
+            JOIN users As assignee on (assignee.id = assignee)
+            JOIN status on (status = status.id)
+        )");
+    }
     /**
      * Run the migrations.
      *
@@ -99,6 +122,7 @@ class CreateViewTable extends Migration
         $this->createViewProjects();
         $this->createViewProjectAssignments();
         $this->createViewActionStatus();
+        $this->createViewRequest();
     }
 
     /**

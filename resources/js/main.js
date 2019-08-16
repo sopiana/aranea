@@ -5,6 +5,9 @@ require('@coreui/coreui/dist/js/coreui');
 require('jquery-sortable');
 require('datatables.net/js/jquery.dataTables');
 require('datatables.net-bs4/js/dataTables.bootstrap4');
+require('datatables.net-colreorder-dt');
+require('datatables.net-buttons/js/dataTables.buttons');
+require('datatables.net-buttons/js/buttons.colVis');
 // require('quill');
 function getWindowParam(paramName){
     let url = window.location.href;
@@ -64,6 +67,9 @@ var dashboardPage = {
             case 'projects':
                 this.subMenuProjects.draw();
                 break;
+            case 'issues-request':
+                this.subMenuRequests.draw();
+                break;
         }
     },
     subMenuProfile:{
@@ -78,6 +84,9 @@ var dashboardPage = {
         {
             $('#projectList-detail').appendTo('#pageContainer');
             $('#project-list-table').DataTable( {
+                colReorder:true,
+                // dom:'Bfrtip',
+                // buttons:['colvis'],
                 retrieve: true,
                 "ajax": {
                     "url": window.location.origin+'/api/secure/projectList',
@@ -97,6 +106,34 @@ var dashboardPage = {
                     { "data": "is_active" }
                 ]
             } );
+        }
+    },
+    subMenuRequests:{
+        draw:function(){
+            $('#requestList-detail').appendTo('#pageContainer');
+            // $('#project-list-table').DataTable( {
+            //     colReorder:true,
+            //     // dom:'Bfrtip',
+            //     // buttons:['colvis'],
+            //     retrieve: true,
+            //     "ajax": {
+            //         "url": window.location.origin+'/api/secure/projectList',
+            //         "dataSrc": ""
+            //     },
+            //     "columns": [
+            //         { "data": "name",
+            //             render: function ( data, type, row ) {
+            //                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.avatar +'" width="30px">'+ row.name;}
+            //         },
+            //         { "data": "project_code" },
+            //         { "data": "owner",
+            //             render: function ( data, type, row ) {
+            //                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.owner_avatar +'" width="30px">'+ row.owner;}},
+            //         { "data": "kind" },
+            //         { "data": "created_at" },
+            //         { "data": "is_active" }
+            //     ]
+            // } );
         }
     }
 }
