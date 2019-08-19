@@ -125,6 +125,34 @@ class AssignForeignkey extends Migration
             $table->foreign('author')->references('id')->on('users');
         });
     }
+
+    private function assignTestCaseManagementForeignKey()
+    {
+        Schema::table('test_suites', function (Blueprint $table) {
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('creator_id')->references('id')->on('users');
+            $table->foreign('last_author')->references('id')->on('users');
+        });
+        Schema::table('test_cases', function (Blueprint $table) {
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('submitter_id')->references('id')->on('users');
+            $table->foreign('test_suite_id')->references('id')->on('test_suites');
+            $table->foreign('status')->references('id')->on('status');
+            $table->foreign('assignee')->references('id')->on('users');
+            $table->foreign('last_author')->references('id')->on('users');
+        });
+        Schema::table('test_case_steps', function (Blueprint $table) {
+            $table->foreign('last_author')->references('id')->on('users');
+        });
+        Schema::create('test_case_step_links', function (Blueprint $table) {
+            $table->foreign('test_case_id')->references('id')->on('test_cases');
+            $table->foreign('test_step_id')->references('id')->on('test_case_steps');
+            $table->foreign('last_author')->references('id')->on('users');
+        });
+        Schema::table('test_case_audits', function (Blueprint $table) {
+            $table->foreign('author')->references('id')->on('users');
+        });
+    }
     /**
      * Run the migrations.
      *

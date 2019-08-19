@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActionTable extends Migration
+class CreateTestCaseStepLinksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateActionTable extends Migration
      */
     public function up()
     {
-        Schema::create('action', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name',200);
-            $table->integer('status_origin',false,true)->nullable();
-            $table->integer('status_destination',false,true)->nullable();
-            $table->integer('last_author',false,true);
+        Schema::create('test_case_step_links', function (Blueprint $table) {
+            $table->bigInteger('test_case_id', false, true);
+            $table->bigInteger('test_step_id', false, true);
+            $table->smallInteger('test_step_number',false,true);
+            $table->integer('last_author', false, true);
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
@@ -31,7 +31,7 @@ class CreateActionTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('action');
+        Schema::dropIfExists('test_case_step_links');
         Schema::enableForeignKeyConstraints();
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequestsTable extends Migration
+class CreateTestCasesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,17 @@ class CreateRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('requests', function (Blueprint $table) {
+        Schema::create('test_cases', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('project_id',false,true);
             $table->integer('submitter_id',false,true);
-            $table->bigInteger('folder_id', false, true)->nullable();
+            $table->bigInteger('test_suite_id', false, true)->nullable();
+            $table->smallInteger('version',false,true);
             $table->integer('status',false,true);
-            $table->string('summary', 2000);
+            $table->string('summary',2000);
             $table->text('description')->nullable();
+            $table->string('objective',2000);
+            $table->string('preconditions',2000);
             $table->enum('visibility',array('VISIBILITY_NONE','VISIBILITY_PRIVATE','VISIBILITY_PROJECT'))->default('VISIBILITY_NONE');
             $table->boolean('is_active')->default(true);
             $table->integer('assignee',false,true)->nullable();
@@ -41,7 +44,7 @@ class CreateRequestsTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('requests');
+        Schema::dropIfExists('test_cases');
         Schema::enableForeignKeyConstraints();
     }
 }

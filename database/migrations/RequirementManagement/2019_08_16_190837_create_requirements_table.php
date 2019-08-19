@@ -19,7 +19,7 @@ class CreateRequirementsTable extends Migration
             $table->integer('submitter_id',false,true);
             $table->bigInteger('folder_id', false, true)->nullable();
             $table->integer('status',false,true);
-            $table->string('summary');
+            $table->string('summary',2000);
             $table->text('description')->nullable();
             $table->enum('visibility',array('VISIBILITY_NONE','VISIBILITY_PRIVATE','VISIBILITY_PROJECT'))->default('VISIBILITY_NONE');
             $table->boolean('is_active')->default(true);

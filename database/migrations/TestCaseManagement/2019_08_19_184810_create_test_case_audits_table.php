@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActionStatusAudits extends Migration
+class CreateTestCaseAuditsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateActionStatusAudits extends Migration
      */
     public function up()
     {
-        Schema::create('action_status_audits', function (Blueprint $table) {
+        Schema::create('test_case_audits', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamp('effective_utc');
             $table->string('source',200);
@@ -34,7 +34,7 @@ class CreateActionStatusAudits extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('action_status_audits');
+        Schema::dropIfExists('test_case_audits');
         Schema::enableForeignKeyConstraints();
     }
 }

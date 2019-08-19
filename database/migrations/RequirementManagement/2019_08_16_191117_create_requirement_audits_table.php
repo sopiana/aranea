@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequiremntAuditsTable extends Migration
+class CreateRequirementAuditsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRequiremntAuditsTable extends Migration
      */
     public function up()
     {
-        Schema::create('requiremnt_audits', function (Blueprint $table) {
+        Schema::create('requirement_audits', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamp('effective_utc');
             $table->string('source',200);
@@ -34,7 +34,7 @@ class CreateRequiremntAuditsTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('requiremnt_audits');
+        Schema::dropIfExists('requirement_audits');
         Schema::enableForeignKeyConstraints();
     }
 }
