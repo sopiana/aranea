@@ -6,14 +6,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 class AssignForeignkey extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    private function assignUserManagementForeignKey()
     {
-        /**
+/**
          * Assign Foreignkey for User Management Table
          **/
         Schema::table('users', function (Blueprint $table) {
@@ -33,8 +28,11 @@ class AssignForeignkey extends Migration
         Schema::table('user_mngm_audits', function (Blueprint $table) {
             $table->foreign('author')->references('id')->on('users');
         });
+    }
 
-        /**
+    private function assignProjectManagementForeignKey()
+    {
+/**
          * Assign Foreignkey for Project Management Table
          **/
         Schema::table('projects', function(Blueprint $table){
@@ -62,7 +60,10 @@ class AssignForeignkey extends Migration
         Schema::table('project_mngm_audits', function (Blueprint $table) {
             $table->foreign('author',false,true)->references('id')->on('users');
         });
+    }
 
+    private function assignStatusActionManagementForeignKey()
+    {
         /**
          * Assign foreign key for Status Action Management
          */
@@ -77,7 +78,10 @@ class AssignForeignkey extends Migration
         Schema::table('action_status_audits', function (Blueprint $table) {
             $table->foreign('author')->references('id')->on('users');
         });
+    }
 
+    private function assignRequestManagementForeignKey()
+    {
         /**
          * Assign Foreign Key for Request Management
          */
@@ -94,6 +98,44 @@ class AssignForeignkey extends Migration
             $table->foreign('creator_id')->references('id')->on('users');
             $table->foreign('last_author')->references('id')->on('users');
         });
+        Schema::table('request_audits', function (Blueprint $table) {
+            $table->foreign('author')->references('id')->on('users');
+        });
+    }
+
+    private function assignRequirementManagementForeignKey()
+    {
+        /**
+         * Assign Foreign Key for Request Management
+         */
+        Schema::table('requirements', function (Blueprint $table) {
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('submitter_id')->references('id')->on('users');
+            $table->foreign('folder_id')->references('id')->on('folder_requests');
+            $table->foreign('status')->references('id')->on('status');
+            $table->foreign('assignee')->references('id')->on('users');
+            $table->foreign('last_author')->references('id')->on('users');
+        });
+        Schema::table('folder_requirements', function (Blueprint $table) {
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('creator_id')->references('id')->on('users');
+            $table->foreign('last_author')->references('id')->on('users');
+        });
+        Schema::table('requirement_audits', function (Blueprint $table) {
+            $table->foreign('author')->references('id')->on('users');
+        });
+    }
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        $this->assignUserManagementForeignKey();
+        $this->assignProjectManagementForeignKey();
+        $this->assignStatusActionManagementForeignKey();
+        $this->assignRequestManagementForeignKey();
     }
 
     /**

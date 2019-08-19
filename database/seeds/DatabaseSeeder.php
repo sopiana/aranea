@@ -1,6 +1,5 @@
 <?php
 
-use App\Model\RequestManagement\FolderRequest;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,6 +20,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ProjectAssignmentSeeder::class);
         $this->call(ProjectViewSeeder::class);
         $this->call(StatusSeeder::class);
-        $this->call(FolderRequest::class);
+        $this->call(FolderRequestSeeder::class);
+        $this->call(RequestSeeder::class);
+        $this->call(FolderRequirementSeeder::class);
+        $this->call(RequirementSeeder::class);
     }
 }

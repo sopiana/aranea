@@ -6,6 +6,27 @@ use Illuminate\Database\Migrations\Migration;
 use Symfony\Component\Console\Output\ConsoleOutput;
 class TriggerAssignment extends Migration
 {
+
+    private function buildOnUpdateTriggerCommand($table, $table_audits)
+    {
+        $columns = Schema::getColumnListing($table);
+        $triggerCmd = 'CREATE TRIGGER `'.$table.'_update_action` AFTER UPDATE ON `'.$table.'`
+            FOR EACH ROW
+                BEGIN ';
+        foreach($columns as $column)
+        {
+            if(($column!='last_author')&&($column!='updated_at')&&
+                ($column!='remember_token')&&($column!='id'))
+            {
+                $triggerCmd = $triggerCmd.'IF NOT(NEW.'.$column.' <=> OLD.'.$column.') THEN
+                            INSERT INTO `'.$table_audits.'` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
+                            VALUES (NEW.updated_at, \''.$table.'\', NEW.id, \'UPDATE\', NEW.last_author, \''.$column.'\', OLD.'.$column.', NEW.'.$column.');
+                        END IF; ';
+            }
+        }
+        $triggerCmd = $triggerCmd.'END';
+        return $triggerCmd;
+    }
     /**
      *
      */
@@ -35,33 +56,12 @@ class TriggerAssignment extends Migration
             );
     }
 
-    private function buildOnUpdateTriggerCommand($table)
-    {
-        $columns = Schema::getColumnListing($table);
-        $triggerCmd = 'CREATE TRIGGER `'.$table.'_update_action` AFTER UPDATE ON `'.$table.'`
-            FOR EACH ROW
-                BEGIN ';
-        foreach($columns as $column)
-        {
-            if(($column!='last_author')&&($column!='updated_at')&&
-                ($column!='remember_token')&&($column!='id'))
-            {
-                $triggerCmd = $triggerCmd.'IF NOT(NEW.'.$column.' <=> OLD.'.$column.') THEN
-                            INSERT INTO `user_mngm_audits` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
-                            VALUES (NEW.updated_at, \''.$table.'\', NEW.id, \'UPDATE\', NEW.last_author, \''.$column.'\', OLD.'.$column.', NEW.'.$column.');
-                        END IF; ';
-            }
-        }
-        $triggerCmd = $triggerCmd.'END';
-        return $triggerCmd;
-    }
-
     private function UserManagementTablesUpdateActions()
     {
-        DB::unprepared($this->buildOnUpdateTriggerCommand('users'));
-        DB::unprepared($this->buildOnUpdateTriggerCommand('rights'));
-        DB::unprepared($this->buildOnUpdateTriggerCommand('roles'));
-        DB::unprepared($this->buildOnUpdateTriggerCommand('role_rights'));
+        DB::unprepared($this->buildOnUpdateTriggerCommand('users','user_mngm_audits'));
+        DB::unprepared($this->buildOnUpdateTriggerCommand('rights','user_mngm_audits'));
+        DB::unprepared($this->buildOnUpdateTriggerCommand('roles','user_mngm_audits'));
+        DB::unprepared($this->buildOnUpdateTriggerCommand('role_rights','user_mngm_audits'));
     }
 
     private function ProjectManagementTablesInsertActions()
@@ -90,9 +90,9 @@ class TriggerAssignment extends Migration
 
     private function ProjectManagementTablesUpdateActions()
     {
-        DB::unprepared($this->buildOnUpdateTriggerCommand('projects'));
-        DB::unprepared($this->buildOnUpdateTriggerCommand('project_assignments'));
-        DB::unprepared($this->buildOnUpdateTriggerCommand('project_kinds'));
+        DB::unprepared($this->buildOnUpdateTriggerCommand('projects','project_mngm_audits'));
+        DB::unprepared($this->buildOnUpdateTriggerCommand('project_assignments','project_mngm_audits'));
+        DB::unprepared($this->buildOnUpdateTriggerCommand('project_kinds','project_mngm_audits'));
     }
 
     private function StatusActionTablesInsertActions(){
@@ -110,8 +110,46 @@ class TriggerAssignment extends Migration
 
     private function StatusActionTablesUpdateActions()
     {
-        DB::unprepared($this->buildOnUpdateTriggerCommand('action'));
-        DB::unprepared($this->buildOnUpdateTriggerCommand('status'));
+        DB::unprepared($this->buildOnUpdateTriggerCommand('action','action_status_audits'));
+        DB::unprepared($this->buildOnUpdateTriggerCommand('status','action_status_audits'));
+    }
+
+    private function RequestTablesInsertActions(){
+        DB::unprepared('CREATE TRIGGER `requests_insert_action` AFTER INSERT ON `requests`
+            FOR EACH ROW
+                INSERT INTO `request_audits` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
+                VALUES (NEW.updated_at, \'requests\', NEW.id, \'CREATE\', NEW.last_author, NULL, NULL, CONCAT(NEW.id,\':\',NEW.summary))'
+            );
+        DB::unprepared('CREATE TRIGGER `folder_request_insert_action` AFTER INSERT ON `folder_requests`
+            FOR EACH ROW
+                INSERT INTO `request_audits` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
+                VALUES (NEW.updated_at, \'folder_requests\', NEW.id, \'CREATE\', NEW.last_author, NULL, NULL, CONCAT(NEW.id,\':\',NEW.name))'
+            );
+    }
+
+    private function RequestTablesUpdateActions()
+    {
+        DB::unprepared($this->buildOnUpdateTriggerCommand('requests','request_audits'));
+        DB::unprepared($this->buildOnUpdateTriggerCommand('folder_requests','request_audits'));
+    }
+
+    private function RequirementTablesInsertActions(){
+        DB::unprepared('CREATE TRIGGER `requirements_insert_action` AFTER INSERT ON `requirements`
+            FOR EACH ROW
+                INSERT INTO `requirement_audits` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
+                VALUES (NEW.updated_at, \'requirements\', NEW.id, \'CREATE\', NEW.last_author, NULL, NULL, CONCAT(NEW.id,\':\',NEW.summary))'
+            );
+        DB::unprepared('CREATE TRIGGER `folder_requirement_insert_action` AFTER INSERT ON `folder_requirements`
+            FOR EACH ROW
+                INSERT INTO `requirement_audits` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
+                VALUES (NEW.updated_at, \'folder_requirements\', NEW.id, \'CREATE\', NEW.last_author, NULL, NULL, CONCAT(NEW.id,\':\',NEW.name))'
+            );
+    }
+
+    private function RequirementTablesUpdateActions()
+    {
+        DB::unprepared($this->buildOnUpdateTriggerCommand('requirements','requirement_audits'));
+        DB::unprepared($this->buildOnUpdateTriggerCommand('folder_requirements','requirement_audits'));
     }
     /**
      * Run the migrations.
@@ -128,6 +166,12 @@ class TriggerAssignment extends Migration
 
         $this->StatusActionTablesInsertActions();
         $this->StatusActionTablesUpdateActions();
+
+        $this->RequestTablesInsertActions();
+        $this->RequestTablesUpdateActions();
+
+        $this->RequirementTablesInsertActions();
+        $this->RequirementTablesUpdateActions();
     }
 
     /**
