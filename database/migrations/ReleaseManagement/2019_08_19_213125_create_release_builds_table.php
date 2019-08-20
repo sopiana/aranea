@@ -19,6 +19,7 @@ class CreateReleaseBuildsTable extends Migration
             $table->text('description')->nullable();
             $table->text('build_log')->nullable();
             $table->enum('status',array('')); //TODO
+            $table->integer('last_author',false,true);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

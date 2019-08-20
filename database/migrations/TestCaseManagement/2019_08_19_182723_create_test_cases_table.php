@@ -18,12 +18,12 @@ class CreateTestCasesTable extends Migration
             $table->integer('project_id',false,true);
             $table->integer('submitter_id',false,true);
             $table->bigInteger('test_suite_id', false, true)->nullable();
-            $table->smallInteger('version',false,true);
+            $table->string('version',200);
             $table->integer('status',false,true);
             $table->string('summary',2000);
             $table->text('description')->nullable();
-            $table->string('objective',2000);
-            $table->string('preconditions',2000);
+            $table->string('objective',2000)->nullable();
+            $table->string('preconditions',2000)->nullable();
             $table->enum('visibility',array('VISIBILITY_NONE','VISIBILITY_PRIVATE','VISIBILITY_PROJECT'))->default('VISIBILITY_NONE');
             $table->boolean('is_active')->default(true);
             $table->integer('assignee',false,true)->nullable();

@@ -19,6 +19,7 @@ class CreateTestExecutionsTable extends Migration
             $table->integer('tester_id',false,true);
             $table->timestamp('executed_at')->nullable();
             $table->integer('status',false,true);
+            $table->enum('verdict',array('PASS','FAIL','INCONCLUSIVE','NA'))->nullable();
             $table->bigInteger('test_case_id',false,true);
             $table->smallInteger('test_case_version',false,true);
             $table->enum('execution_type',array(''));//TODO

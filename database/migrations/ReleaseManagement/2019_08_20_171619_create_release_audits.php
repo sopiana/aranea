@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBugAuditsTable extends Migration
+class CreateReleaseAudits extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBugAuditsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bug_audits', function (Blueprint $table) {
+        Schema::create('release_audits', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamp('effective_utc');
             $table->string('source',200);
@@ -33,8 +33,6 @@ class CreateBugAuditsTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('bug_audits');
-        Schema::enableForeignKeyConstraints();
+        Schema::dropIfExists('release_audits');
     }
 }

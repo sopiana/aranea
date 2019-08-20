@@ -15,19 +15,20 @@ class CreateBugsTable extends Migration
     {
         Schema::create('bugs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('project_id',false,true);
             $table->enum('type',array(''));//TODO
-            $table->integer('status_id',false,true);
-            $table->integer('detected_release_id',false,true);
-            $table->integer('resolved_release_id',false,true);
-            $table->integer('verified_release_id',false,true);
+            $table->integer('status',false,true);
+            $table->bigInteger('detected_release_id',false,true);
+            $table->bigInteger('resolved_release_id',false,true);
+            $table->bigInteger('verified_release_id',false,true);
             $table->integer('submitter_id',false,true);
             $table->enum('visibility',array('VISIBILITY_NONE','VISIBILITY_PRIVATE','VISIBILITY_PROJECT'))->default('VISIBILITY_NONE');
-            $table->integer('assignee',false,true);
-            $table->enum('priority',array(''));//TODO
-            $table->enum('severity',array(''));//TODO
-            $table->integer('last_author',false,true)->nullable();
+            $table->integer('assignee',false,true)->nullable();
+            $table->enum('priority',array('PRIORITY_LOW','PRIORITY_MEDIUM','PRIORITY_HIGH','PRIORITY_URGENT'));
+            $table->enum('severity',array('SEVERITY_LOW','SEVERITY_MEDIUM','SEVERITY_HIGH','SEVERITY_CRITICAL'));
             $table->text('description');
             $table->text('note');
+            $table->integer('last_author',false,true)->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

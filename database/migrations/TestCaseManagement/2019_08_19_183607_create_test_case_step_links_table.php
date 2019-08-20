@@ -14,6 +14,7 @@ class CreateTestCaseStepLinksTable extends Migration
     public function up()
     {
         Schema::create('test_case_step_links', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->bigInteger('test_case_id', false, true);
             $table->bigInteger('test_step_id', false, true);
             $table->smallInteger('test_step_number',false,true);

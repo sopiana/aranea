@@ -4694,8 +4694,8 @@ input[type="button"].btn-block {
     border-radius: .5rem;
 }
 
-#load-spinner{
-    display:none;
+.load-spinner{
+    display:block;
     width:60px;
     height:60px;
     z-index: 1002;
@@ -4703,6 +4703,18 @@ input[type="button"].btn-block {
     background-image:url('../images/load-spinner.svg');
     background-repeat:no-repeat;
     margin:auto;
+}
+
+div.dataTables_wrapper div.dataTables_processing{
+    width: 400px;
+    height: 100px;
+    margin-left: -150px;
+}
+.dataTables_wrapper .dataTables_processing {
+    background: #000;
+    -moz-opacity:75;
+    opacity:.75;
+    filter:alpha(opacity=75);
 }
 .card-img {
   width: 100%;
@@ -14500,6 +14512,10 @@ html[dir="rtl"] .aside-menu-show .aside-menu {
   transition: margin-left 0.25s, margin-right 0.25s, width 0.25s, flex 0.25s, -ms-flex 0.25s;
 }
 
+.app-footer,
+.main {
+  font-size:.8rem;
+}
 .sidebar-nav {
   transition: width 0.25s;
 }
@@ -16222,4 +16238,12 @@ body {
 .dataTables_wrapper .dataTables_paginate .paginate_button:active{
     border:0;
     background: none;
+}
+
+table.dataTable thead > tr > td.sorting, table.dataTable thead > tr > td.sorting_asc, table.dataTable thead > tr > td.sorting_desc, table.dataTable thead > tr > th.sorting, table.dataTable thead > tr > th.sorting_asc, table.dataTable thead > tr > th.sorting_desc {
+    padding-right: 23px;
+}
+
+table.dataTable thead td, table.dataTable thead th {
+    padding: 10px 10px;
 }

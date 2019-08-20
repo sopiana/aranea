@@ -24,5 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RequestSeeder::class);
         $this->call(FolderRequirementSeeder::class);
         $this->call(RequirementSeeder::class);
+        $this->call(TestSuiteSeeder::class);
+        $this->call(TestCaseSeeder::class);
     }
 }
