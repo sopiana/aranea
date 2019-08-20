@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Response;
 use App\Model\ProjectManagement\Project;
 use Illuminate\Support\Facades\Auth;
 use App\Model\UserManagement\User;
 use App\Model\RequestManagement\Request;
+use App\Model\RequirementManagement\Requirement;
 
 class SecureApi extends Controller
 {
@@ -37,5 +37,9 @@ class SecureApi extends Controller
     public function getRequestList($start=-1,$limit=50)
     {
         return response()->json(Request::getRequestList(Auth::user()->id, $start, $limit));
+    }
+    public function getRequirementList($start=-1,$limit=50)
+    {
+        return response()->json(Requirement::getRequirementList(Auth::user()->id, $start, $limit));
     }
 }

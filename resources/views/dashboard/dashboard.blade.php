@@ -252,7 +252,6 @@
                 <thead>
                     <tr>
                         <th>Request ID</th>
-                        <th>Project Code</th>
                         <th>Summary</th>
                         <th>Status</th>
                         <th>Submitter</th>
@@ -265,24 +264,27 @@
         </div>
     </div>
 </div>
-    <!-- /.col-->
-<div id="profile-coba" class="col-sm-6 col-lg-3">
-    <div class="brand-card">
-        <div class="brand-card-header bg-google-plus">
-        <i class="fa fa-google-plus"></i>
-        <div class="chart-wrapper">
-            <canvas id="social-box-chart-4" height="90"></canvas>
+<!-- /.col-->
+<div id="requirementList-detail" class="card">
+    <div class="card-body">
+        <div class="text-left pb-3">
+            <h4 class="card-title mb-0">My Requirements</h4>
         </div>
-        </div>
-        <div class="brand-card-body">
-        <div>
-            <div class="text-value">894</div>
-            <div class="text-uppercase text-muted small">followers</div>
-        </div>
-        <div>
-            <div class="text-value">92</div>
-            <div class="text-uppercase text-muted small">circles</div>
-        </div>
+
+        <div id="requirement-list-container" class="div">
+            <table id="requirement-list-table" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Req. ID</th>
+                        <th>Summary</th>
+                        <th>Status</th>
+                        <th>Submitter</th>
+                        <th>Submitted At</th>
+                        <th>Priority</th>
+                        <th>Assignee</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
 </div>
