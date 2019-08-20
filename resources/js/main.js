@@ -29,9 +29,13 @@ function drawWindow(){
             break;
     }
 }
+var cnt =0;
 
 $(document).ready(function()
 {
+    window.addEventListener('popstate',function(e){
+        drawWindow();
+    });
     $('.right-nav').off('click').on('click',function(event){
         $('.dropdown-menu').removeClass("show");
 
