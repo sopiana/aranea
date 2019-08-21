@@ -79,6 +79,9 @@ var dashboardPage = {
             case 'projects':
                 this.subMenuProjects.draw();
                 break;
+            case 'tasks':
+                this.subMenuTasks.draw();
+                break;
             case 'issues-request':
                 this.subMenuRequests.draw();
                 break;
@@ -135,6 +138,64 @@ var dashboardPage = {
                         { data: "kind" },
                         { data: "created_at" },
                         { data: "is_active" }
+                    ]
+                } );
+            }
+            else
+                this.datatable.ajax.reload();
+        }
+    },
+    subMenuTasks:
+    {
+        datatable:null,
+        draw:function(){
+            $('#taskList-detail').appendTo('#pageContainer');
+            if(this.datatable == null)
+            {
+                this.datatable = $('#task-list-table').DataTable( {
+                    colReorder:true,
+                    retrieve: true,
+                    ajax: {
+                        url: window.location.origin+'/api/secure/taskList',
+                        dataSrc: ""
+                    },
+                    processing: true,
+                    language: {
+                        loadingRecords: "&nbsp;",
+                        processing: '<div class="load-spinner"></div>'
+                    },
+                    columns: [
+                        { data: "id", width:COL_CODE_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                return 'TSK_'+row.id;
+                            }
+                        },
+                        { data: "summary" },
+                        { data: "status_name", width: COL_STATUS_WIDTH+'px'},
+                        { data: "submitter_name", width:COL_USERNAME_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.submitter_avatar +'" width="30px">'+ row.submitter_name;}},
+                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px'},
+                        { data: "priority", width: COL_PRIORITY_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                switch(row.priority)
+                                {
+                                    case 'PRIORITY_LOW':
+                                        return '<i class="fa fa-chevron-down" style="color:#63c2de"></i> Low';
+                                    case 'PRIORITY_MEDIUM':
+                                        return '<i class="fa fa-chevron-up" style="color:#4dbd74"></i> Medium';
+                                    case 'PRIORITY_HIGH':
+                                        return '<i class="fa fa-chevron-up" style="color:#ffc107"></i> High';
+                                    case 'PRIORITY_URGENT':
+                                        return '<i class="fa fa-chevron-up" style="color:#f86c6b"></i> Urgent';
+                                    default:
+                                        return row.priority;
+                                }
+                            }
+                        },
+                        { data: "assignee_name", width: COL_USERNAME_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.assignee_avatar +'" width="30px">'+ row.assignee_name;}}
                     ]
                 } );
             }

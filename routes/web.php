@@ -30,3 +30,4 @@ Route::get('/api/secure/requirementList/{start?}/{limit?}','api\SecureApi@getReq
 Route::get('/api/secure/testCaseList/{start?}/{limit?}','api\SecureApi@getTestCaseList')->name('api.testCaseList');
 Route::get('/api/secure/releaseList/{start?}/{limit?}','api\SecureApi@getReleaseList')->name('api.releaseList');
 Route::get('/api/secure/bugList/{start?}/{limit?}','api\SecureApi@getBugList')->name('api.bugList');
+Route::get('/api/secure/taskList/{start?}/{limit?}','api\SecureApi@getTaskList')->name('api.taskList');

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Model\UserManagement\User;
 use App\Model\RequestManagement\Request;
 use App\Model\RequirementManagement\Requirement;
+use App\Model\TaskManagement\Task;
 use App\Model\TestCaseManagement\TestCase;
 
 class SecureApi extends Controller
@@ -56,5 +57,9 @@ class SecureApi extends Controller
     public function getBugList($start=-1,$limit=50)
     {
         return response()->json(Bug::getBugList(Auth::user()->id, $start, $limit));
+    }
+    public function getTaskList($start=-1,$limit=50)
+    {
+        return response()->json(Task::getTaskList(Auth::user()->id, $start, $limit));
     }
 }

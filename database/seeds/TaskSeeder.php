@@ -28,7 +28,7 @@ class TaskSeeder extends Seeder
                 for($j=0;$j<$numberOfTasks;++$j)
                 {
                     if($j%20==0)
-                        $this->command->info('Bugs Seed :'.$j.' out of: '.$numberOfTasks .' for user id: '.$member->user_id.' on projects id: '.$i);
+                        $this->command->info('Tasks Seed :'.$j.' out of: '.$numberOfTasks .' for user id: '.$member->user_id.' on projects id: '.$i);
                     //Now the data is fully random
                     Task::create(array(
                         'project_id'=>$i,

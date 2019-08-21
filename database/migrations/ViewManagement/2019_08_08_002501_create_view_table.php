@@ -198,6 +198,24 @@ class CreateViewTable extends Migration
         )");
     }
 
+    private function createViewTask(){
+        DB::statement('DROP VIEW IF EXISTS `view_task`');
+        DB::statement("CREATE VIEW view_task AS(
+            SELECT tasks.id,
+                tasks.project_id, projects.prefix as project_prefix,
+                tasks.submitter_id,submitter.username as submitter_name, submitter.avatar as submitter_avatar,
+                tasks.status as status_id, status.name as status_name,
+                tasks.visibility, tasks.is_active,
+                tasks.assignee as assignee_id,assignee.username as assignee_name, assignee.avatar as assignee_avatar,
+                tasks.priority, tasks.summary, tasks.description, tasks.created_at, tasks.updated_at
+            FROM `tasks`
+                JOIN projects ON (projects.id=tasks.project_id)
+                JOIN users as submitter ON (submitter.id=tasks.submitter_id)
+                JOIN status ON (status.id=tasks.status)
+                JOIN users as assignee ON (assignee.id=tasks.assignee)
+        )");
+    }
+
     /**
      * Run the migrations.
      *
@@ -214,6 +232,7 @@ class CreateViewTable extends Migration
         $this->createViewTestCase();
         $this->createViewRelease();
         $this->createViewBug();
+        $this->createViewTask();
     }
 
     /**

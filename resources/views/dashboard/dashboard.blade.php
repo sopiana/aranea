@@ -364,4 +364,28 @@
         </div>
     </div>
 </div>
+<!-- /.col-->
+<div id="taskList-detail" class="card">
+    <div class="card-body">
+        <div class="text-left pb-3">
+            <h4 class="card-title mb-0">My Tasks</h4>
+        </div>
+
+        <div id="task-list-container" class="div">
+            <table id="task-list-table" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Summary</th>
+                        <th>Status</th>
+                        <th>Submitter</th>
+                        <th>Creation Date</th>
+                        <th>Priority</th>
+                        <th>Assignee</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
 @endsection
