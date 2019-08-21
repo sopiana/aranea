@@ -16,6 +16,7 @@ const COL_DATE_WIDTH = 70;
 const COL_PRIORITY_WIDTH = 60;
 const COL_STATUS_WIDTH = 65;
 const COL_CODE_WIDTH = 58;
+
 function getWindowParam(paramName){
     let url = window.location.href;
     paramName = paramName.replace(/[\[\]]/g, "\\$&");
@@ -89,6 +90,9 @@ var dashboardPage = {
                 break;
             case 'release':
                 this.subMenuRelease.draw();
+                break;
+            case 'issues-bugs':
+                this.subMenuBug.draw();
                 break;
         }
     },
@@ -365,6 +369,96 @@ var dashboardPage = {
                         { data: "owner_name", width: COL_USERNAME_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.owner_avatar +'" width="30px">'+ row.owner_name;}}
+                    ]
+                } );
+            }
+            else
+                this.datatable.ajax.reload();
+        }
+    },
+    subMenuBug:
+    {
+        datatable:null,
+        draw:function(){
+            $('#bugList-detail').appendTo('#pageContainer');
+            if(this.datatable == null)
+            {
+                this.datatable = $('#bug-list-table').DataTable( {
+                    colReorder:true,
+                    retrieve: true,
+                    ajax: {
+                        url: window.location.origin+'/api/secure/bugList',
+                        dataSrc: ""
+                    },
+                    processing: true,
+                    language: {
+                        loadingRecords: "&nbsp;",
+                        processing: '<div class="load-spinner"></div>'
+                    },
+                    columns: [
+                        { data: "id", width:COL_CODE_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                return 'REL_'+row.id;
+                            }
+                        },
+                        { data: "summary" },
+                        { data: "status_name", width: COL_STATUS_WIDTH+'px'},
+                        { data: "type", width: COL_PRIORITY_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                switch(row.type)
+                                {
+                                    case 'TYPE_BUG':
+                                        return 'Bug';
+                                    case 'TYPE_ISSUE':
+                                        return 'Issue';
+                                    case 'TYPE_LIMITATION':
+                                        return 'Limitation';
+                                    default:
+                                        return row.type;
+                                }
+                            }
+                        },
+                        { data: "submitter_name", width:COL_USERNAME_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.submitter_avatar +'" width="30px">'+ row.submitter_name;}},
+                        { data:"created_at", width:COL_CREATION_DATE_WIDTH+'px'},
+                        { data: "priority", width: COL_PRIORITY_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                switch(row.priority)
+                                {
+                                    case 'PRIORITY_LOW':
+                                        return '<i class="fa fa-chevron-down" style="color:#63c2de"></i> Low';
+                                    case 'PRIORITY_MEDIUM':
+                                        return '<i class="fa fa-chevron-up" style="color:#4dbd74"></i> Medium';
+                                    case 'PRIORITY_HIGH':
+                                        return '<i class="fa fa-chevron-up" style="color:#ffc107"></i> High';
+                                    case 'PRIORITY_URGENT':
+                                        return '<i class="fa fa-chevron-up" style="color:#f86c6b"></i> Urgent';
+                                    default:
+                                        return row.priority;
+                                }
+                            }
+                        },
+                        { data: "severity", width: COL_PRIORITY_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                switch(row.severity)
+                                {
+                                    case 'SEVERITY_LOW':
+                                        return '<i class="fa fa-chevron-down" style="color:#63c2de"></i> Low';
+                                    case 'SEVERITY_MEDIUM':
+                                        return '<i class="fa fa-chevron-up" style="color:#4dbd74"></i> Medium';
+                                    case 'SEVERITY_HIGH':
+                                        return '<i class="fa fa-chevron-up" style="color:#ffc107"></i> High';
+                                    case 'SEVERITY_CRITICAL':
+                                        return '<i class="fa fa-chevron-up" style="color:#f86c6b"></i> Urgent';
+                                    default:
+                                        return row.priority;
+                                }
+                            }
+                        },
+                        { data: "assignee_name", width: COL_USERNAME_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.assignee_avatar +'" width="30px">'+ row.assignee_name;}}
                     ]
                 } );
             }

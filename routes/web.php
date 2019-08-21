@@ -29,3 +29,4 @@ Route::get('/api/secure/requestList/{start?}/{limit?}','api\SecureApi@getRequest
 Route::get('/api/secure/requirementList/{start?}/{limit?}','api\SecureApi@getRequirementList')->name('api.requirementList');
 Route::get('/api/secure/testCaseList/{start?}/{limit?}','api\SecureApi@getTestCaseList')->name('api.testCaseList');
 Route::get('/api/secure/releaseList/{start?}/{limit?}','api\SecureApi@getReleaseList')->name('api.releaseList');
+Route::get('/api/secure/bugList/{start?}/{limit?}','api\SecureApi@getBugList')->name('api.bugList');

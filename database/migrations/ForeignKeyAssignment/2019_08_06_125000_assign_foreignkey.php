@@ -213,7 +213,7 @@ class AssignForeignkey extends Migration
 
     private function assignReleaseManagementForeignKey()
     {
-        $this->dropForeignIfExist('releases',['project_id','status','submitter_id','owner_id']);
+        $this->dropForeignIfExist('releases',['project_id','status','submitter_id','owner_id','last_author']);
         Schema::table('releases', function (Blueprint $table) {
             $table->foreign('project_id')->references('id')->on('projects');
             $table->foreign('status')->references('id')->on('status');
@@ -222,7 +222,7 @@ class AssignForeignkey extends Migration
             $table->foreign('last_author')->references('id')->on('users');
         });
 
-        $this->dropForeignIfExist('release_builds',['release_id','last_author']);
+        $this->dropForeignIfExist('release_builds',['author','release_id']);
         Schema::table('release_builds', function (Blueprint $table) {
             $table->foreign('author')->references('id')->on('users');
             $table->foreign('release_id')->references('id')->on('releases');
@@ -254,6 +254,22 @@ class AssignForeignkey extends Migration
             $table->foreign('author')->references('id')->on('users');
         });
     }
+
+    private function assignTaskManagementForeignKey()
+    {
+        $this->dropForeignIfExist('tasks',['project_id','status','submitter_id','assignee','last_author']);
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('status')->references('id')->on('status');
+            $table->foreign('submitter_id')->references('id')->on('users');
+            $table->foreign('assignee')->references('id')->on('users');
+            $table->foreign('last_author')->references('id')->on('users');
+        });
+        $this->dropForeignIfExist('tasks_audits',['author']);
+        Schema::table('tasks_audits', function (Blueprint $table) {
+            $table->foreign('author')->references('id')->on('users');
+        });
+    }
     /**
      * Run the migrations.
      *
@@ -270,6 +286,7 @@ class AssignForeignkey extends Migration
         $this->assignTestCaseManagementForeignKey();
         $this->assignReleaseManagementForeignKey();
         $this->assignBugManagementForeignKey();
+        $this->assignTaskManagementForeignKey();
         Schema::enableForeignKeyConstraints();
     }
 

@@ -332,7 +332,32 @@
                         <th>End Date</th>
                         <th>Creator</th>
                         <th>Assignee</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /.col-->
+<div id="bugList-detail" class="card">
+    <div class="card-body">
+        <div class="text-left pb-3">
+            <h4 class="card-title mb-0">My Bugs</h4>
+        </div>
 
+        <div id="bug-list-container" class="div">
+            <table id="bug-list-table" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Summary</th>
+                        <th>Status</th>
+                        <th>Type</th>
+                        <th>Submitter</th>
+                        <th>Creation Date</th>
+                        <th>Priority</th>
+                        <th>Severity</th>
+                        <th>Assignee</th>
                     </tr>
                 </thead>
             </table>

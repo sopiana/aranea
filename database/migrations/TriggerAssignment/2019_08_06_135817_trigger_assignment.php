@@ -237,6 +237,20 @@ class TriggerAssignment extends Migration
         DB::unprepared($this->buildOnUpdateTriggerCommand('bugs','bug_audits'));
     }
 
+    private function TaskTablesInsertActions(){
+        DB::unprepared('DROP TRIGGER IF EXISTS `tasks_insert_action`;
+            CREATE TRIGGER `tasks_insert_action` AFTER INSERT ON `tasks`
+            FOR EACH ROW
+                INSERT INTO `tasks_audits` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
+                VALUES (NEW.updated_at, \'tasks\', NEW.id, \'CREATE\', NEW.last_author, NULL, NULL, CONCAT(NEW.id))'
+            );
+    }
+
+    private function TaskTablesUpdateActions()
+    {
+        DB::unprepared($this->buildOnUpdateTriggerCommand('tasks','tasks_audits'));
+    }
+
 
     /**
      * Run the migrations.
@@ -268,6 +282,9 @@ class TriggerAssignment extends Migration
 
         $this->BugTablesInsertActions();
         $this->BugTablesUpdateActions();
+
+        $this->TaskTablesInsertActions();
+        $this->TaskTablesUpdateActions();
     }
 
     /**

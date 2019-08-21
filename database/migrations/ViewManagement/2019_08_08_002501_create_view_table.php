@@ -173,6 +173,31 @@ class CreateViewTable extends Migration
         )");
     }
 
+    private function createViewBug(){
+        DB::statement('DROP VIEW IF EXISTS `view_bug`');
+        DB::statement("CREATE VIEW view_bug AS(
+            SELECT bugs.id,
+                bugs.project_id, projects.prefix as project_prefix,
+                bugs.type, bugs.summary,
+                bugs.status as status_id, status.name as status_name,
+                bugs.detected_release_id, detected_release.version as detected_release_version,
+                bugs.resolved_release_id, resolved_release.version as resolved_release_version,
+                bugs.verified_release_id, verified_release.version as verified_release_version,
+                bugs.submitter_id, submitter.username as submitter_name, submitter.avatar as submitter_avatar,
+                bugs.visibility,
+                bugs.assignee as assignee_id, assignee.username as assignee_name, assignee.avatar as assignee_avatar,
+                bugs.priority, bugs.severity, bugs.description, bugs.note, bugs.created_at
+            FROM bugs
+                JOIN projects ON (projects.id=bugs.project_id)
+                JOIN status ON (status.id=bugs.status)
+                JOIN releases as detected_release ON (detected_release.id=bugs.detected_release_id)
+                JOIN releases as resolved_release ON (resolved_release.id=bugs.resolved_release_id)
+                JOIN releases as verified_release ON (verified_release.id=bugs.verified_release_id)
+                JOIN users as submitter ON (submitter.id=bugs.submitter_id)
+                JOIN users as assignee ON (assignee.id=bugs.assignee)
+        )");
+    }
+
     /**
      * Run the migrations.
      *
@@ -188,6 +213,7 @@ class CreateViewTable extends Migration
         $this->createViewRequirement();
         $this->createViewTestCase();
         $this->createViewRelease();
+        $this->createViewBug();
     }
 
     /**

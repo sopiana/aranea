@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
+use App\Model\BugManagement\Bug;
 use App\Model\ProjectManagement\Project;
 use App\Model\ReleaseManagement\Release;
 use Illuminate\Support\Facades\Auth;
@@ -51,5 +52,9 @@ class SecureApi extends Controller
     public function getReleaseList($start=-1,$limit=50)
     {
         return response()->json(Release::getReleaseList(Auth::user()->id, $start, $limit));
+    }
+    public function getBugList($start=-1,$limit=50)
+    {
+        return response()->json(Bug::getBugList(Auth::user()->id, $start, $limit));
     }
 }
