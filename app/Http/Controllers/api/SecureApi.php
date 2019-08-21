@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Model\UserManagement\User;
 use App\Model\RequestManagement\Request;
 use App\Model\RequirementManagement\Requirement;
+use App\Model\TestCaseManagement\TestCase;
 
 class SecureApi extends Controller
 {
@@ -41,5 +42,9 @@ class SecureApi extends Controller
     public function getRequirementList($start=-1,$limit=50)
     {
         return response()->json(Requirement::getRequirementList(Auth::user()->id, $start, $limit));
+    }
+    public function getTestCaseList($start=-1,$limit=50)
+    {
+        return response()->json(TestCase::getTestCaseList(Auth::user()->id, $start, $limit));
     }
 }

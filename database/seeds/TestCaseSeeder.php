@@ -22,8 +22,7 @@ class TestCaseSeeder extends Seeder
         $testStepID=1;
         for($i=1;$i<=$projectNum;$i++)
         {
-            if($i%200 ==0)
-                $this->command->info('Test Case Seed :'.$i.' out of: '.$projectNum.' projects');
+            $this->command->info('Test Case Seed for project:'.$i.' out of: '.$projectNum.' projects');
             //let's say that the request is submitted by DevLead, Developers and System Architect
             $TestLeadArch = DB::table('project_assignments')->select('user_id','role_id')->
                 where([['project_id','=', $i]])->
@@ -35,11 +34,13 @@ class TestCaseSeeder extends Seeder
                 where([['project_id','=', $i]])->get();
             $testSuites = DB::table('test_suites')->select('id')->
                 where([['project_id','=', $i]])->get();
-            //lets say 1 project has 1000-1800 test cases
+            //lets say 1 project has 300-1200 test cases
+            $date_creation =DB::table('projects')->select('created_at')->where('id','=',$i)->get()[0]->created_at;
+
             $testCasesNum = rand(500,1800);
             for($j=0;$j<$testCasesNum;++$j)
             {
-                if($j%100==0)
+                if($j%50==0)
                     $this->command->info('  Creating :'.$j.' test case out of: '.$testCasesNum);
                 $tc_status = rand(0,100);
                 $assignee = null;
@@ -95,12 +96,13 @@ class TestCaseSeeder extends Seeder
                 else
                     $priorityStr = 'PRIORITY_URGENT';
                 $tcSubmitterId = $faker->randomElement($tests)->user_id;
+                $last_dateView = strtotime($date_creation)+rand(7776000,15552000);
                 TestCase::create(array(
                     'project_id'=>$i,
                     'submitter_id'=>$tcSubmitterId,
                     //let's say around 95% request are in folder and rest is on root
                     'test_suite_id'=>rand(0,60)<95?$faker->randomElement($testSuites)->id:null,
-                    'version'=>"'".rand(1,3).'.'.rand(0,10).'.'.rand(0,10)."'",
+                    'version'=>"".rand(1,3).'.'.rand(0,10).'.'.rand(0,10),
                     'status'=>$tc_status,
                     'summary'=>$faker->sentence(20),
                     //lets say only 90% request has detailed description
@@ -116,7 +118,7 @@ class TestCaseSeeder extends Seeder
                     'assignee'=>$assignee==null?null:$assignee->user_id,
                     'priority'=> $priorityStr,
                     //lets say 70% of test case have due date
-                    'due_date'=>rand(0,100)<70?$faker->date():null,
+                    'due_date'=>rand(0,100)<70?date("Y-m-d",$last_dateView):null,
                     'last_author'=>$faker->randomElement($members)->user_id,
                     // 'attachment'=> rand(0,100)<40?$faker->sentence(4):null
                 ));

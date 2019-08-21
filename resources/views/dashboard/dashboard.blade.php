@@ -228,8 +228,8 @@
             <table id="project-list-table" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Project Name</th>
                         <th>Project Code</th>
+                        <th>Project Name</th>
                         <th>Owner</th>
                         <th>Project Type</th>
                         <th>Creation Date</th>
@@ -255,7 +255,7 @@
                         <th>Summary</th>
                         <th>Status</th>
                         <th>Submitter</th>
-                        <th>Submitted At</th>
+                        <th>Creation Date</th>
                         <th>Priority</th>
                         <th>Assignee</th>
                     </tr>
@@ -279,7 +279,31 @@
                         <th>Summary</th>
                         <th>Status</th>
                         <th>Submitter</th>
-                        <th>Submitted At</th>
+                        <th>Creation Date</th>
+                        <th>Priority</th>
+                        <th>Assignee</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="testCaseList-detail" class="card">
+    <div class="card-body">
+        <div class="text-left pb-3">
+            <h4 class="card-title mb-0">My Test Case</h4>
+        </div>
+
+        <div id="testCase-list-container" class="div">
+            <table id="testCase-list-table" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>TC ID</th>
+                        <th>Summary</th>
+                        <th>Status</th>
+                        <th>Submitter</th>
+                        <th>Creation Date</th>
                         <th>Priority</th>
                         <th>Assignee</th>
                     </tr>

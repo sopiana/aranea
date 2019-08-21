@@ -27,4 +27,5 @@ Route::get('/api/secure/projectList/{start?}/{limit?}','api\SecureApi@getProject
 Route::get('/api/secure/projectListCount','api\SecureApi@getProjectListCount')->name('api.projectListCount');
 Route::get('/api/secure/requestList/{start?}/{limit?}','api\SecureApi@getRequestList')->name('api.requestList');
 Route::get('/api/secure/requirementList/{start?}/{limit?}','api\SecureApi@getRequirementList')->name('api.requirementList');
+Route::get('/api/secure/testCaseList/{start?}/{limit?}','api\SecureApi@getTestCaseList')->name('api.testCaseList');
 

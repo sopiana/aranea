@@ -136,6 +136,25 @@ class CreateViewTable extends Migration
             JOIN status on (status = status.id)
         )");
     }
+
+    private function createViewTestCase(){
+        DB::statement('DROP VIEW IF EXISTS `view_test_case`');
+        DB::statement("CREATE VIEW view_test_case AS(
+            SELECT test_cases.id, projects.prefix as project_prefix, projects.id as project_id,
+                submitter.username as submitter_name, submitter.avatar as submitter_avatar,`submitter_id`,
+                `test_suite_id`, `version`,
+                test_cases.status as status_id, status.name as status_name,
+                test_cases.summary, test_cases.description, `objective`, `preconditions`, `visibility`, test_cases.is_active,
+                assignee.username as assignee_name, assignee.avatar as assignee_avatar, test_cases.assignee as assignee_id,
+                `priority`, `due_date`, `attachment`,
+                test_cases.created_at
+            FROM `test_cases`
+            JOIN projects ON (test_cases.project_id=projects.id)
+            JOIN users as submitter ON (submitter.id=submitter_id)
+            JOIN status ON (status.id=test_cases.status)
+            JOIN users as assignee ON (assignee.id=test_cases.assignee)
+        )");
+    }
     /**
      * Run the migrations.
      *
@@ -149,6 +168,7 @@ class CreateViewTable extends Migration
         $this->createViewActionStatus();
         $this->createViewRequest();
         $this->createViewRequirement();
+        $this->createViewTestCase();
     }
 
     /**

@@ -8,7 +8,13 @@ require('datatables.net-bs4/js/dataTables.bootstrap4');
 require('datatables.net-colreorder-dt');
 require('datatables.net-buttons/js/dataTables.buttons');
 require('datatables.net-buttons/js/buttons.colVis');
-// require('quill');
+require('quill');
+
+const COL_USERNAME_WIDTH = 120;
+const COL_CREATION_DATE_WIDTH = 90;
+const COL_PRIORITY_WIDTH = 60;
+const COL_STATUS_WIDTH = 65;
+const COL_CODE_WIDTH = 58;
 function getWindowParam(paramName){
     let url = window.location.href;
     paramName = paramName.replace(/[\[\]]/g, "\\$&");
@@ -77,6 +83,9 @@ var dashboardPage = {
             case 'issues-req':
                 this.subMenuRequirements.draw();
                 break;
+            case 'issues-tc':
+                this.subMenuTestCase.draw();
+                break;
         }
     },
     subMenuProfile:{
@@ -97,27 +106,27 @@ var dashboardPage = {
                     // dom:'Bfrtip',
                     // buttons:['colvis'],
                     retrieve: true,
-                    "ajax": {
-                        "url": window.location.origin+'/api/secure/projectList',
-                        "dataSrc": ""
+                    ajax: {
+                        url: window.location.origin+'/api/secure/projectList',
+                        dataSrc: ""
                     },
-                    "processing": true,
-                    "language": {
-                        "loadingRecords": "&nbsp;",
-                        "processing": '<div class="load-spinner"></div>'
+                    processing: true,
+                    language: {
+                        loadingRecords: "&nbsp;",
+                        processing: '<div class="load-spinner"></div>'
                     },
-                    "columns": [
-                        { "data": "name",
+                    columns: [
+                        { data: "project_code", width:COL_CODE_WIDTH+'px'},
+                        { data: "name",
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.avatar +'" width="30px">'+ row.name;}
                         },
-                        { "data": "project_code" },
-                        { "data": "owner",
+                        { data: "owner", width:COL_USERNAME_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.owner_avatar +'" width="30px">'+ row.owner;}},
-                        { "data": "kind" },
-                        { "data": "created_at" },
-                        { "data": "is_active" }
+                        { data: "kind" },
+                        { data: "created_at" },
+                        { data: "is_active" }
                     ]
                 } );
             }
@@ -136,28 +145,28 @@ var dashboardPage = {
                     // dom:'Bfrtip',
                     // buttons:['colvis'],
                     retrieve: true,
-                    "ajax": {
-                        "url": window.location.origin+'/api/secure/requestList',
-                        "dataSrc": ""
+                    ajax: {
+                        url: window.location.origin+'/api/secure/requestList',
+                        dataSrc: ""
                     },
-                    "processing": true,
-                    "language": {
-                        "loadingRecords": "&nbsp;",
-                        "processing": '<div class="load-spinner"></div>'
+                    processing: true,
+                    language: {
+                        loadingRecords: "&nbsp;",
+                        processing: '<div class="load-spinner"></div>'
                     },
-                    "columns": [
-                        { "data": "id",
+                    columns: [
+                        { data: "id", width:COL_CODE_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return 'RQS_'+row.id;
                             }
                         },
-                        { "data": "summary" },
-                        { "data": "status_name"},
-                        { "data": "submitter_name",
+                        { data: "summary" },
+                        { data: "status_name", width:COL_STATUS_WIDTH+'px'},
+                        { data: "submitter_name", width:COL_USERNAME_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.submitter_avatar +'" width="30px">'+ row.submitter_name;}},
-                        { "data": "created_at" },
-                        { "data": "priority",
+                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px'},
+                        { data: "priority", width: COL_PRIORITY_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 switch(row.priority)
                                 {
@@ -174,7 +183,7 @@ var dashboardPage = {
                                 }
                             }
                         },
-                        { "data": "assignee_name",
+                        { data: "assignee_name", width: COL_USERNAME_WIDTH,
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.assignee_avatar +'" width="30px">'+ row.assignee_name;}}
                     ]
@@ -194,28 +203,28 @@ var dashboardPage = {
                 this.datatable = $('#requirement-list-table').DataTable( {
                     colReorder:true,
                     retrieve: true,
-                    "ajax": {
-                        "url": window.location.origin+'/api/secure/requirementList',
-                        "dataSrc": ""
+                    ajax: {
+                        url: window.location.origin+'/api/secure/requirementList',
+                        dataSrc: ""
                     },
-                    "processing": true,
-                    "language": {
-                        "loadingRecords": "&nbsp;",
-                        "processing": '<div class="load-spinner"></div>'
+                    processing: true,
+                    language: {
+                        loadingRecords: "&nbsp;",
+                        processing: '<div class="load-spinner"></div>'
                     },
-                    "columns": [
-                        { "data": "id",
+                    columns: [
+                        { data: "id", width:COL_CODE_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return 'REQ_'+row.id;
                             }
                         },
-                        { "data": "summary" },
-                        { "data": "status_name"},
-                        { "data": "submitter_name",
+                        { data: "summary" },
+                        { data: "status_name", width: COL_STATUS_WIDTH+'px'},
+                        { data: "submitter_name", width:COL_USERNAME_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.submitter_avatar +'" width="30px">'+ row.submitter_name;}},
-                        { "data": "created_at" },
-                        { "data": "priority",
+                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px'},
+                        { data: "priority", width: COL_PRIORITY_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 switch(row.priority)
                                 {
@@ -232,7 +241,65 @@ var dashboardPage = {
                                 }
                             }
                         },
-                        { "data": "assignee_name",
+                        { data: "assignee_name", width: COL_USERNAME_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.assignee_avatar +'" width="30px">'+ row.assignee_name;}}
+                    ]
+                } );
+            }
+            else
+                this.datatable.ajax.reload();
+        }
+    },
+    subMenuTestCase:
+    {
+        datatable:null,
+        draw:function(){
+            $('#testCaseList-detail').appendTo('#pageContainer');
+            if(this.datatable == null)
+            {
+                this.datatable = $('#testCase-list-table').DataTable( {
+                    colReorder:true,
+                    retrieve: true,
+                    ajax: {
+                        url: window.location.origin+'/api/secure/testCaseList',
+                        dataSrc: ""
+                    },
+                    processing: true,
+                    language: {
+                        loadingRecords: "&nbsp;",
+                        processing: '<div class="load-spinner"></div>'
+                    },
+                    columns: [
+                        { data: "id", width:COL_CODE_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                return 'REQ_'+row.id;
+                            }
+                        },
+                        { data: "summary" },
+                        { data: "status_name", width: COL_STATUS_WIDTH+'px'},
+                        { data: "submitter_name", width:COL_USERNAME_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.submitter_avatar +'" width="30px">'+ row.submitter_name;}},
+                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px'},
+                        { data: "priority", width: COL_PRIORITY_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                switch(row.priority)
+                                {
+                                    case 'PRIORITY_LOW':
+                                        return '<i class="fa fa-chevron-down" style="color:#63c2de"></i> Low';
+                                    case 'PRIORITY_MEDIUM':
+                                        return '<i class="fa fa-chevron-up" style="color:#4dbd74"></i> Medium';
+                                    case 'PRIORITY_HIGH':
+                                        return '<i class="fa fa-chevron-up" style="color:#ffc107"></i> High';
+                                    case 'PRIORITY_URGENT':
+                                        return '<i class="fa fa-chevron-up" style="color:#f86c6b"></i> Urgent';
+                                    default:
+                                        return row.priority;
+                                }
+                            }
+                        },
+                        { data: "assignee_name", width: COL_USERNAME_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.assignee_avatar +'" width="30px">'+ row.assignee_name;}}
                     ]
