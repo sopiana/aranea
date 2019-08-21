@@ -241,6 +241,31 @@
     </div>
 </div>
 <!-- /.col-->
+<div id="allItemList-detail" class="card">
+    <div class="card-body">
+        <div class="text-left pb-3">
+            <h4 class="card-title mb-0">My All Items</h4>
+        </div>
+
+        <div id="allItem-list-container" class="div">
+            <table id="allItem-list-table" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>ID</th>
+                        <th>Summary</th>
+                        <th>Status</th>
+                        <th>Submitter</th>
+                        <th>Creation Date</th>
+                        <th>Priority</th>
+                        <th>Assignee</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /.col-->
 <div id="requestList-detail" class="card">
     <div class="card-body">
         <div class="text-left pb-3">

@@ -27,7 +27,7 @@ class Project extends Model
                 orderByDesc(VIEW_PROJECT.'.created_at');
         if($start>=0)
             $query->skip($start)->limit($limit);
-        return $query->get();
+        return $query;
     }
 
     public static function getProjectListCount($userId){

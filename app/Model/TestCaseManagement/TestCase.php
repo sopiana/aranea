@@ -24,6 +24,6 @@ class TestCase extends Model
                 orderByDesc(VIEW_TEST_CASE.'.created_at');
         if($start>=0)
             $query->skip($start)->limit($limit);
-        return $query->get();
+        return $query;
     }
 }

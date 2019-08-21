@@ -23,6 +23,6 @@ class Requirement extends Model
                 orderByDesc(VIEW_REQUIREMENT.'.created_at');
         if($start>=0)
             $query->skip($start)->limit($limit);
-        return $query->get();
+        return $query;
     }
 }

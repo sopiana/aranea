@@ -37,7 +37,6 @@ function drawWindow(){
             break;
     }
 }
-var cnt =0;
 
 $(document).ready(function()
 {
@@ -81,6 +80,9 @@ var dashboardPage = {
                 break;
             case 'tasks':
                 this.subMenuTasks.draw();
+                break;
+            case 'issues-all':
+                this.subMenuAllItems.draw();
                 break;
             case 'issues-request':
                 this.subMenuRequests.draw();
@@ -194,6 +196,89 @@ var dashboardPage = {
                             }
                         },
                         { data: "assignee_name", width: COL_USERNAME_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.assignee_avatar +'" width="30px">'+ row.assignee_name;}}
+                    ]
+                } );
+            }
+            else
+                this.datatable.ajax.reload();
+        }
+    },
+    subMenuAllItems:{
+        datatable:null,
+        draw:function(){
+            $('#allItemList-detail').appendTo('#pageContainer');
+            if(this.datatable==null)
+            {
+                this.datatable = $('#allItem-list-table').DataTable( {
+                    colReorder:true,
+                    // dom:'Bfrtip',
+                    // buttons:['colvis'],
+                    retrieve: true,
+                    ajax: {
+                        url: window.location.origin+'/api/secure/allItemList',
+                        dataSrc: ""
+                    },
+                    processing: true,
+                    language: {
+                        loadingRecords: "&nbsp;",
+                        processing: '<div class="load-spinner"></div>'
+                    },
+                    columns: [
+                        {
+                            data:"item_type",
+                            render: function ( data, type, row ) {
+                                switch(row.item_type)
+                                {
+                                    case 'REQUEST': return '<i class="nav-icon icon-tag pr-2 bg-plum-plate"></i>Request';
+                                    case 'REQUIREMENT': return '<i class="nav-icon icon-layers pr-2 bg-plum-plate"></i>Requirement';
+                                    case 'TEST_CASE': return '<i class="nav-icon icon-target pr-2 bg-plum-plate"></i>Test Case';
+                                    case 'BUG': return '<i class="nav-icon icon-ghost pr-2 bg-plum-plate"></i>Bug';
+                                    case 'RELEASE': return '<i class="nav-icon icon-rocket pr-2 bg-plum-plate"></i>Release';
+                                    default: return '<i class="nav-icon icon-social-steam pr-2 bg-plum-plate"></i>Test Run';
+                                }
+                            }
+                        },
+                        {
+                            data: "id", width:COL_CODE_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                switch(row.item_type)
+                                {
+                                    case 'REQUEST': return 'RQS_'+row.id;
+                                    case 'REQUIREMENT': return 'REQ_'+row.id;
+                                    case 'TEST_CASE': return 'TC_'+row.id;
+                                    case 'BUG': return 'BUG_'+row.id;
+                                    case 'RELEASE': return 'REL_'+row.id;
+                                    default:
+                                            return 'TR_'+row.id;
+                                }
+                            }
+                        },
+                        { data: "summary" },
+                        { data: "status_name", width:COL_STATUS_WIDTH+'px'},
+                        { data: "submitter_name", width:COL_USERNAME_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.submitter_avatar +'" width="30px">'+ row.submitter_name;}},
+                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px'},
+                        { data: "priority", width: COL_PRIORITY_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                switch(row.priority)
+                                {
+                                    case 'PRIORITY_LOW':
+                                        return '<i class="fa fa-chevron-down" style="color:#63c2de"></i> Low';
+                                    case 'PRIORITY_MEDIUM':
+                                        return '<i class="fa fa-chevron-up" style="color:#4dbd74"></i> Medium';
+                                    case 'PRIORITY_HIGH':
+                                        return '<i class="fa fa-chevron-up" style="color:#ffc107"></i> High';
+                                    case 'PRIORITY_URGENT':
+                                        return '<i class="fa fa-chevron-up" style="color:#f86c6b"></i> Urgent';
+                                    default:
+                                        return row.priority;
+                                }
+                            }
+                        },
+                        { data: "assignee_name", width: COL_USERNAME_WIDTH,
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.assignee_avatar +'" width="30px">'+ row.assignee_name;}}
                     ]
@@ -342,7 +427,7 @@ var dashboardPage = {
                     columns: [
                         { data: "id", width:COL_CODE_WIDTH+'px',
                             render: function ( data, type, row ) {
-                                return 'REQ_'+row.id;
+                                return 'TC_'+row.id;
                             }
                         },
                         { data: "summary" },
@@ -459,7 +544,7 @@ var dashboardPage = {
                     columns: [
                         { data: "id", width:COL_CODE_WIDTH+'px',
                             render: function ( data, type, row ) {
-                                return 'REL_'+row.id;
+                                return 'BUG_'+row.id;
                             }
                         },
                         { data: "summary" },
@@ -529,25 +614,5 @@ var dashboardPage = {
     }
 }
 
-function LoadOverlay(id){
-    this.id = id;
-    this.show = function(id){
-        if(id){
-            this.id=id;
-        }
-        console.log($(this.id));
-        $(this.id).children('#load-overlay').remove();
-        $(this.id).append('<div id="load-overlay" class="overlay text-center pt-4" style="display:block">'+
-                '<div id="load-spinner" class="load-spinner" style="display:block"></div>'+
-            '</div>');
-    }
-
-    this.hide = function(id){
-        if(id)
-            this.id=id;
-        console.log('close :' +$(this.id));
-        $(this.id).children('#load-overlay').remove();
-    }
-}
 
 

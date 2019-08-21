@@ -11,7 +11,7 @@ use App\Model\RequestManagement\Request;
 use App\Model\RequirementManagement\Requirement;
 use App\Model\TaskManagement\Task;
 use App\Model\TestCaseManagement\TestCase;
-
+use Illuminate\Support\Facades\DB;
 class SecureApi extends Controller
 {
     /**
@@ -32,34 +32,53 @@ class SecureApi extends Controller
     }
     public function getProjectList($start=-1,$limit=50)
     {
-        return response()->json(Project::getProjectList(Auth::user()->id, $start, $limit));
+        return response()->json(Project::getProjectList(Auth::user()->id, $start, $limit)->get());
     }
-    public function getProjectListCount()
+    public function getAllItemList($start=-1,$limit=50)
     {
-        return response()->json(array('count'=>Project::getProjectListCount(Auth::user()->id)));
+        $requests = Request::getRequestList(Auth::user()->id)->addSelect(DB::raw("'REQUEST' as item_type"));
+        $requirements = Requirement::getRequirementList(Auth::user()->id)->addSelect(DB::raw("'REQUIREMENT' as item_type"));
+        $testcases = TestCase::getTestCaseList(Auth::user()->id)->addSelect(DB::raw("'TEST_CASE' as item_type"));
+        $bugs = Bug::getBugList(Auth::user()->id)->select('id','project_id',
+            'project_prefix','summary','submitter_id','submitter_name','submitter_avatar',
+            DB::raw('NULL as folder_id'),'status_id','status_name','visibility',
+            DB::raw('TRUE as is_active'),'assignee_id','assignee_name',
+            'assignee_avatar','priority','created_at', DB::raw("'BUG' as item_type"));
+        $releases = Release::getReleaseList(Auth::user()->id)->select('id','project_id',
+            'project_prefix','name as summary','submitter_id','submitter_name','submitter_avatar',
+            DB::raw('NULL as folder_id'),'status_id','status_name',DB::raw("'VISIBILITY_NONE' as visibility"),
+            DB::raw('TRUE as is_active'),'owner_id as assignee_id','owner_name as assignee_name',
+            'owner_avatar as assignee_avatar',DB::raw("'PRIORITY_LOW' as priority"),'created_at', DB::raw("'RELEASE' as item_type"));;
+        return $requests->
+            union($requirements)->
+            union($testcases)->
+            union($bugs)->
+            union($releases)->
+            orderByDesc('created_at')->
+            get();
     }
     public function getRequestList($start=-1,$limit=50)
     {
-        return response()->json(Request::getRequestList(Auth::user()->id, $start, $limit));
+        return response()->json(Request::getRequestList(Auth::user()->id, $start, $limit)->get());
     }
     public function getRequirementList($start=-1,$limit=50)
     {
-        return response()->json(Requirement::getRequirementList(Auth::user()->id, $start, $limit));
+        return response()->json(Requirement::getRequirementList(Auth::user()->id, $start, $limit)->get());
     }
     public function getTestCaseList($start=-1,$limit=50)
     {
-        return response()->json(TestCase::getTestCaseList(Auth::user()->id, $start, $limit));
+        return response()->json(TestCase::getTestCaseList(Auth::user()->id, $start, $limit)->get());
     }
     public function getReleaseList($start=-1,$limit=50)
     {
-        return response()->json(Release::getReleaseList(Auth::user()->id, $start, $limit));
+        return response()->json(Release::getReleaseList(Auth::user()->id, $start, $limit)->get());
     }
     public function getBugList($start=-1,$limit=50)
     {
-        return response()->json(Bug::getBugList(Auth::user()->id, $start, $limit));
+        return response()->json(Bug::getBugList(Auth::user()->id, $start, $limit)->get());
     }
     public function getTaskList($start=-1,$limit=50)
     {
-        return response()->json(Task::getTaskList(Auth::user()->id, $start, $limit));
+        return response()->json(Task::getTaskList(Auth::user()->id, $start, $limit)->get());
     }
 }

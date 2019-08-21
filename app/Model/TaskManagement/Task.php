@@ -25,6 +25,6 @@ class Task extends Model
                 orderByDesc(VIEW_TASK.'.created_at');
         if($start>=0)
             $query->skip($start)->limit($limit);
-        return $query->get();
+        return $query;
     }
 }

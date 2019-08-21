@@ -23,6 +23,6 @@ class Request extends Model
                 orderByDesc(VIEW_REQUEST.'.created_at');
         if($start>=0)
             $query->skip($start)->limit($limit);
-        return $query->get();
+        return $query;
     }
 }
