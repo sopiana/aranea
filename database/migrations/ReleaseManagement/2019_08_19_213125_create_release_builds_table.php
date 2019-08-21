@@ -15,13 +15,13 @@ class CreateReleaseBuildsTable extends Migration
     {
         Schema::create('release_builds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('release_id',false,true);
+            $table->bigInteger('release_id', false, true);
+            $table->integer('build_number', false, true)->default(1);
             $table->text('description')->nullable();
             $table->text('build_log')->nullable();
-            $table->enum('status',array('')); //TODO
-            $table->integer('last_author',false,true);
+            $table->enum('status',array('BUILD_ABORTED','BUILD_FAILED','BUILD_SUCCESS','BUILD_UNSTABLE'));
+            $table->integer('author',false,true);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

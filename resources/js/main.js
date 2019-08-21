@@ -12,6 +12,7 @@ require('quill');
 
 const COL_USERNAME_WIDTH = 120;
 const COL_CREATION_DATE_WIDTH = 90;
+const COL_DATE_WIDTH = 70;
 const COL_PRIORITY_WIDTH = 60;
 const COL_STATUS_WIDTH = 65;
 const COL_CODE_WIDTH = 58;
@@ -85,6 +86,9 @@ var dashboardPage = {
                 break;
             case 'issues-tc':
                 this.subMenuTestCase.draw();
+                break;
+            case 'release':
+                this.subMenuRelease.draw();
                 break;
         }
     },
@@ -302,6 +306,65 @@ var dashboardPage = {
                         { data: "assignee_name", width: COL_USERNAME_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.assignee_avatar +'" width="30px">'+ row.assignee_name;}}
+                    ]
+                } );
+            }
+            else
+                this.datatable.ajax.reload();
+        }
+    },
+
+    subMenuRelease:
+    {
+        datatable:null,
+        draw:function(){
+            $('#releaseList-detail').appendTo('#pageContainer');
+            if(this.datatable == null)
+            {
+                this.datatable = $('#release-list-table').DataTable( {
+                    colReorder:true,
+                    retrieve: true,
+                    ajax: {
+                        url: window.location.origin+'/api/secure/releaseList',
+                        dataSrc: ""
+                    },
+                    processing: true,
+                    language: {
+                        loadingRecords: "&nbsp;",
+                        processing: '<div class="load-spinner"></div>'
+                    },
+                    columns: [
+                        { data: "id", width:COL_CODE_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                return 'REL_'+row.id;
+                            }
+                        },
+                        { data: "name" },
+                        { data: "version", width: COL_STATUS_WIDTH+'px'},
+                        { data: "status_name", width: COL_STATUS_WIDTH+'px'},
+                        { data: "type", width: COL_PRIORITY_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                switch(row.type)
+                                {
+                                    case 'REL_TYPE_MAJOR':
+                                        return 'Major';
+                                    case 'REL_TYPE_MINOR':
+                                        return 'Minor';
+                                    case 'REL_TYPE_SPRINT':
+                                        return 'Sprint';
+                                    default:
+                                        return row.type;
+                                }
+                            }
+                        },
+                        { data: "started_at", width: COL_DATE_WIDTH+'px'},
+                        { data: "ended_at", width: COL_DATE_WIDTH+'px'},
+                        { data: "submitter_name", width:COL_USERNAME_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.submitter_avatar +'" width="30px">'+ row.submitter_name;}},
+                        { data: "owner_name", width: COL_USERNAME_WIDTH+'px',
+                            render: function ( data, type, row ) {
+                                return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.owner_avatar +'" width="30px">'+ row.owner_name;}}
                     ]
                 } );
             }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Model\ProjectManagement\Project;
+use App\Model\ReleaseManagement\Release;
 use Illuminate\Support\Facades\Auth;
 use App\Model\UserManagement\User;
 use App\Model\RequestManagement\Request;
@@ -46,5 +47,9 @@ class SecureApi extends Controller
     public function getTestCaseList($start=-1,$limit=50)
     {
         return response()->json(TestCase::getTestCaseList(Auth::user()->id, $start, $limit));
+    }
+    public function getReleaseList($start=-1,$limit=50)
+    {
+        return response()->json(Release::getReleaseList(Auth::user()->id, $start, $limit));
     }
 }

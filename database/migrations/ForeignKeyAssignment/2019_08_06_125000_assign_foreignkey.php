@@ -219,12 +219,13 @@ class AssignForeignkey extends Migration
             $table->foreign('status')->references('id')->on('status');
             $table->foreign('submitter_id')->references('id')->on('users');
             $table->foreign('owner_id')->references('id')->on('users');
+            $table->foreign('last_author')->references('id')->on('users');
         });
 
         $this->dropForeignIfExist('release_builds',['release_id','last_author']);
         Schema::table('release_builds', function (Blueprint $table) {
+            $table->foreign('author')->references('id')->on('users');
             $table->foreign('release_id')->references('id')->on('releases');
-            $table->foreign('last_author')->references('id')->on('users');
         });
 
         $this->dropForeignIfExist('release_audits',['author']);

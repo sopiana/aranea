@@ -212,15 +212,15 @@ class TriggerAssignment extends Migration
         DB::unprepared('DROP TRIGGER IF EXISTS `release_builds_insert_action`;
             CREATE TRIGGER `release_builds_insert_action` AFTER INSERT ON `release_builds`
             FOR EACH ROW
-                INSERT INTO `release_audits` (`effective_utc`, `source`, `source_id`, `type`, `author`, `column`, `old_value`, `new_value`)
-                VALUES (NEW.updated_at, \'release_builds\', NEW.id, \'CREATE\', NEW.last_author, NULL, NULL, CONCAT(NEW.id))'
+                UPDATE `releases` SET
+                    `last_build_number` = NEW.build_number,
+                    `last_author` = NEW.author WHERE `releases`.`id` = NEW.release_id;'
             );
     }
 
     private function ReleaseTablesUpdateActions()
     {
         DB::unprepared($this->buildOnUpdateTriggerCommand('releases','release_audits'));
-        DB::unprepared($this->buildOnUpdateTriggerCommand('release_builds','test_case_audits'));
     }
 
     private function BugTablesInsertActions(){
@@ -236,6 +236,7 @@ class TriggerAssignment extends Migration
     {
         DB::unprepared($this->buildOnUpdateTriggerCommand('bugs','bug_audits'));
     }
+
 
     /**
      * Run the migrations.

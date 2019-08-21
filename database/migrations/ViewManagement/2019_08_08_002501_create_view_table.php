@@ -155,6 +155,24 @@ class CreateViewTable extends Migration
             JOIN users as assignee ON (assignee.id=test_cases.assignee)
         )");
     }
+
+    private function createViewRelease(){
+        DB::statement('DROP VIEW IF EXISTS `view_release`');
+        DB::statement("CREATE VIEW view_release AS(
+            SELECT releases.id, releases.name, releases.type,
+                releases.project_id, projects.prefix as project_prefix,
+                releases.status as status_id, status.name as status_name,
+                releases.submitter_id, submitter.username as submitter_name, submitter.avatar as submitter_avatar,
+                releases.owner_id, owner.username as owner_name, owner.avatar as owner_avatar,
+                `version`, `started_at`, `ended_at`, releases.created_at
+            FROM `releases`
+                JOIN projects ON (projects.id=releases.project_id)
+                JOIN status ON (status.id=releases.status)
+                JOIN users as submitter ON (submitter.id=releases.submitter_id)
+                JOIN users as owner ON (owner.id=releases.owner_id)
+        )");
+    }
+
     /**
      * Run the migrations.
      *
@@ -169,6 +187,7 @@ class CreateViewTable extends Migration
         $this->createViewRequest();
         $this->createViewRequirement();
         $this->createViewTestCase();
+        $this->createViewRelease();
     }
 
     /**

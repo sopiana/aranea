@@ -28,4 +28,4 @@ Route::get('/api/secure/projectListCount','api\SecureApi@getProjectListCount')->
 Route::get('/api/secure/requestList/{start?}/{limit?}','api\SecureApi@getRequestList')->name('api.requestList');
 Route::get('/api/secure/requirementList/{start?}/{limit?}','api\SecureApi@getRequirementList')->name('api.requirementList');
 Route::get('/api/secure/testCaseList/{start?}/{limit?}','api\SecureApi@getTestCaseList')->name('api.testCaseList');
-
+Route::get('/api/secure/releaseList/{start?}/{limit?}','api\SecureApi@getReleaseList')->name('api.releaseList');

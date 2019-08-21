@@ -312,4 +312,31 @@
         </div>
     </div>
 </div>
+
+<div id="releaseList-detail" class="card">
+    <div class="card-body">
+        <div class="text-left pb-3">
+            <h4 class="card-title mb-0">My Releases</h4>
+        </div>
+
+        <div id="release-list-container" class="div">
+            <table id="release-list-table" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Rel. ID</th>
+                        <th>Name</th>
+                        <th>Version</th>
+                        <th>Status</th>
+                        <th>Type</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Creator</th>
+                        <th>Assignee</th>
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
 @endsection
