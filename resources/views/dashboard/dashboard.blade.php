@@ -82,16 +82,14 @@
         <button class="sidebar-minimizer brand-minimizer" type="button"></button>
     </div>
     <main class="main">
-        <div class="container-fluid">
-            <div id="pageContainer" class="animated fadeIn">
-            </div>
+        <div id="pageContainer" class="animated fadeIn">
         </div>
     </main>
 </div>
 @endsection
 
 @section('hidden-subpage')
-<div id="profile-detail" class="card">
+<div id="profile-detail">
     <div class="card-body">
         <div class="row brand-card-body">
             <div class="pl-3 pr-3">
@@ -99,7 +97,7 @@
                     <h4 class="card-title mb-0">Profile Data</h4>
                 </div>
                 <div class="btn-group float-right" role="group" aria-label="Button group">
-                    <a class="btn" href="#" title="Change password">
+                    <a class="btn" href="#" title="Change password" data-backdrop="static" data-keyboard="false"  data-toggle="modal" data-target="#exampleModal">
                         <i class="icon-lock"></i>
                     </a>
                     <a class="btn" href="#" title="Edit profile">
@@ -218,10 +216,13 @@
     </div>
 </div>
 <!-- /.col-->
-<div id="projectList-detail" class="card">
+<div id="projectList-detail">
     <div class="card-body">
-        <div class="text-left pb-3">
-            <h4 class="card-title mb-0">My Projects</h4>
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="icon-doc icon-gradient bg-arielle-smile">
+                </i>
+            </div> Project Membership
         </div>
 
         <div id="project-list-container" class="div">
@@ -241,10 +242,13 @@
     </div>
 </div>
 <!-- /.col-->
-<div id="allItemList-detail" class="card">
+<div id="allItemList-detail">
     <div class="card-body">
-        <div class="text-left pb-3">
-            <h4 class="card-title mb-0">My All Items</h4>
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="icon-grid icon-gradient bg-arielle-smile">
+                </i>
+            </div> All Items
         </div>
 
         <div id="allItem-list-container" class="div">
@@ -252,7 +256,7 @@
                 <thead>
                     <tr>
                         <th>Type</th>
-                        <th>ID</th>
+                        <th>Key</th>
                         <th>Summary</th>
                         <th>Status</th>
                         <th>Submitter</th>
@@ -266,17 +270,20 @@
     </div>
 </div>
 <!-- /.col-->
-<div id="requestList-detail" class="card">
+<div id="requestList-detail">
     <div class="card-body">
-        <div class="text-left pb-3">
-            <h4 class="card-title mb-0">My Requests</h4>
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="icon-tag icon-gradient bg-arielle-smile">
+                </i>
+            </div> Requests
         </div>
 
         <div id="request-list-container" class="div">
             <table id="request-list-table" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Request ID</th>
+                        <th>Key</th>
                         <th>Summary</th>
                         <th>Status</th>
                         <th>Submitter</th>
@@ -290,17 +297,20 @@
     </div>
 </div>
 <!-- /.col-->
-<div id="requirementList-detail" class="card">
+<div id="requirementList-detail">
     <div class="card-body">
-        <div class="text-left pb-3">
-            <h4 class="card-title mb-0">My Requirements</h4>
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="icon-layers icon-gradient bg-arielle-smile">
+                </i>
+            </div> Requirements
         </div>
 
         <div id="requirement-list-container" class="div">
             <table id="requirement-list-table" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Req. ID</th>
+                        <th>Key</th>
                         <th>Summary</th>
                         <th>Status</th>
                         <th>Submitter</th>
@@ -314,17 +324,20 @@
     </div>
 </div>
 
-<div id="testCaseList-detail" class="card">
+<div id="testCaseList-detail">
     <div class="card-body">
-        <div class="text-left pb-3">
-            <h4 class="card-title mb-0">My Test Case</h4>
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="icon-target icon-gradient bg-arielle-smile">
+                </i>
+            </div> Test Cases
         </div>
 
         <div id="testCase-list-container" class="div">
             <table id="testCase-list-table" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>TC ID</th>
+                        <th>Key</th>
                         <th>Summary</th>
                         <th>Status</th>
                         <th>Submitter</th>
@@ -338,17 +351,20 @@
     </div>
 </div>
 
-<div id="releaseList-detail" class="card">
+<div id="releaseList-detail">
     <div class="card-body">
-        <div class="text-left pb-3">
-            <h4 class="card-title mb-0">My Releases</h4>
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="icon-rocket icon-gradient bg-arielle-smile">
+                </i>
+            </div> Releases
         </div>
 
         <div id="release-list-container" class="div">
             <table id="release-list-table" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Rel. ID</th>
+                        <th>Key</th>
                         <th>Name</th>
                         <th>Version</th>
                         <th>Status</th>
@@ -364,17 +380,20 @@
     </div>
 </div>
 <!-- /.col-->
-<div id="bugList-detail" class="card">
+<div id="bugList-detail">
     <div class="card-body">
-        <div class="text-left pb-3">
-            <h4 class="card-title mb-0">My Bugs</h4>
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="icon-ghost icon-gradient bg-arielle-smile">
+                </i>
+            </div> Bugs
         </div>
 
         <div id="bug-list-container" class="div">
             <table id="bug-list-table" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Key</th>
                         <th>Summary</th>
                         <th>Status</th>
                         <th>Type</th>
@@ -390,17 +409,20 @@
     </div>
 </div>
 <!-- /.col-->
-<div id="taskList-detail" class="card">
+<div id="taskList-detail">
     <div class="card-body">
-        <div class="text-left pb-3">
-            <h4 class="card-title mb-0">My Tasks</h4>
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="icon-event icon-gradient bg-arielle-smile">
+                </i>
+            </div> Tasks
         </div>
 
         <div id="task-list-container" class="div">
             <table id="task-list-table" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Key</th>
                         <th>Summary</th>
                         <th>Status</th>
                         <th>Submitter</th>
@@ -410,6 +432,29 @@
                     </tr>
                 </thead>
             </table>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('modal')
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
         </div>
     </div>
 </div>

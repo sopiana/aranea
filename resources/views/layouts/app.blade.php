@@ -30,4 +30,5 @@
         <div class="load-spinner"></div>
     </div>
 </body>
+@yield('modal')
 </html>

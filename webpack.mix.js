@@ -12,7 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/main.js', 'public/assets/js/main.js')
-    .styles(['node_modules/bootstrap/dist/css/bootstrap.css',
+    .styles([
         'node_modules/simple-line-icons/css/simple-line-icons.css',
         'node_modules/font-awesome/css/font-awesome.css',
         'node_modules/datatables.net-dt/css/jquery.dataTables.css',

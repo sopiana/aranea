@@ -1,6 +1,4 @@
 require('./bootstrap');
-window.$ = window.jQuery = require('jquery');
-require('popper.js');
 require('@coreui/coreui/dist/js/coreui');
 require('jquery-sortable');
 require('datatables.net/js/jquery.dataTables');
@@ -183,13 +181,13 @@ var dashboardPage = {
                                 switch(row.priority)
                                 {
                                     case 'PRIORITY_LOW':
-                                        return '<i class="fa fa-chevron-down" style="color:#63c2de"></i> Low';
+                                        return '<div class="badge badge-info"><i class="fa fa-chevron-down"></i> Low</div>';
                                     case 'PRIORITY_MEDIUM':
-                                        return '<i class="fa fa-chevron-up" style="color:#4dbd74"></i> Medium';
+                                        return '<div class="badge badge-warning"><i class="fa fa-chevron-up"></i> Medium</div>';
                                     case 'PRIORITY_HIGH':
-                                        return '<i class="fa fa-chevron-up" style="color:#ffc107"></i> High';
+                                        return '<div class="badge badge-danger"><i class="fa fa-chevron-up"></i> High</div>';
                                     case 'PRIORITY_URGENT':
-                                        return '<i class="fa fa-chevron-up" style="color:#f86c6b"></i> Urgent';
+                                        return '<div class="badge badge-critical"><i class="fa fa-exclamation"></i> Urgent</div>';
                                     default:
                                         return row.priority;
                                 }
@@ -231,12 +229,12 @@ var dashboardPage = {
                             render: function ( data, type, row ) {
                                 switch(row.item_type)
                                 {
-                                    case 'REQUEST': return '<i class="nav-icon icon-tag pr-2 bg-plum-plate"></i>Request';
-                                    case 'REQUIREMENT': return '<i class="nav-icon icon-layers pr-2 bg-plum-plate"></i>Requirement';
-                                    case 'TEST_CASE': return '<i class="nav-icon icon-target pr-2 bg-plum-plate"></i>Test Case';
-                                    case 'BUG': return '<i class="nav-icon icon-ghost pr-2 bg-plum-plate"></i>Bug';
-                                    case 'RELEASE': return '<i class="nav-icon icon-rocket pr-2 bg-plum-plate"></i>Release';
-                                    default: return '<i class="nav-icon icon-social-steam pr-2 bg-plum-plate"></i>Test Run';
+                                    case 'REQUEST': return '<i class="nav-icon icon-tag pr-2 icon-gradient bg-plum-plate"></i>Request';
+                                    case 'REQUIREMENT': return '<i class="nav-icon icon-layers pr-2 icon-gradient bg-plum-plate"></i>Requirement';
+                                    case 'TEST_CASE': return '<i class="nav-icon icon-target pr-2 icon-gradient bg-plum-plate"></i>Test Case';
+                                    case 'BUG': return '<i class="nav-icon icon-ghost pr-2 icon-gradient bg-plum-plate"></i>Bug';
+                                    case 'RELEASE': return '<i class="nav-icon icon-rocket pr-2 icon-gradient bg-plum-plate"></i>Release';
+                                    default: return '<i class="nav-icon icon-social-steam pr-2 icon-gradient bg-plum-plate"></i>Test Run';
                                 }
                             }
                         },
@@ -266,13 +264,13 @@ var dashboardPage = {
                                 switch(row.priority)
                                 {
                                     case 'PRIORITY_LOW':
-                                        return '<i class="fa fa-chevron-down" style="color:#63c2de"></i> Low';
+                                        return '<div class="badge badge-info"><i class="fa fa-chevron-down"></i> Low</div>';
                                     case 'PRIORITY_MEDIUM':
-                                        return '<i class="fa fa-chevron-up" style="color:#4dbd74"></i> Medium';
+                                        return '<div class="badge badge-warning"><i class="fa fa-chevron-up"></i> Medium</div>';
                                     case 'PRIORITY_HIGH':
-                                        return '<i class="fa fa-chevron-up" style="color:#ffc107"></i> High';
+                                        return '<div class="badge badge-danger"><i class="fa fa-chevron-up"></i> High</div>';
                                     case 'PRIORITY_URGENT':
-                                        return '<i class="fa fa-chevron-up" style="color:#f86c6b"></i> Urgent';
+                                        return '<div class="badge badge-critical"><i class="fa fa-exclamation"></i> Urgent</div>';
                                     default:
                                         return row.priority;
                                 }
@@ -325,13 +323,13 @@ var dashboardPage = {
                                 switch(row.priority)
                                 {
                                     case 'PRIORITY_LOW':
-                                        return '<i class="fa fa-chevron-down" style="color:#63c2de"></i> Low';
+                                        return '<div class="badge badge-info"><i class="fa fa-chevron-down"></i> Low</div>';
                                     case 'PRIORITY_MEDIUM':
-                                        return '<i class="fa fa-chevron-up" style="color:#4dbd74"></i> Medium';
+                                        return '<div class="badge badge-warning"><i class="fa fa-chevron-up"></i> Medium</div>';
                                     case 'PRIORITY_HIGH':
-                                        return '<i class="fa fa-chevron-up" style="color:#ffc107"></i> High';
+                                        return '<div class="badge badge-danger"><i class="fa fa-chevron-up"></i> High</div>';
                                     case 'PRIORITY_URGENT':
-                                        return '<i class="fa fa-chevron-up" style="color:#f86c6b"></i> Urgent';
+                                        return '<div class="badge badge-critical"><i class="fa fa-exclamation"></i> Urgent</div>';
                                     default:
                                         return row.priority;
                                 }
@@ -383,13 +381,13 @@ var dashboardPage = {
                                 switch(row.priority)
                                 {
                                     case 'PRIORITY_LOW':
-                                        return '<i class="fa fa-chevron-down" style="color:#63c2de"></i> Low';
+                                        return '<div class="badge badge-info"><i class="fa fa-chevron-down"></i> Low</div>';
                                     case 'PRIORITY_MEDIUM':
-                                        return '<i class="fa fa-chevron-up" style="color:#4dbd74"></i> Medium';
+                                        return '<div class="badge badge-warning"><i class="fa fa-chevron-up"></i> Medium</div>';
                                     case 'PRIORITY_HIGH':
-                                        return '<i class="fa fa-chevron-up" style="color:#ffc107"></i> High';
+                                        return '<div class="badge badge-danger"><i class="fa fa-chevron-up"></i> High</div>';
                                     case 'PRIORITY_URGENT':
-                                        return '<i class="fa fa-chevron-up" style="color:#f86c6b"></i> Urgent';
+                                        return '<div class="badge badge-critical"><i class="fa fa-exclamation"></i> Urgent</div>';
                                     default:
                                         return row.priority;
                                 }
@@ -441,13 +439,13 @@ var dashboardPage = {
                                 switch(row.priority)
                                 {
                                     case 'PRIORITY_LOW':
-                                        return '<i class="fa fa-chevron-down" style="color:#63c2de"></i> Low';
+                                        return '<div class="badge badge-info"><i class="fa fa-chevron-down"></i> Low</div>';
                                     case 'PRIORITY_MEDIUM':
-                                        return '<i class="fa fa-chevron-up" style="color:#4dbd74"></i> Medium';
+                                        return '<div class="badge badge-warning"><i class="fa fa-chevron-up"></i> Medium</div>';
                                     case 'PRIORITY_HIGH':
-                                        return '<i class="fa fa-chevron-up" style="color:#ffc107"></i> High';
+                                        return '<div class="badge badge-danger"><i class="fa fa-chevron-up"></i> High</div>';
                                     case 'PRIORITY_URGENT':
-                                        return '<i class="fa fa-chevron-up" style="color:#f86c6b"></i> Urgent';
+                                        return '<div class="badge badge-critical"><i class="fa fa-exclamation"></i> Urgent</div>';
                                     default:
                                         return row.priority;
                                 }
@@ -573,13 +571,13 @@ var dashboardPage = {
                                 switch(row.priority)
                                 {
                                     case 'PRIORITY_LOW':
-                                        return '<i class="fa fa-chevron-down" style="color:#63c2de"></i> Low';
+                                        return '<div class="badge badge-info"><i class="fa fa-chevron-down"></i> Low</div>';
                                     case 'PRIORITY_MEDIUM':
-                                        return '<i class="fa fa-chevron-up" style="color:#4dbd74"></i> Medium';
+                                        return '<div class="badge badge-warning"><i class="fa fa-chevron-up"></i> Medium</div>';
                                     case 'PRIORITY_HIGH':
-                                        return '<i class="fa fa-chevron-up" style="color:#ffc107"></i> High';
+                                        return '<div class="badge badge-danger"><i class="fa fa-chevron-up"></i> High</div>';
                                     case 'PRIORITY_URGENT':
-                                        return '<i class="fa fa-chevron-up" style="color:#f86c6b"></i> Urgent';
+                                        return '<div class="badge badge-critical"><i class="fa fa-exclamation"></i> Urgent</div>';
                                     default:
                                         return row.priority;
                                 }
@@ -590,13 +588,13 @@ var dashboardPage = {
                                 switch(row.severity)
                                 {
                                     case 'SEVERITY_LOW':
-                                        return '<i class="fa fa-chevron-down" style="color:#63c2de"></i> Low';
+                                        return '<div class="badge badge-info"><i class="fa fa-chevron-down"></i> Low</div>';
                                     case 'SEVERITY_MEDIUM':
-                                        return '<i class="fa fa-chevron-up" style="color:#4dbd74"></i> Medium';
+                                        return '<div class="badge badge-warning"><i class="fa fa-chevron-up"></i> Medium</div>';
                                     case 'SEVERITY_HIGH':
-                                        return '<i class="fa fa-chevron-up" style="color:#ffc107"></i> High';
+                                        return '<div class="badge badge-danger"><i class="fa fa-chevron-up"></i> High</div>';
                                     case 'SEVERITY_CRITICAL':
-                                        return '<i class="fa fa-chevron-up" style="color:#f86c6b"></i> Urgent';
+                                        return '<div class="badge badge-critical"><i class="fa fa-exclamation"></i> Critical</div>';
                                     default:
                                         return row.priority;
                                 }
