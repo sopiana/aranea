@@ -16,7 +16,7 @@ Route::get('/', 'dashboard\DashboardController@default');
 Auth::routes();
 
 Route::get('/dashboard', 'dashboard\DashboardController@index')->name('dashboard');
-
+Route::get('/project/{code}', 'project\ProjectController@default')->name('project');
 
 /**
  * Following routes is secure API
@@ -31,3 +31,4 @@ Route::get('/api/secure/testCaseList/{start?}/{limit?}','api\SecureApi@getTestCa
 Route::get('/api/secure/releaseList/{start?}/{limit?}','api\SecureApi@getReleaseList')->name('api.releaseList');
 Route::get('/api/secure/bugList/{start?}/{limit?}','api\SecureApi@getBugList')->name('api.bugList');
 Route::get('/api/secure/taskList/{start?}/{limit?}','api\SecureApi@getTaskList')->name('api.taskList');
+Route::get('/api/secure/projectDescription/{code}','api\SecureApi@getProjectDescription')->name('api.projectDescription');

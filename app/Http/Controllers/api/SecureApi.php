@@ -81,4 +81,8 @@ class SecureApi extends Controller
     {
         return response()->json(Task::getTaskList(Auth::user()->id, $start, $limit)->get());
     }
+    public function getProjectDescription($projectCode)
+    {
+        return response()->json(Project::getProjectDescription($projectCode));
+    }
 }

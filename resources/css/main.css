@@ -16304,3 +16304,26 @@ table.dataTable.display tbody tr:hover > .sorting_1{
     width: 35px;
     height: 35px;
 }
+
+.sidebar-minimized .sidebar-nav .project-sidebar-title .project-name{
+    display:none;
+}
+
+.sidebar-nav .project-sidebar-title {
+    padding: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.sidebar-nav .project-sidebar-title .project-logo{
+    width:45px;
+    max-width:45px;
+    padding: 0px;
+}
+
+.sidebar-nav.ps.ps--active-y .project-sidebar-title h5{
+    font-size:.95rem;
+    font-weight:550;
+}
+
+project-name

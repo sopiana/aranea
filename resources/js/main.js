@@ -127,10 +127,16 @@ var dashboardPage = {
                         processing: '<div class="load-spinner"></div>'
                     },
                     columns: [
-                        { data: "project_code", width:COL_CODE_WIDTH+'px'},
+                        { data: "project_code", width:COL_CODE_WIDTH+'px',
+                          render:function( data, type, row ){
+                            return '<a href="'+window.location.origin+'/project/'+row.project_code+'">'+row.project_code+'</a>';
+                          }
+                        },
                         { data: "name",
                             render: function ( data, type, row ) {
-                                return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.avatar +'" width="30px">'+ row.name;}
+                                return '<a href="'+window.location.origin+'/project/'+row.project_code+'">'+
+                                    '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.avatar +'" width="30px">'+ row.name+
+                                    '</a>';}
                         },
                         { data: "owner", width:COL_USERNAME_WIDTH+'px',
                             render: function ( data, type, row ) {

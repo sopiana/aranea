@@ -36,4 +36,13 @@ class Project extends Model
             where(VIEW_PROJECT_ASSIGNMENT.'.user_id', $userId)->
             count();
     }
+
+    public static function getProjectDescription($projectCode)
+    {
+        $index = strripos($projectCode, '_');
+        return DB::table(VIEW_PROJECT)->
+            where(VIEW_PROJECT.'.id', substr($projectCode,$index+1))->
+            where(VIEW_PROJECT.'.prefix', substr($projectCode,0,$index))->
+            first();
+    }
 }

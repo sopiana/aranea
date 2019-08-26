@@ -4,24 +4,23 @@
 <div class="app-body">
     <div class="sidebar">
         <nav class="sidebar-nav">
+            <div class="row project-sidebar-title">
+                <div class="col project-logo pr-2">
+                    <img class="img-avatar" src="{{URL::asset($selectedProject->avatar)}}" alt="{{$selectedProject->name}}">
+                </div>
+                <div class="col-md project-name">
+                    <div class="row"><h5>{{$selectedProject->name}}</h5></div>
+                    <div class="row" style="background-color: yellow">Boards</div>
+                </div>
+            </div>
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link right-nav" href="{{ route('dashboard') }}/?page=dashboard">
-                        <i class="nav-icon icon-speedometer"></i> Dashboard
+                    <a class="nav-link right-nav" href="#">
+                        <i class="nav-icon icon-menu"></i> Backlog
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link right-nav" href="{{ route('dashboard') }}/?page=profile">
-                        <i class="nav-icon icon-user"></i> Profile
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link right-nav" href="{{ route('dashboard') }}/?page=projects">
-                        <i class="nav-icon icon-doc"></i> Projects
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link right-nav" href="{{ route('dashboard') }}/?page=tasks">
+                    <a class="nav-link right-nav" href="#">
                         <i class="nav-icon icon-event"></i> Tasks
                     </a>
                 </li>
@@ -67,14 +66,24 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link right-nav" href="{{ route('dashboard') }}/?page=filters">
-                        <i class="nav-icon icon-drop"></i> Filters
+                <li class="nav-item right-nav">
+                    <a class="nav-link" href="#">
+                        <i class="nav-icon icon-support"></i> Components
                     </a>
                 </li>
                 <li class="nav-item right-nav">
-                    <a class="nav-link" href="{{ route('dashboard') }}/?page=setting">
-                        <i class="nav-icon icon-wrench"></i> Setting
+                    <a class="nav-link" href="#">
+                        <i class="nav-icon icon-flag"></i> Roadmap
+                    </a>
+                </li>
+                <li class="nav-item right-nav">
+                    <a class="nav-link" href="#">
+                        <i class="nav-icon icon-map"></i> Kanban board
+                    </a>
+                </li>
+                <li class="nav-item right-nav">
+                    <a class="nav-link" href="#">
+                        <i class="nav-icon icon-graph"></i> Reports
                     </a>
                 </li>
             </ul>
