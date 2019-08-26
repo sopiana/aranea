@@ -163,7 +163,7 @@ var dashboardPage = {
     {
         datatable:null,
         draw:function(){
-            $('#taskList-detail').appendTo('#pageContainer');
+            Utils.renderFilterDropdown('#taskList-detail');
             if(this.datatable == null)
             {
                 this.datatable = $('#task-list-table').DataTable( {
@@ -225,7 +225,7 @@ var dashboardPage = {
     subMenuAllItems:{
         datatable:null,
         draw:function(){
-            $('#allItemList-detail').appendTo('#pageContainer');
+            Utils.renderFilterDropdown('#allItemList-detail');
             if(this.datatable==null)
             {
                 this.datatable = $('#allItem-list-table').DataTable( {
@@ -313,7 +313,7 @@ var dashboardPage = {
     subMenuRequests:{
         datatable:null,
         draw:function(){
-            $('#requestList-detail').appendTo('#pageContainer');
+            Utils.renderFilterDropdown('#requestList-detail');
             if(this.datatable==null)
             {
                 this.datatable = $('#request-list-table').DataTable( {
@@ -378,7 +378,8 @@ var dashboardPage = {
     {
         datatable:null,
         draw:function(){
-            $('#requirementList-detail').appendTo('#pageContainer');
+
+            Utils.renderFilterDropdown('#requirementList-detail');
             if(this.datatable == null)
             {
                 this.datatable = $('#requirement-list-table').DataTable( {
@@ -441,7 +442,7 @@ var dashboardPage = {
     {
         datatable:null,
         draw:function(){
-            $('#testCaseList-detail').appendTo('#pageContainer');
+            Utils.renderFilterDropdown('#testCaseList-detail');
             if(this.datatable == null)
             {
                 this.datatable = $('#testCase-list-table').DataTable( {
@@ -505,7 +506,7 @@ var dashboardPage = {
     {
         datatable:null,
         draw:function(){
-            $('#releaseList-detail').appendTo('#pageContainer');
+            Utils.renderFilterDropdown('#releaseList-detail');
             if(this.datatable == null)
             {
                 this.datatable = $('#release-list-table').DataTable( {
@@ -572,7 +573,7 @@ var dashboardPage = {
     {
         datatable:null,
         draw:function(){
-            $('#bugList-detail').appendTo('#pageContainer');
+            Utils.renderFilterDropdown('#bugList-detail');
             if(this.datatable == null)
             {
                 this.datatable = $('#bug-list-table').DataTable( {
@@ -725,6 +726,27 @@ var Utils =
 
         return dateComponents[2]+' '+this.monthName[parseInt(dateComponents[1])]+' '+dateComponents[0];
     },
+    renderFilterDropdown:function(container)
+    {
+        $(container).appendTo('#pageContainer');
+        var pageNavbar = $(container+' .card-body .page-title-heading').children('.page-navbar');
+        if(pageNavbar.length>0)
+        {
+            var $viewFilterOptions = $(pageNavbar).children('.dropdown-menu').children();
+            $viewFilterOptions.each(function()
+            {
+                console.log(this);
+                var test;
+                $(this).off('click').on('click',function(event){
+                    $viewFilterOptions.each(function(){
+                        this.className = 'dropdown-item';
+                    })
+                    event.target.className='dropdown-item selected';
+                    return false;
+                });
+            });
+        }
+    }
 
 }
 

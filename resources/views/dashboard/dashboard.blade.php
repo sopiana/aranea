@@ -341,15 +341,15 @@
                     Switch Filter <i class="fa fa-caret-down pl-2"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-left filter-view-dropdown">
-                    <a class="dropdown-item selected" href="#">My open issues</a>
-                    <a class="dropdown-item" href="#">Reported by me</a>
-                    <a class="dropdown-item" href="#">All issues</a>
-                    <a class="dropdown-item" href="#">Open issues</a>
-                    <a class="dropdown-item" href="#">Done issues</a>
-                    <a class="dropdown-item" href="#">Viewed recently</a>
-                    <a class="dropdown-item" href="#">Created recently</a>
-                    <a class="dropdown-item" href="#">Resolved recently</a>
-                    <a class="dropdown-item" href="#">Updated recently</a>
+                    <a class="dropdown-item" href="#" filter="my-open">My open issues</a>
+                    <a class="dropdown-item" href="#" filter="reported">Reported by me</a>
+                    <a class="dropdown-item" href="#" filter="all">All issues</a>
+                    <a class="dropdown-item" href="#" filter="open">Open issues</a>
+                    <a class="dropdown-item" href="#" filter="done">Done issues</a>
+                    <a class="dropdown-item" href="#" filter="viewed">Viewed recently</a>
+                    <a class="dropdown-item" href="#" filter="created">Created recently</a>
+                    <a class="dropdown-item" href="#" filter="resolved">Resolved recently</a>
+                    <a class="dropdown-item" href="#" filter="updated">Updated recently</a>
                 </div>
             </div>
         </div>

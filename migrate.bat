@@ -20,6 +20,18 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 php artisan migrate%param% --path=database/migrations/TestCaseManagement
 if %errorlevel% neq 0 exit /b %errorlevel%
 
+php artisan migrate%param% --path=database/migrations/TestExecutionManagement
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+php artisan migrate%param% --path=database/migrations/BugsManagement
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+php artisan migrate%param% --path=database/migrations/ReleaseManagement
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+php artisan migrate%param% --path=database/migrations/TaskManagement
+if %errorlevel% neq 0 exit /b %errorlevel%
+
 php artisan migrate%param% --path=database/migrations/ForeignKeyAssignment
 if %errorlevel% neq 0 exit /b %errorlevel%
 
