@@ -15,8 +15,11 @@ class UserSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
+        $max_user = require('Config.php');
         //lets say that we have 500 users
-        for($i=0;$i<300;$i++)
+        $max_user = $max_user['users']['max'];
+
+        for($i=0;$i<$max_user;$i++)
         {
             $firstName = $faker->firstName;
             $lastName = $faker->lastName;

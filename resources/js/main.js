@@ -736,7 +736,6 @@ var Utils =
             $viewFilterOptions.each(function()
             {
                 console.log(this);
-                var test;
                 $(this).off('click').on('click',function(event){
                     $viewFilterOptions.each(function(){
                         this.className = 'dropdown-item';

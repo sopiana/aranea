@@ -17,6 +17,7 @@ class ReleaseSeeder extends Seeder
         $projectNum = Project::count();
         $faker = Faker::create();
         $release_id = 1;
+        $project_limit = require('Config.php');
         for($i=1;$i<=$projectNum;$i++)
         {
             if($i%50==0)
@@ -35,7 +36,7 @@ class ReleaseSeeder extends Seeder
             $date_creation =DB::table('projects')->select('created_at')->where('id','=',$i)->get()[0]->created_at;
 
             //lets say 1 project has 15-60 releases
-            $releaseNum = rand(15,60);
+            $releaseNum = rand($project_limit['projects']['min_release'],$project_limit['projects']['max_release']);
             for($j=0;$j<$releaseNum;++$j)
             {
                 if($j%10==0)

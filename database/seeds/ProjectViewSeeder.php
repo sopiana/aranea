@@ -34,14 +34,16 @@ class ProjectViewSeeder extends Seeder
                 'last_visited'=>date("Y-m-d H:i:s",$last_dateView)
             ));
         }
+
         //lets say that each users view around 30-100 times on 20-50 projects they are not owned
         $user_num = User::count();
         $project_num = Project::count();
+        $project_limit = require('Config.php');
         for($id=1;$id<=$user_num;++$id)
         {
-            if($id%200==0)
+            if($id%20==0)
                 $this->command->info('Random Project View seeds: '.$id.' items out of '.$user_num);
-            $projects_viewed_num = rand(20,50);
+            $projects_viewed_num = rand($project_limit['projects']['min_random_view'],$project_limit['projects']['max_random_view']);
             for($j=0;$j<$projects_viewed_num;++$j)
             {
                 $rand_project = rand(1,$project_num);

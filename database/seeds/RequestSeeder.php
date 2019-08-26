@@ -15,9 +15,10 @@ class RequestSeeder extends Seeder
     {
         $projectNum = Project::count();
         $faker = Faker::create();
+        $project_limit = require('Config.php');
         for($i=1;$i<=$projectNum;$i++)
         {
-            if($i%100 ==0)
+            if($i%20 ==0)
                 $this->command->info('Request Seed :'.$i.' out of: '.$projectNum);
             //let's say that the request is submitted by AoSM and System Architect
             $AoSM = DB::table('project_assignments')->select('user_id','role_id')->
@@ -35,7 +36,7 @@ class RequestSeeder extends Seeder
                 where([['project_id','=', $i]])->get();
 
             //lets say that we have around 70-100 requests per projects
-            $requestNum = rand(70,100);
+            $requestNum = rand($project_limit['projects']['min_request'],$project_limit['projects']['max_request']);
             for($j=0;$j<$requestNum;++$j)
             {
                 $req_status = rand(0,100);

@@ -20,6 +20,7 @@ class TestCaseSeeder extends Seeder
         $faker = Faker::create();
         $testCaseID=1;
         $testStepID=1;
+        $project_limit = require('Config.php');
         for($i=1;$i<=$projectNum;$i++)
         {
             $this->command->info('Test Case Seed for project:'.$i.' out of: '.$projectNum.' projects');
@@ -37,7 +38,7 @@ class TestCaseSeeder extends Seeder
             //lets say 1 project has 300-1200 test cases
             $date_creation =DB::table('projects')->select('created_at')->where('id','=',$i)->get()[0]->created_at;
 
-            $testCasesNum = rand(500,1800);
+            $testCasesNum = rand($project_limit['projects']['min_test_case'],$project_limit['projects']['max_test_case']);
             for($j=0;$j<$testCasesNum;++$j)
             {
                 if($j%50==0)

@@ -16,6 +16,7 @@ class TestSuiteSeeder extends Seeder
     {
         $projectNum = Project::count();
         $faker = Faker::create();
+        $project_limit=require('Config.php');
         for($i=1;$i<=$projectNum;$i++)
         {
             if($i%200 ==0)
@@ -24,7 +25,7 @@ class TestSuiteSeeder extends Seeder
                 where([['project_id','=',$i]])->
                 whereIn('role_id',[7,8,9])->get();
             //let's say Tester, Test Lead and Test Architect together create around 20-40 folder per projects
-            $numberOfTestSuites = rand(20,40);
+            $numberOfTestSuites = rand($project_limit['projects']['min_test_suite'],$project_limit['projects']['max_test_suite']);
             for($j=0;$j<$numberOfTestSuites;++$j)
             {
                 TestSuite::create(array(

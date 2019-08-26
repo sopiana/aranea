@@ -16,15 +16,16 @@ class FolderRequirementSeeder extends Seeder
     {
         $projectNum = Project::count();
         $faker = Faker::create();
+        $project_limit = require('Config.php');
         for($i=1;$i<=$projectNum;$i++)
         {
-            if($i%200 ==0)
+            if($i%20 ==0)
                 $this->command->info('Folder Requirement Seed :'.$i.' out of: '.$projectNum);
             $DevLeadSysArch = DB::table('project_assignments')->select('user_id','role_id')->
                 where([['project_id','=',$i]])->
                 whereIn('role_id',[4,5])->get();
-            //let's say Dev Lead and System Architect together create around 40-60 folder per projects
-            $numberOfFolders = rand(40,60);
+
+            $numberOfFolders = rand($project_limit['projects']['min_folder_requirement'],$project_limit['projects']['max_folder_requirement']);
             for($j=0;$j<$numberOfFolders;++$j)
             {
                 FolderRequirement::create(array(

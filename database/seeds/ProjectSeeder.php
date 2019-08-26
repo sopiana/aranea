@@ -17,11 +17,13 @@ class ProjectSeeder extends Seeder
         $faker = Faker::create();
         $product_owners = DB::table('users')->select('id')->where('role_id','=','3')->get();
         $kind_num = ProjectKind::count();
-        //lets say we already have 2000 projects
-        for($i=0;$i<1000;$i++)
+        $max_project = require('Config.php');
+        $max_project = $max_project['projects']['max'];
+        $this->command->info($max_project);
+        for($i=0;$i<$max_project;$i++)
         {
-            if($i%200==0)
-                $this->command->info('Project seeds: '.$i.' items out of 1000');
+            if($i%50==0)
+                $this->command->info('Project seeds: '.$i.' items out of '.$max_project);
             $dueDate = rand(1300191854,1565191854);
             $duration = rand(7776000,15552000);
             $createdDate = $dueDate - $duration;

@@ -18,6 +18,7 @@ class BugSeeder extends Seeder
         $projectNum = Project::count();
         $faker = Faker::create();
         $status = DB::table('status')->select('id')->where([['type','=','TYPE_BUGS']])->get();
+        $project_limit = require('Config.php');
         for($i=1;$i<=$projectNum;$i++)
         {
             $members = DB::table('project_assignments')->select('user_id','role_id')->
@@ -25,7 +26,7 @@ class BugSeeder extends Seeder
             $releases = DB::table('releases')->select('id')->
                 where([['project_id','=',$i]])->get();
             //let's say each project has 100-2000 issue
-            $numberOfBugs = rand(100,2000);
+            $numberOfBugs = rand($project_limit['projects']['min_bug'],$project_limit['projects']['max_bug']);
             for($j=0;$j<$numberOfBugs;++$j)
             {
                 if($j%50 ==0)

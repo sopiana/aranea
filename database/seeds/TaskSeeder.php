@@ -17,6 +17,7 @@ class TaskSeeder extends Seeder
         $projectNum = Project::count();
         $faker = Faker::create();
         $status = DB::table('status')->select('id')->where([['type','=','TYPE_TASK']])->get();
+        $project_limit = require('Config.php');
         for($i=1;$i<=$projectNum;$i++)
         {
             $members = DB::table('project_assignments')->select('user_id','role_id')->
@@ -24,7 +25,7 @@ class TaskSeeder extends Seeder
             foreach($members as $member)
             {
                 //let's say each members has 75-150 tasks
-                $numberOfTasks = rand(75,250);
+                $numberOfTasks = rand($project_limit['projects']['min_task'],$project_limit['projects']['max_task']);
                 for($j=0;$j<$numberOfTasks;++$j)
                 {
                     if($j%20==0)
