@@ -12,7 +12,9 @@ class Requirement extends Model
     public $timestamps = false;
     public static function getRequirementList($userId, $start=-1, $limit=-1){
         $query= DB::table(VIEW_REQUIREMENT)->
-                select(VIEW_REQUIREMENT.'.id',VIEW_REQUIREMENT.'.project_id',VIEW_REQUIREMENT.'.project_prefix', VIEW_REQUIREMENT.'.summary',
+                select(VIEW_REQUIREMENT.'.id',
+                    VIEW_REQUIREMENT.'.project_code',
+                    VIEW_REQUIREMENT.'.summary',
                     VIEW_REQUIREMENT.'.submitter_id', VIEW_REQUIREMENT.'.submitter_name', VIEW_REQUIREMENT.'.submitter_avatar',
                     VIEW_REQUIREMENT.'.folder_id', VIEW_REQUIREMENT.'.status_id', VIEW_REQUIREMENT.'.status_name',
                     VIEW_REQUIREMENT.'.visibility', VIEW_REQUIREMENT.'.is_active', VIEW_REQUIREMENT.'.assignee_id',

@@ -249,6 +249,22 @@
                 <i class="icon-grid icon-gradient bg-arielle-smile">
                 </i>
             </div> All Items
+            <div class="pl-3 page-navbar">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Switch Filter <i class="fa fa-caret-down pl-2"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-left filter-view-dropdown">
+                    <a class="dropdown-item selected" href="#">My open issues</a>
+                    <a class="dropdown-item" href="#">Reported by me</a>
+                    <a class="dropdown-item" href="#">All issues</a>
+                    <a class="dropdown-item" href="#">Open issues</a>
+                    <a class="dropdown-item" href="#">Done issues</a>
+                    <a class="dropdown-item" href="#">Viewed recently</a>
+                    <a class="dropdown-item" href="#">Created recently</a>
+                    <a class="dropdown-item" href="#">Resolved recently</a>
+                    <a class="dropdown-item" href="#">Updated recently</a>
+                </div>
+            </div>
         </div>
 
         <div id="allItem-list-container" class="div">
@@ -277,6 +293,22 @@
                 <i class="icon-tag icon-gradient bg-arielle-smile">
                 </i>
             </div> Requests
+            <div class="pl-3 page-navbar">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Switch Filter <i class="fa fa-caret-down pl-2"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-left filter-view-dropdown">
+                    <a class="dropdown-item selected" href="#">My open issues</a>
+                    <a class="dropdown-item" href="#">Reported by me</a>
+                    <a class="dropdown-item" href="#">All issues</a>
+                    <a class="dropdown-item" href="#">Open issues</a>
+                    <a class="dropdown-item" href="#">Done issues</a>
+                    <a class="dropdown-item" href="#">Viewed recently</a>
+                    <a class="dropdown-item" href="#">Created recently</a>
+                    <a class="dropdown-item" href="#">Resolved recently</a>
+                    <a class="dropdown-item" href="#">Updated recently</a>
+                </div>
+            </div>
         </div>
 
         <div id="request-list-container" class="div">
@@ -304,6 +336,22 @@
                 <i class="icon-layers icon-gradient bg-arielle-smile">
                 </i>
             </div> Requirements
+            <div class="pl-3 page-navbar">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Switch Filter <i class="fa fa-caret-down pl-2"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-left filter-view-dropdown">
+                    <a class="dropdown-item selected" href="#">My open issues</a>
+                    <a class="dropdown-item" href="#">Reported by me</a>
+                    <a class="dropdown-item" href="#">All issues</a>
+                    <a class="dropdown-item" href="#">Open issues</a>
+                    <a class="dropdown-item" href="#">Done issues</a>
+                    <a class="dropdown-item" href="#">Viewed recently</a>
+                    <a class="dropdown-item" href="#">Created recently</a>
+                    <a class="dropdown-item" href="#">Resolved recently</a>
+                    <a class="dropdown-item" href="#">Updated recently</a>
+                </div>
+            </div>
         </div>
 
         <div id="requirement-list-container" class="div">
@@ -331,6 +379,22 @@
                 <i class="icon-target icon-gradient bg-arielle-smile">
                 </i>
             </div> Test Cases
+            <div class="pl-3 page-navbar">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Switch Filter <i class="fa fa-caret-down pl-2"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-left filter-view-dropdown">
+                    <a class="dropdown-item selected" href="#">My open issues</a>
+                    <a class="dropdown-item" href="#">Reported by me</a>
+                    <a class="dropdown-item" href="#">All issues</a>
+                    <a class="dropdown-item" href="#">Open issues</a>
+                    <a class="dropdown-item" href="#">Done issues</a>
+                    <a class="dropdown-item" href="#">Viewed recently</a>
+                    <a class="dropdown-item" href="#">Created recently</a>
+                    <a class="dropdown-item" href="#">Resolved recently</a>
+                    <a class="dropdown-item" href="#">Updated recently</a>
+                </div>
+            </div>
         </div>
 
         <div id="testCase-list-container" class="div">
@@ -358,6 +422,22 @@
                 <i class="icon-rocket icon-gradient bg-arielle-smile">
                 </i>
             </div> Releases
+            <div class="pl-3 page-navbar">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Switch Filter <i class="fa fa-caret-down pl-2"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-left filter-view-dropdown">
+                    <a class="dropdown-item selected" href="#">My open issues</a>
+                    <a class="dropdown-item" href="#">Reported by me</a>
+                    <a class="dropdown-item" href="#">All issues</a>
+                    <a class="dropdown-item" href="#">Open issues</a>
+                    <a class="dropdown-item" href="#">Done issues</a>
+                    <a class="dropdown-item" href="#">Viewed recently</a>
+                    <a class="dropdown-item" href="#">Created recently</a>
+                    <a class="dropdown-item" href="#">Resolved recently</a>
+                    <a class="dropdown-item" href="#">Updated recently</a>
+                </div>
+            </div>
         </div>
 
         <div id="release-list-container" class="div">
@@ -387,6 +467,22 @@
                 <i class="icon-ghost icon-gradient bg-arielle-smile">
                 </i>
             </div> Bugs
+            <div class="pl-3 page-navbar">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Switch Filter <i class="fa fa-caret-down pl-2"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-left filter-view-dropdown">
+                    <a class="dropdown-item selected" href="#">My open issues</a>
+                    <a class="dropdown-item" href="#">Reported by me</a>
+                    <a class="dropdown-item" href="#">All issues</a>
+                    <a class="dropdown-item" href="#">Open issues</a>
+                    <a class="dropdown-item" href="#">Done issues</a>
+                    <a class="dropdown-item" href="#">Viewed recently</a>
+                    <a class="dropdown-item" href="#">Created recently</a>
+                    <a class="dropdown-item" href="#">Resolved recently</a>
+                    <a class="dropdown-item" href="#">Updated recently</a>
+                </div>
+            </div>
         </div>
 
         <div id="bug-list-container" class="div">
@@ -416,6 +512,22 @@
                 <i class="icon-event icon-gradient bg-arielle-smile">
                 </i>
             </div> Tasks
+            <div class="pl-3 page-navbar">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Switch Filter <i class="fa fa-caret-down pl-2"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-left filter-view-dropdown">
+                    <a class="dropdown-item selected" href="#">My open issues</a>
+                    <a class="dropdown-item" href="#">Reported by me</a>
+                    <a class="dropdown-item" href="#">All issues</a>
+                    <a class="dropdown-item" href="#">Open issues</a>
+                    <a class="dropdown-item" href="#">Done issues</a>
+                    <a class="dropdown-item" href="#">Viewed recently</a>
+                    <a class="dropdown-item" href="#">Created recently</a>
+                    <a class="dropdown-item" href="#">Resolved recently</a>
+                    <a class="dropdown-item" href="#">Updated recently</a>
+                </div>
+            </div>
         </div>
 
         <div id="task-list-container" class="div">

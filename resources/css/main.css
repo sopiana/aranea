@@ -169,7 +169,7 @@ a {
 
 a:hover {
   color: #167495;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:not([href]):not([tabindex]) {
@@ -3088,6 +3088,21 @@ input[type="button"].btn-block {
   border-radius: 0.25rem;
 }
 
+.dropdown-menu.filter-view-dropdown{
+    border-radius: 0;
+}
+
+.dropdown-menu.filter-view-dropdown .dropdown-item {
+    padding: 5px 25px;
+}
+.dropdown-menu.filter-view-dropdown .dropdown-item.selected{
+    padding: 5px 5px;
+}
+.dropdown-menu.filter-view-dropdown .dropdown-item.selected::before {
+    font-family: FontAwesome;
+    content:"\f00c";
+    padding-right:.4rem;
+}
 .dropdown-menu-left {
   right: auto;
   left: 0;
@@ -16305,6 +16320,10 @@ table.dataTable.display tbody tr:hover > .sorting_1{
     height: 35px;
 }
 
+.card-body .page-title-heading .page-navbar{
+    font-size:.875rem;
+}
+
 .sidebar-minimized .sidebar-nav .project-sidebar-title .project-name{
     display:none;
 }
@@ -16326,4 +16345,13 @@ table.dataTable.display tbody tr:hover > .sorting_1{
     font-weight:550;
 }
 
-project-name
+.sidebar-nav .project-sidebar-title .project-logo{
+    width:45px;
+    max-width:45px;
+    padding: 0px;
+}
+
+.sidebar-nav .project-sidebar-title .project-name{
+    margin-top:auto;
+    margin-bottom: 0px;
+}

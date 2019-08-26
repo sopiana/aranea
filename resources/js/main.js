@@ -33,6 +33,9 @@ function drawWindow(){
         case "dashboard":
             dashboardPage.drawPage();
             break;
+        case "project":
+            projectPage.drawPage();
+            break;
     }
 }
 
@@ -114,6 +117,7 @@ var dashboardPage = {
             {
                 this.datatable = $('#project-list-table').DataTable( {
                     colReorder:true,
+                    pageLength:25,
                     // dom:'Bfrtip',
                     // buttons:['colvis'],
                     retrieve: true,
@@ -142,7 +146,11 @@ var dashboardPage = {
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.owner_avatar +'" width="30px">'+ row.owner;}},
                         { data: "kind" },
-                        { data: "created_at" },
+                        { data: "created_at",
+                            render:function(data, type, row) {
+                                return Utils.getDateStr(row.created_at);
+                            }
+                        },
                         { data: "is_active" }
                     ]
                 } );
@@ -160,6 +168,7 @@ var dashboardPage = {
             {
                 this.datatable = $('#task-list-table').DataTable( {
                     colReorder:true,
+                    pageLength:25,
                     retrieve: true,
                     ajax: {
                         url: window.location.origin+'/api/secure/taskList',
@@ -181,7 +190,11 @@ var dashboardPage = {
                         { data: "submitter_name", width:COL_USERNAME_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.submitter_avatar +'" width="30px">'+ row.submitter_name;}},
-                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px'},
+                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px',
+                            render:function(data, type, row) {
+                                return Utils.getDateStr(row.created_at);
+                            }
+                        },
                         { data: "priority", width: COL_PRIORITY_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 switch(row.priority)
@@ -217,6 +230,7 @@ var dashboardPage = {
             {
                 this.datatable = $('#allItem-list-table').DataTable( {
                     colReorder:true,
+                    pageLength:25,
                     // dom:'Bfrtip',
                     // buttons:['colvis'],
                     retrieve: true,
@@ -264,7 +278,11 @@ var dashboardPage = {
                         { data: "submitter_name", width:COL_USERNAME_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.submitter_avatar +'" width="30px">'+ row.submitter_name;}},
-                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px'},
+                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px',
+                            render:function(data, type, row) {
+                                return Utils.getDateStr(row.created_at);
+                            }
+                        },
                         { data: "priority", width: COL_PRIORITY_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 switch(row.priority)
@@ -300,6 +318,7 @@ var dashboardPage = {
             {
                 this.datatable = $('#request-list-table').DataTable( {
                     colReorder:true,
+                    pageLength:25,
                     // dom:'Bfrtip',
                     // buttons:['colvis'],
                     retrieve: true,
@@ -323,7 +342,11 @@ var dashboardPage = {
                         { data: "submitter_name", width:COL_USERNAME_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.submitter_avatar +'" width="30px">'+ row.submitter_name;}},
-                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px'},
+                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px',
+                            render:function(data, type, row) {
+                                return Utils.getDateStr(row.created_at);
+                            }
+                        },
                         { data: "priority", width: COL_PRIORITY_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 switch(row.priority)
@@ -360,6 +383,7 @@ var dashboardPage = {
             {
                 this.datatable = $('#requirement-list-table').DataTable( {
                     colReorder:true,
+                    pageLength:25,
                     retrieve: true,
                     ajax: {
                         url: window.location.origin+'/api/secure/requirementList',
@@ -381,7 +405,11 @@ var dashboardPage = {
                         { data: "submitter_name", width:COL_USERNAME_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.submitter_avatar +'" width="30px">'+ row.submitter_name;}},
-                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px'},
+                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px',
+                            render:function(data, type, row) {
+                                return Utils.getDateStr(row.created_at);
+                            }
+                        },
                         { data: "priority", width: COL_PRIORITY_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 switch(row.priority)
@@ -418,6 +446,7 @@ var dashboardPage = {
             {
                 this.datatable = $('#testCase-list-table').DataTable( {
                     colReorder:true,
+                    pageLength:25,
                     retrieve: true,
                     ajax: {
                         url: window.location.origin+'/api/secure/testCaseList',
@@ -439,7 +468,11 @@ var dashboardPage = {
                         { data: "submitter_name", width:COL_USERNAME_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.submitter_avatar +'" width="30px">'+ row.submitter_name;}},
-                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px'},
+                        { data: "created_at", width: COL_CREATION_DATE_WIDTH+'px',
+                            render:function(data, type, row) {
+                                return Utils.getDateStr(row.created_at);
+                            }
+                        },
                         { data: "priority", width: COL_PRIORITY_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 switch(row.priority)
@@ -477,6 +510,7 @@ var dashboardPage = {
             {
                 this.datatable = $('#release-list-table').DataTable( {
                     colReorder:true,
+                    pageLength:25,
                     retrieve: true,
                     ajax: {
                         url: window.location.origin+'/api/secure/releaseList',
@@ -511,8 +545,16 @@ var dashboardPage = {
                                 }
                             }
                         },
-                        { data: "started_at", width: COL_DATE_WIDTH+'px'},
-                        { data: "ended_at", width: COL_DATE_WIDTH+'px'},
+                        { data: "started_at", width: COL_DATE_WIDTH+'px',
+                            render:function(data, type, row) {
+                                return Utils.getDateStr(row.started_at, false);
+                            }
+                        },
+                        { data: "ended_at", width: COL_DATE_WIDTH+'px',
+                            render:function(data, type, row) {
+                                return Utils.getDateStr(row.ended_at, false);
+                            }
+                        },
                         { data: "submitter_name", width:COL_USERNAME_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.submitter_avatar +'" width="30px">'+ row.submitter_name;}},
@@ -535,6 +577,7 @@ var dashboardPage = {
             {
                 this.datatable = $('#bug-list-table').DataTable( {
                     colReorder:true,
+                    pageLength:25,
                     retrieve: true,
                     ajax: {
                         url: window.location.origin+'/api/secure/bugList',
@@ -571,7 +614,11 @@ var dashboardPage = {
                         { data: "submitter_name", width:COL_USERNAME_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.submitter_avatar +'" width="30px">'+ row.submitter_name;}},
-                        { data:"created_at", width:COL_CREATION_DATE_WIDTH+'px'},
+                        { data:"created_at", width:COL_CREATION_DATE_WIDTH+'px',
+                            render:function(data, type, row) {
+                                return Utils.getDateStr(row.created_at);
+                            }
+                        },
                         { data: "priority", width: COL_PRIORITY_WIDTH+'px',
                             render: function ( data, type, row ) {
                                 switch(row.priority)
@@ -618,5 +665,67 @@ var dashboardPage = {
     }
 }
 
+var projectPage =
+{
+    drawPage:function()
+    {
+        var subPageStr = getWindowParam('page');
+        var subPage = $('#pageContainer').children();
+        if(subPage.length>0)
+        {
+            subPage = subPage[0];
+            $(subPage).appendTo('#hidden-div');
+        }
+        switch(subPageStr){
+            case 'profile':
+                this.subMenuProfile.draw();
+                break;
+            case 'projects':
+                this.subMenuProjects.draw();
+                break;
+            case 'tasks':
+                this.subMenuTasks.draw();
+                break;
+            case 'issues-all':
+                this.subMenuAllItems.draw();
+                break;
+            case 'issues-request':
+                this.subMenuRequests.draw();
+                break;
+            case 'issues-req':
+                this.subMenuRequirements.draw();
+                break;
+            case 'issues-tc':
+                this.subMenuTestCase.draw();
+                break;
+            case 'release':
+                this.subMenuRelease.draw();
+                break;
+            case 'issues-bugs':
+                this.subMenuBug.draw();
+                break;
+        }
+    },
+    subMenuRequests:{
+        datatable:null,
+        draw:function(){
+            $('#requestList-detail').appendTo('#pageContainer');
+        }
+    }
+}
+
+var Utils =
+{
+    monthName:['','Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+    getDateStr:function(date, isDatetime=true)
+    {
+        if(isDatetime)
+            date = date.substr(0, date.indexOf(' '));
+        dateComponents =date.split('-');
+
+        return dateComponents[2]+' '+this.monthName[parseInt(dateComponents[1])]+' '+dateComponents[0];
+    },
+
+}
 
 

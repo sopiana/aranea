@@ -39,13 +39,13 @@ class SecureApi extends Controller
         $requests = Request::getRequestList(Auth::user()->id)->addSelect(DB::raw("'REQUEST' as item_type"));
         $requirements = Requirement::getRequirementList(Auth::user()->id)->addSelect(DB::raw("'REQUIREMENT' as item_type"));
         $testcases = TestCase::getTestCaseList(Auth::user()->id)->addSelect(DB::raw("'TEST_CASE' as item_type"));
-        $bugs = Bug::getBugList(Auth::user()->id)->select('id','project_id',
-            'project_prefix','summary','submitter_id','submitter_name','submitter_avatar',
+        $bugs = Bug::getBugList(Auth::user()->id)->select('id',
+            'project_code','summary','submitter_id','submitter_name','submitter_avatar',
             DB::raw('NULL as folder_id'),'status_id','status_name','visibility',
             DB::raw('TRUE as is_active'),'assignee_id','assignee_name',
             'assignee_avatar','priority','created_at', DB::raw("'BUG' as item_type"));
-        $releases = Release::getReleaseList(Auth::user()->id)->select('id','project_id',
-            'project_prefix','name as summary','submitter_id','submitter_name','submitter_avatar',
+        $releases = Release::getReleaseList(Auth::user()->id)->select('id',
+            'project_code','name as summary','submitter_id','submitter_name','submitter_avatar',
             DB::raw('NULL as folder_id'),'status_id','status_name',DB::raw("'VISIBILITY_NONE' as visibility"),
             DB::raw('TRUE as is_active'),'owner_id as assignee_id','owner_name as assignee_name',
             'owner_avatar as assignee_avatar',DB::raw("'PRIORITY_LOW' as priority"),'created_at', DB::raw("'RELEASE' as item_type"));;

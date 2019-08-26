@@ -92,7 +92,8 @@ class CreateViewTable extends Migration
     private function createViewRequest(){
         DB::statement('DROP VIEW IF EXISTS `view_request`');
         DB::statement("CREATE VIEW view_request AS(
-            SELECT  requests.id, projects.id as project_id, projects.prefix as project_prefix,
+            SELECT  requests.id,
+                CONCAT(projects.prefix,'_',projects.id) as project_code,
                 requests.submitter_id, submitter.username as submitter_name, submitter.avatar as submitter_avatar,
                 requests.folder_id,
                 requests.status as status_id, status.name as status_name,
@@ -116,7 +117,8 @@ class CreateViewTable extends Migration
     private function createViewRequirement(){
         DB::statement('DROP VIEW IF EXISTS `view_requirement`');
         DB::statement("CREATE VIEW view_requirement AS(
-            SELECT  requirements.id, projects.id as project_id, projects.prefix as project_prefix,
+            SELECT  requirements.id,
+                CONCAT(projects.prefix,'_',projects.id) as project_code,
                 requirements.submitter_id, submitter.username as submitter_name, submitter.avatar as submitter_avatar,
                 requirements.folder_id,
                 requirements.status as status_id, status.name as status_name,
@@ -140,7 +142,8 @@ class CreateViewTable extends Migration
     private function createViewTestCase(){
         DB::statement('DROP VIEW IF EXISTS `view_test_case`');
         DB::statement("CREATE VIEW view_test_case AS(
-            SELECT test_cases.id, projects.prefix as project_prefix, projects.id as project_id,
+            SELECT test_cases.id,
+                CONCAT(projects.prefix,'_',projects.id) as project_code,
                 submitter.username as submitter_name, submitter.avatar as submitter_avatar,`submitter_id`,
                 `test_suite_id`, `version`,
                 test_cases.status as status_id, status.name as status_name,
@@ -160,7 +163,7 @@ class CreateViewTable extends Migration
         DB::statement('DROP VIEW IF EXISTS `view_release`');
         DB::statement("CREATE VIEW view_release AS(
             SELECT releases.id, releases.name, releases.type,
-                releases.project_id, projects.prefix as project_prefix,
+                CONCAT(projects.prefix,'_',projects.id) as project_code,
                 releases.status as status_id, status.name as status_name,
                 releases.submitter_id, submitter.username as submitter_name, submitter.avatar as submitter_avatar,
                 releases.owner_id, owner.username as owner_name, owner.avatar as owner_avatar,
@@ -177,7 +180,7 @@ class CreateViewTable extends Migration
         DB::statement('DROP VIEW IF EXISTS `view_bug`');
         DB::statement("CREATE VIEW view_bug AS(
             SELECT bugs.id,
-                bugs.project_id, projects.prefix as project_prefix,
+                CONCAT(projects.prefix,'_',projects.id) as project_code,
                 bugs.type, bugs.summary,
                 bugs.status as status_id, status.name as status_name,
                 bugs.detected_release_id, detected_release.version as detected_release_version,
@@ -202,7 +205,7 @@ class CreateViewTable extends Migration
         DB::statement('DROP VIEW IF EXISTS `view_task`');
         DB::statement("CREATE VIEW view_task AS(
             SELECT tasks.id,
-                tasks.project_id, projects.prefix as project_prefix,
+                CONCAT(projects.prefix,'_',projects.id) as project_code,
                 tasks.submitter_id,submitter.username as submitter_name, submitter.avatar as submitter_avatar,
                 tasks.status as status_id, status.name as status_name,
                 tasks.visibility, tasks.is_active,

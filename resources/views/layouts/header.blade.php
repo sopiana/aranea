@@ -20,7 +20,7 @@
             <div class="dropdown-header text-center">
                 <strong>Current Project</strong>
             </div>
-        <a class="dropdown-item" href="{{ route('project',$currentProject->project_code) }}">
+            <a class="dropdown-item" href="{{ route('project',$currentProject->project_code) }}">
             <img src="{{URL::asset($currentProject->avatar)}}" class="img-avatar pr-2" width="30px"/> {{$currentProject->name}}</a>
             @endif
             @if(isset($recentProjects))

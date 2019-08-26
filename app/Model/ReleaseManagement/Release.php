@@ -13,7 +13,7 @@ class Release extends Model
     public static function getReleaseList ($userId, $start=-1, $limit=-1)
     {
         $query= DB::table(VIEW_RELEASE)->
-                select(VIEW_RELEASE.'.id',VIEW_RELEASE.'.project_id',VIEW_RELEASE.'.project_prefix',
+                select(VIEW_RELEASE.'.id',VIEW_RELEASE.'.project_code',
                     VIEW_RELEASE.'.name', VIEW_RELEASE.'.type',
                     VIEW_RELEASE.'.submitter_id', VIEW_RELEASE.'.submitter_name', VIEW_RELEASE.'.submitter_avatar',
                     VIEW_RELEASE.'.status_id', VIEW_RELEASE.'.status_name',
