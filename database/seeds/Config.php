@@ -18,7 +18,7 @@ return [
         'min_test_suite'=>10,
         'max_test_suite'=>30,
         'min_test_case'=>200,
-        'min_test_case'=>400,
+        'max_test_case'=>400,
         'min_release'=>15,
         'max_release'=>40,
         'min_bug'=>40,
