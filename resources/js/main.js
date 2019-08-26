@@ -171,23 +171,7 @@ var dashboardPage = {
                             return Utils.getDateStr(row.created_at);
                         }
                     },
-                    { data: "priority", width: COL_PRIORITY_WIDTH+'px',
-                        render: function ( data, type, row ) {
-                            switch(row.priority)
-                            {
-                                case 'PRIORITY_LOW':
-                                    return '<div class="badge badge-info"><i class="fa fa-chevron-down"></i> Low</div>';
-                                case 'PRIORITY_MEDIUM':
-                                    return '<div class="badge badge-warning"><i class="fa fa-chevron-up"></i> Medium</div>';
-                                case 'PRIORITY_HIGH':
-                                    return '<div class="badge badge-danger"><i class="fa fa-chevron-up"></i> High</div>';
-                                case 'PRIORITY_URGENT':
-                                    return '<div class="badge badge-critical"><i class="fa fa-exclamation"></i> Urgent</div>';
-                                default:
-                                    return row.priority;
-                            }
-                        }
-                    },
+                    Utils.renderColPriority(),
                     { data: "assignee_name", width: COL_USERNAME_WIDTH+'px',
                         render: function ( data, type, row ) {
                             return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.assignee_avatar +'" width="30px">'+ row.assignee_name;}}
@@ -246,23 +230,7 @@ var dashboardPage = {
                             return Utils.getDateStr(row.created_at);
                         }
                     },
-                    { data: "priority", width: COL_PRIORITY_WIDTH+'px',
-                        render: function ( data, type, row ) {
-                            switch(row.priority)
-                            {
-                                case 'PRIORITY_LOW':
-                                    return '<div class="badge badge-info"><i class="fa fa-chevron-down"></i> Low</div>';
-                                case 'PRIORITY_MEDIUM':
-                                    return '<div class="badge badge-warning"><i class="fa fa-chevron-up"></i> Medium</div>';
-                                case 'PRIORITY_HIGH':
-                                    return '<div class="badge badge-danger"><i class="fa fa-chevron-up"></i> High</div>';
-                                case 'PRIORITY_URGENT':
-                                    return '<div class="badge badge-critical"><i class="fa fa-exclamation"></i> Urgent</div>';
-                                default:
-                                    return row.priority;
-                            }
-                        }
-                    },
+                    Utils.renderColPriority(),
                     { data: "assignee_name", width: COL_USERNAME_WIDTH,
                         render: function ( data, type, row ) {
                             return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.assignee_avatar +'" width="30px">'+ row.assignee_name;}}
@@ -297,23 +265,7 @@ var dashboardPage = {
                             return Utils.getDateStr(row.created_at);
                         }
                     },
-                    { data: "priority", width: COL_PRIORITY_WIDTH+'px',
-                        render: function ( data, type, row ) {
-                            switch(row.priority)
-                            {
-                                case 'PRIORITY_LOW':
-                                    return '<div class="badge badge-info"><i class="fa fa-chevron-down"></i> Low</div>';
-                                case 'PRIORITY_MEDIUM':
-                                    return '<div class="badge badge-warning"><i class="fa fa-chevron-up"></i> Medium</div>';
-                                case 'PRIORITY_HIGH':
-                                    return '<div class="badge badge-danger"><i class="fa fa-chevron-up"></i> High</div>';
-                                case 'PRIORITY_URGENT':
-                                    return '<div class="badge badge-critical"><i class="fa fa-exclamation"></i> Urgent</div>';
-                                default:
-                                    return row.priority;
-                            }
-                        }
-                    },
+                    Utils.renderColPriority(),
                     { data: "assignee_name", width: COL_USERNAME_WIDTH,
                         render: function ( data, type, row ) {
                             return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.assignee_avatar +'" width="30px">'+ row.assignee_name;}}
@@ -350,23 +302,7 @@ var dashboardPage = {
                             return Utils.getDateStr(row.created_at);
                         }
                     },
-                    { data: "priority", width: COL_PRIORITY_WIDTH+'px',
-                        render: function ( data, type, row ) {
-                            switch(row.priority)
-                            {
-                                case 'PRIORITY_LOW':
-                                    return '<div class="badge badge-info"><i class="fa fa-chevron-down"></i> Low</div>';
-                                case 'PRIORITY_MEDIUM':
-                                    return '<div class="badge badge-warning"><i class="fa fa-chevron-up"></i> Medium</div>';
-                                case 'PRIORITY_HIGH':
-                                    return '<div class="badge badge-danger"><i class="fa fa-chevron-up"></i> High</div>';
-                                case 'PRIORITY_URGENT':
-                                    return '<div class="badge badge-critical"><i class="fa fa-exclamation"></i> Urgent</div>';
-                                default:
-                                    return row.priority;
-                            }
-                        }
-                    },
+                    Utils.renderColPriority(),
                     { data: "assignee_name", width: COL_USERNAME_WIDTH+'px',
                         render: function ( data, type, row ) {
                             return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.assignee_avatar +'" width="30px">'+ row.assignee_name;}}
@@ -401,23 +337,7 @@ var dashboardPage = {
                             return Utils.getDateStr(row.created_at);
                         }
                     },
-                    { data: "priority", width: COL_PRIORITY_WIDTH+'px',
-                        render: function ( data, type, row ) {
-                            switch(row.priority)
-                            {
-                                case 'PRIORITY_LOW':
-                                    return '<div class="badge badge-info"><i class="fa fa-chevron-down"></i> Low</div>';
-                                case 'PRIORITY_MEDIUM':
-                                    return '<div class="badge badge-warning"><i class="fa fa-chevron-up"></i> Medium</div>';
-                                case 'PRIORITY_HIGH':
-                                    return '<div class="badge badge-danger"><i class="fa fa-chevron-up"></i> High</div>';
-                                case 'PRIORITY_URGENT':
-                                    return '<div class="badge badge-critical"><i class="fa fa-exclamation"></i> Urgent</div>';
-                                default:
-                                    return row.priority;
-                            }
-                        }
-                    },
+                    Utils.renderColPriority(),
                     { data: "assignee_name", width: COL_USERNAME_WIDTH+'px',
                         render: function ( data, type, row ) {
                             return '<img class="img-avatar pr-2" src="'+window.location.origin+'/'+row.assignee_avatar +'" width="30px">'+ row.assignee_name;}}
@@ -524,23 +444,7 @@ var dashboardPage = {
                             return Utils.getDateStr(row.created_at);
                         }
                     },
-                    { data: "priority", width: COL_PRIORITY_WIDTH+'px',
-                        render: function ( data, type, row ) {
-                            switch(row.priority)
-                            {
-                                case 'PRIORITY_LOW':
-                                    return '<div class="badge badge-info"><i class="fa fa-chevron-down"></i> Low</div>';
-                                case 'PRIORITY_MEDIUM':
-                                    return '<div class="badge badge-warning"><i class="fa fa-chevron-up"></i> Medium</div>';
-                                case 'PRIORITY_HIGH':
-                                    return '<div class="badge badge-danger"><i class="fa fa-chevron-up"></i> High</div>';
-                                case 'PRIORITY_URGENT':
-                                    return '<div class="badge badge-critical"><i class="fa fa-exclamation"></i> Urgent</div>';
-                                default:
-                                    return row.priority;
-                            }
-                        }
-                    },
+                    Utils.renderColPriority(),
                     { data: "severity", width: COL_PRIORITY_WIDTH+'px',
                         render: function ( data, type, row ) {
                             switch(row.severity)
@@ -720,5 +624,41 @@ var Utils =
             columns:null
         }
         return ret;
+    },
+    renderColPriority:function()
+    {
+        let ret= {
+            data: "priority", width: COL_PRIORITY_WIDTH+'px',
+            sType:"priority",
+            render: function ( data, type, row )
+            {
+                switch(row.priority)
+                {
+                    case 'PRIORITY_LOW':
+                        return '<div data-priority = "1" class="badge badge-info"><i class="fa fa-chevron-down"></i> Low</div>';
+                    case 'PRIORITY_MEDIUM':
+                        return '<div data-priority = "2" class="badge badge-warning"><i class="fa fa-chevron-up"></i> Medium</div>';
+                    case 'PRIORITY_HIGH':
+                        return '<div data-priority = "3" class="badge badge-danger"><i class="fa fa-chevron-up"></i> High</div>';
+                    case 'PRIORITY_URGENT':
+                        return '<div data-priority = "4" class="badge badge-critical"><i class="fa fa-exclamation"></i> Urgent</div>';
+                    default:
+                        return row.priority;
+                }
+            }
+        }
+        return ret;
     }
 }
+
+jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+    "priority-pre": function ( a ) {
+        return $(a).data("priority");
+    },
+    "priority-asc": function( a, b ) {
+        return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+    },
+    "priority-desc": function(a,b) {
+        return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+    }
+});
