@@ -68,6 +68,11 @@ var dashboardPage = {
     drawPage:function()
     {
         var subPageStr = getWindowParam('page');
+        var view = getWindowParam('view');
+        view = (view==null?'list':view);
+        var filter = getWindowParam('filter');
+        filter = (filter==null?'my-open':filter);
+        console.log(view +" "+filter);
         var subPage = $('#pageContainer').children();
         if(subPage.length>0)
         {
@@ -130,7 +135,7 @@ var dashboardPage = {
                 Utils.renderColWithImage("owner", "row.owner_avatar","row.owner"),
                 { data: "kind" },
                 Utils.renderColDate("created_at","row.created_at"),
-                { data: "is_active" }
+                { data:"is_active" }
             ]);
             Utils.loadDataTable(this.datatable, window.location.origin+'/api/secure/projectList');
         }
@@ -267,7 +272,6 @@ var dashboardPage = {
             Utils.loadDataTable(this.datatable, window.location.origin+'/api/secure/testCaseList');
         }
     },
-
     subMenuRelease:
     {
         datatable:null,
@@ -298,8 +302,8 @@ var dashboardPage = {
                         }
                     }
                 },
-                Utils.renderColDate("started_at", "row.started_at"),
-                Utils.renderColDate("ended_at","row.ended_at"),
+                Utils.renderColDate("started_at", "row.started_at", false),
+                Utils.renderColDate("ended_at","row.ended_at", false),
                 Utils.renderColWithImage("submitter_name","row.submitter_avatar","row.submitter_name"),
                 Utils.renderColWithImage("owner_name", "row.owner_avatar","row.owner_name")
             ]);
@@ -501,7 +505,8 @@ var Utils =
     {
         var setting = {
             colReorder:true,
-            pageLength:25,
+            pageLength:50,
+            deferRender:true,
             columns:columnDefinitions
         }
         $(container).DataTable().destroy();
@@ -541,11 +546,12 @@ var Utils =
         }
         return ret;
     },
-    renderColDate:function(dataEntry, date)
+    renderColDate:function(dataEntry, date, isDateTime=true)
     {
         let ret = { data: dataEntry, width: COL_CREATION_DATE_WIDTH+'px',
+            sType:"date",
             render:function(data, type, row) {
-                return Utils.getDateStr(eval(date));
+                return '<div data-date = "'+eval(date)+'">'+Utils.getDateStr(eval(date), isDateTime)+'</div>';
             }
         }
         return ret;
@@ -576,6 +582,15 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
         return ((a < b) ? -1 : ((a > b) ? 1 : 0));
     },
     "priority-desc": function(a,b) {
+        return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+    },
+    "date-pre":function(a){
+        return $(a).data("date");
+    },
+    "date-asc": function( a, b ) {
+        return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+    },
+    "date-desc": function(a,b) {
         return ((a < b) ? 1 : ((a > b) ? -1 : 0));
     }
 });
