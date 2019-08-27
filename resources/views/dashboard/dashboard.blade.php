@@ -259,6 +259,7 @@
                     <a class="dropdown-item" href="#" filter="all">All issues</a>
                     <a class="dropdown-item" href="#" filter="open">Open issues</a>
                     <a class="dropdown-item" href="#" filter="done">Done issues</a>
+                    <a class="dropdown-item" href="#" filter="postpone">Postponed issues</a>
                     <a class="dropdown-item" href="#" filter="viewed">Viewed recently</a>
                     <a class="dropdown-item" href="#" filter="created">Created recently</a>
                     <a class="dropdown-item" href="#" filter="resolved">Resolved recently</a>
@@ -312,6 +313,7 @@
                     <a class="dropdown-item" href="#" filter="all">All issues</a>
                     <a class="dropdown-item" href="#" filter="open">Open issues</a>
                     <a class="dropdown-item" href="#" filter="done">Done issues</a>
+                    <a class="dropdown-item" href="#" filter="postpone">Postponed issues</a>
                     <a class="dropdown-item" href="#" filter="viewed">Viewed recently</a>
                     <a class="dropdown-item" href="#" filter="created">Created recently</a>
                     <a class="dropdown-item" href="#" filter="resolved">Resolved recently</a>
@@ -364,6 +366,7 @@
                     <a class="dropdown-item" href="#" filter="all">All issues</a>
                     <a class="dropdown-item" href="#" filter="open">Open issues</a>
                     <a class="dropdown-item" href="#" filter="done">Done issues</a>
+                    <a class="dropdown-item" href="#" filter="postpone">Postponed issues</a>
                     <a class="dropdown-item" href="#" filter="viewed">Viewed recently</a>
                     <a class="dropdown-item" href="#" filter="created">Created recently</a>
                     <a class="dropdown-item" href="#" filter="resolved">Resolved recently</a>
@@ -416,6 +419,7 @@
                     <a class="dropdown-item" href="#" filter="all">All issues</a>
                     <a class="dropdown-item" href="#" filter="open">Open issues</a>
                     <a class="dropdown-item" href="#" filter="done">Done issues</a>
+                    <a class="dropdown-item" href="#" filter="postpone">Postponed issues</a>
                     <a class="dropdown-item" href="#" filter="viewed">Viewed recently</a>
                     <a class="dropdown-item" href="#" filter="created">Created recently</a>
                     <a class="dropdown-item" href="#" filter="resolved">Resolved recently</a>
@@ -468,6 +472,7 @@
                     <a class="dropdown-item" href="#" filter="all">All issues</a>
                     <a class="dropdown-item" href="#" filter="open">Open issues</a>
                     <a class="dropdown-item" href="#" filter="done">Done issues</a>
+                    <a class="dropdown-item" href="#" filter="postpone">Postponed issues</a>
                     <a class="dropdown-item" href="#" filter="viewed">Viewed recently</a>
                     <a class="dropdown-item" href="#" filter="created">Created recently</a>
                     <a class="dropdown-item" href="#" filter="resolved">Resolved recently</a>
@@ -522,6 +527,7 @@
                     <a class="dropdown-item" href="#" filter="all">All issues</a>
                     <a class="dropdown-item" href="#" filter="open">Open issues</a>
                     <a class="dropdown-item" href="#" filter="done">Done issues</a>
+                    <a class="dropdown-item" href="#" filter="postpone">Postponed issues</a>
                     <a class="dropdown-item" href="#" filter="viewed">Viewed recently</a>
                     <a class="dropdown-item" href="#" filter="created">Created recently</a>
                     <a class="dropdown-item" href="#" filter="resolved">Resolved recently</a>
@@ -576,6 +582,7 @@
                     <a class="dropdown-item" href="#" filter="all">All issues</a>
                     <a class="dropdown-item" href="#" filter="open">Open issues</a>
                     <a class="dropdown-item" href="#" filter="done">Done issues</a>
+                    <a class="dropdown-item" href="#" filter="postpone">Postponed issues</a>
                     <a class="dropdown-item" href="#" filter="viewed">Viewed recently</a>
                     <a class="dropdown-item" href="#" filter="created">Created recently</a>
                     <a class="dropdown-item" href="#" filter="resolved">Resolved recently</a>
