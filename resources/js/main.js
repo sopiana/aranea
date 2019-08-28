@@ -120,7 +120,7 @@ var dashboardPage = {
         draw: function()
         {
             $('#projectList-detail').appendTo('#pageContainer');
-            this.datatable = Utils.renderDataTable("#project-list-table", [
+            this.datatable = Utils.renderDataTable("#project-list-table", window.location.origin+'/api/secure/projectList',[
                 { data: "project_code", width:COL_CODE_WIDTH+'px',
                     render:function( data, type, row ){
                     return '<a href="'+window.location.origin+'/project/'+row.project_code+'">'+row.project_code+'</a>';
@@ -137,7 +137,6 @@ var dashboardPage = {
                 Utils.renderColDate("created_at","row.created_at"),
                 { data:"is_active" }
             ]);
-            Utils.loadDataTable(this.datatable, window.location.origin+'/api/secure/projectList');
         }
     },
     subMenuTasks:
@@ -146,7 +145,7 @@ var dashboardPage = {
         draw:function(){
             Utils.renderFilterDropdown('#taskList-detail', dashboardPage.page);
 
-            this.datatable = Utils.renderDataTable('#task-list-table', [
+            this.datatable = Utils.renderDataTable('#task-list-table', window.location.origin+'/api/secure/taskList', [
                     { data: "id", width:COL_CODE_WIDTH+'px',
                         render: function ( data, type, row ) {
                             return 'TSK_'+row.id;
@@ -159,7 +158,6 @@ var dashboardPage = {
                     Utils.renderColPriority(),
                     Utils.renderColWithImage("assignee_name","row.assignee_avatar","row.assignee_name")
                 ]);
-            Utils.loadDataTable(this.datatable, window.location.origin+'/api/secure/taskList');
         }
     },
     subMenuAllItems:{
@@ -167,7 +165,7 @@ var dashboardPage = {
         draw:function(){
             Utils.renderFilterDropdown('#allItemList-detail', dashboardPage.page);
 
-            this.datatable = Utils.renderDataTable('#allItem-list-table',[
+            this.datatable = Utils.renderDataTable('#allItem-list-table',window.location.origin+'/api/secure/allItemList', [
                 {
                     data:"item_type",
                     render: function ( data, type, row ) {
@@ -204,8 +202,6 @@ var dashboardPage = {
                 Utils.renderColPriority(),
                 Utils.renderColWithImage("assignee_name","row.assignee_avatar","row.assignee_name")
             ]);
-
-            Utils.loadDataTable(this.datatable, window.location.origin+'/api/secure/allItemList');
         }
     },
     subMenuRequests:{
@@ -213,7 +209,7 @@ var dashboardPage = {
         draw:function(){
             Utils.renderFilterDropdown('#requestList-detail', dashboardPage.page);
 
-            this.datatable = Utils.renderDataTable('#request-list-table', [
+            this.datatable = Utils.renderDataTable('#request-list-table', window.location.origin+'/api/secure/requestList', [
                 { data: "id", width:COL_CODE_WIDTH+'px',
                     render: function ( data, type, row ) {
                         return 'RQS_'+row.id;
@@ -226,7 +222,6 @@ var dashboardPage = {
                 Utils.renderColPriority(),
                 Utils.renderColWithImage("assignee_name","row.assignee_avatar","row.assignee_name")
             ]);
-            Utils.loadDataTable(this.datatable,window.location.origin+'/api/secure/requestList');
         }
     },
     subMenuRequirements:
@@ -234,7 +229,7 @@ var dashboardPage = {
         datatable:null,
         draw:function(){
             Utils.renderFilterDropdown('#requirementList-detail', dashboardPage.page);
-            this.datatable = Utils.renderDataTable("#requirement-list-table", [
+            this.datatable = Utils.renderDataTable("#requirement-list-table", window.location.origin+'/api/secure/requirementList', [
                     { data: "id", width:COL_CODE_WIDTH+'px',
                         render: function ( data, type, row ) {
                             return 'REQ_'+row.id;
@@ -247,7 +242,6 @@ var dashboardPage = {
                     Utils.renderColPriority(),
                     Utils.renderColWithImage("assignee_name","row.assignee_avatar","row.assignee_name")
             ]);
-            Utils.loadDataTable(this.datatable, window.location.origin+'/api/secure/requirementList');
         }
     },
     subMenuTestCase:
@@ -256,7 +250,7 @@ var dashboardPage = {
         draw:function(){
             Utils.renderFilterDropdown('#testCaseList-detail', dashboardPage.page);
 
-            this.datatable = Utils.renderDataTable('#testCase-list-table',[
+            this.datatable = Utils.renderDataTable('#testCase-list-table', window.location.origin+'/api/secure/testCaseList', [
                 { data: "id", width:COL_CODE_WIDTH+'px',
                     render: function ( data, type, row ) {
                         return 'TC_'+row.id;
@@ -269,7 +263,6 @@ var dashboardPage = {
                 Utils.renderColPriority(),
                 Utils.renderColWithImage("assignee_name","row.assignee_avatar","row.assignee_name")
             ]);
-            Utils.loadDataTable(this.datatable, window.location.origin+'/api/secure/testCaseList');
         }
     },
     subMenuRelease:
@@ -278,7 +271,7 @@ var dashboardPage = {
         draw:function(){
             Utils.renderFilterDropdown('#releaseList-detail', dashboardPage.page);
 
-            this.datatable = Utils.renderDataTable('#release-list-table', [
+            this.datatable = Utils.renderDataTable('#release-list-table', window.location.origin+'/api/secure/releaseList', [
                 { data: "id", width:COL_CODE_WIDTH+'px',
                     render: function ( data, type, row ) {
                         return 'REL_'+row.id;
@@ -307,8 +300,6 @@ var dashboardPage = {
                 Utils.renderColWithImage("submitter_name","row.submitter_avatar","row.submitter_name"),
                 Utils.renderColWithImage("owner_name", "row.owner_avatar","row.owner_name")
             ]);
-
-            Utils.loadDataTable(this.datatable,window.location.origin+'/api/secure/releaseList');
         }
     },
     subMenuBug:
@@ -317,7 +308,7 @@ var dashboardPage = {
         draw:function(){
             Utils.renderFilterDropdown('#bugList-detail', dashboardPage.page);
 
-            this.datatable = Utils.renderDataTable('#bug-list-table', [
+            this.datatable = Utils.renderDataTable('#bug-list-table', window.location.origin+'/api/secure/bugList', [
                 { data: "id", width:COL_CODE_WIDTH+'px',
                     render: function ( data, type, row ) {
                         return 'BUG_'+row.id;
@@ -362,8 +353,6 @@ var dashboardPage = {
                 },
                 Utils.renderColWithImage("assignee_name", "row.assignee_avatar", "row.assignee_name")
             ]);
-
-            Utils.loadDataTable(this.datatable, window.location.origin+'/api/secure/bugList');
         }
     }
 }
@@ -501,14 +490,18 @@ var Utils =
             }
         }
     },
-    renderDataTable:function(container, columnDefinitions)
+    renderDataTable:function(container, url, columnDefinitions)
     {
         var setting = {
             colReorder:true,
-            pageLength:50,
-            deferRender:true,
-            columns:columnDefinitions
+            pageLength:25,
+            columns:columnDefinitions,
+            processing: true,
+            serverSide: true,
+            ajax:null,
         }
+        if(url!=null)
+            setting.ajax = url;
         $(container).DataTable().destroy();
         return $(container).DataTable(setting);
     },
@@ -555,23 +548,7 @@ var Utils =
             }
         }
         return ret;
-    },
-    loadDataTable:function(dataTable, dataUrl){
-        $.ajax({
-            url: dataUrl,
-            dataType: "json",
-            cache:false,
-            beforeSend: function(){
-                dataTable.clear();
-                dataTable.draw();
-            },
-            success:function(data){
-                dataTable.rows.add(data);
-                dataTable.draw();
-            }
-        });
     }
-
 }
 
 jQuery.extend(jQuery.fn.dataTableExt.oSort, {

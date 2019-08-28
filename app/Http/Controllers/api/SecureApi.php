@@ -12,6 +12,9 @@ use App\Model\RequirementManagement\Requirement;
 use App\Model\TaskManagement\Task;
 use App\Model\TestCaseManagement\TestCase;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
+
+
 class SecureApi extends Controller
 {
     /**
@@ -32,8 +35,9 @@ class SecureApi extends Controller
     }
     public function getProjectList($start=-1,$limit=50)
     {
-        return response()->json(Project::getProjectList(Auth::user()->id, $start, $limit)->get());
+        return DataTables::of(Project::getProjectList(Auth::user()->id, $start, $limit)->get())->make(true);
     }
+
     public function getAllItemList($start=-1,$limit=50)
     {
         $requests = Request::getRequestList(Auth::user()->id)->addSelect(DB::raw("'REQUEST' as item_type"));
@@ -49,37 +53,37 @@ class SecureApi extends Controller
             DB::raw('NULL as folder_id'),'status_id','status_name',DB::raw("'VISIBILITY_NONE' as visibility"),
             DB::raw('TRUE as is_active'),'owner_id as assignee_id','owner_name as assignee_name',
             'owner_avatar as assignee_avatar',DB::raw("'PRIORITY_LOW' as priority"),'created_at', DB::raw("'RELEASE' as item_type"));;
-        return $requests->
+        return DataTables::of($requests->
             union($requirements)->
             union($testcases)->
             union($bugs)->
             union($releases)->
             orderByDesc('created_at')->
-            get();
+            get())->make(true);
     }
     public function getRequestList($start=-1,$limit=50)
     {
-        return response()->json(Request::getRequestList(Auth::user()->id, $start, $limit)->get());
+        return DataTables::of(Request::getRequestList(Auth::user()->id, $start, $limit)->get())->make(true);
     }
     public function getRequirementList($start=-1,$limit=50)
     {
-        return response()->json(Requirement::getRequirementList(Auth::user()->id, $start, $limit)->get());
+        return DataTables::of(Requirement::getRequirementList(Auth::user()->id, $start, $limit)->get())->make(true);
     }
     public function getTestCaseList($start=-1,$limit=50)
     {
-        return response()->json(TestCase::getTestCaseList(Auth::user()->id, $start, $limit)->get());
+        return DataTables::of(TestCase::getTestCaseList(Auth::user()->id, $start, $limit)->get())->make(true);
     }
     public function getReleaseList($start=-1,$limit=50)
     {
-        return response()->json(Release::getReleaseList(Auth::user()->id, $start, $limit)->get());
+        return DataTables::of(Release::getReleaseList(Auth::user()->id, $start, $limit)->get())->make(true);
     }
     public function getBugList($start=-1,$limit=50)
     {
-        return response()->json(Bug::getBugList(Auth::user()->id, $start, $limit)->get());
+        return DataTables::of(Bug::getBugList(Auth::user()->id, $start, $limit)->get())->make(true);
     }
     public function getTaskList($start=-1,$limit=50)
     {
-        return response()->json(Task::getTaskList(Auth::user()->id, $start, $limit)->get());
+        return DataTables(Task::getTaskList(Auth::user()->id, $start, $limit)->get())->make(true);
     }
     public function getProjectDescription($projectCode)
     {
