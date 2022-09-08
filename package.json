@@ -43,6 +43,6 @@
         "datatables.net-buttons-dt": "^1.5.6",
         "datatables.net-colreorder-dt": "^1.5.1",
         "glyphicons": "^0.2.0",
-        "jszip": "^3.2.2"
+        "jszip": "^3.7.0"
     }
 }
